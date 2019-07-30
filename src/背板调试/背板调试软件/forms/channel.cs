@@ -14,6 +14,7 @@ namespace LD.forms
 
     public delegate void SelectEventHandler(MouseEventArgs a,object sender);
 
+    public delegate void SendClickHandler(Ldpacket packet, object sender);
 
     public partial class channel : UserControl
     {
@@ -22,6 +23,15 @@ namespace LD.forms
 
         public event SelectEventHandler OnSelect;
 
+        public event SendClickHandler Onlease;
+        public event SendClickHandler Onreturn;
+        public event SendClickHandler Onopen;
+        public event SendClickHandler Onyunwei;
+
+        public SerialPortSetting serialPortSetting;
+
+        public TextBox beibanAddr;
+ 
         public channel()
         {
             InitializeComponent();
@@ -70,8 +80,8 @@ namespace LD.forms
 
         public string Addr
         {
-            get{ return this.tv_addr.Text; }
-            set{ this.tv_addr.Text = value; }
+            get{ return this.addr.Text; }
+            set{ this.addr.Text = value; }
         }
 
         public string Id
@@ -81,5 +91,45 @@ namespace LD.forms
         }
 
         public string Values { get { return values.Text; }set { values.Text = value; } }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Lease,beibanAddr.Text,Addr + Id + time.Text);
+
+            if (Onlease != null)
+                Onlease(p, this);
+            if (serialPortSetting !=null)
+                serialPortSetting.WritePacket(p);
+
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Return,beibanAddr.Text, Addr + time.Text);
+
+            if (Onreturn != null)
+                Onreturn(p, this);
+            if (serialPortSetting != null)
+                serialPortSetting.WritePacket(p);
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Ctrl,beibanAddr.Text, "02"+Addr + Id + time.Text);
+
+            if (Onopen != null)
+                Onopen(p, this);
+            if (serialPortSetting != null)
+                serialPortSetting.WritePacket(p);
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Ctrl,beibanAddr.Text, "01" + Addr + Id + time.Text);
+            if (Onyunwei != null)
+                Onyunwei(p, this);
+            if (serialPortSetting != null)
+                serialPortSetting.WritePacket(p);
+        }
     }
 }

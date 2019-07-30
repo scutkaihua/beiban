@@ -45,7 +45,14 @@ namespace LD.forms
                                 "借宝","电机","摆臂","红外","到位","来电宝","顶针","null"
 
                             });
-                cc.OnSelect += Cc_OnSelect;
+                cc.serialPortSetting = this.serial;
+                cc.beibanAddr = this.Addr;
+                cc.Addr = "02";
+                cc.Id = "00000000000000000000";
+                cc.Onlease += Cc_Onlease;
+                cc.Onreturn += Cc_Onlease;
+                cc.Onopen += Cc_Onlease;
+                cc.Onyunwei += Cc_Onlease;
             }
 
             serial.onPacketSend += Serial_onPacketSend1;
@@ -54,6 +61,11 @@ namespace LD.forms
 
             timer.CheckedChanged += Timer_CheckedChanged;
             t.Tick += T_Tick;
+        }
+
+        private void Cc_Onlease(Ldpacket packet, object sender)
+        {
+            this.result.Clear();
         }
 
         private void Serial_onPacketSend1(object sender, Ulitily.PacketArgs args)
@@ -95,23 +107,6 @@ namespace LD.forms
             result.Clear();
         }
 
-        private void Cc_OnSelect(MouseEventArgs a, object sender)
-        {
-            if(this.InvokeRequired)
-            {
-                SelectEventHandler handler = new SelectEventHandler(Cc_OnSelect);
-                this.Invoke(handler, new object[] { a, sender });
-            }
-            else
-            {
-                channel c = (channel)sender;
-                //if (c.is_select())
-                {
-                    l_addr.Text = c.Addr;
-                    l_id.Text = c.Id;
-                }
-            }
-        }
 
         private void Serial_onPacketSend(object sender, Ulitily.PacketArgs args)
         {
@@ -202,33 +197,7 @@ namespace LD.forms
         private void Button4_Click(object sender, EventArgs e)
         {
             result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl,Addr.Text, "00"+"0000000000000000000000"+ctrl_time.Text);
-            serial.WritePacket(p);
-        }
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + ctrl_addr.Text + ctrl_id.Text + ctrl_time.Text);
-            serial.WritePacket(p);
-        }
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02"+ ctrl_addr.Text + ctrl_id.Text + ctrl_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Return, Addr.Text, r_addr.Text + r_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Lease, Addr.Text, l_addr.Text + l_id.Text+ l_time.Text);
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl,Addr.Text, "00"+"0000000000000000000000"+ "0A");
             serial.WritePacket(p);
         }
 
@@ -242,103 +211,7 @@ namespace LD.forms
             serial.WritePacket(p);
         }
 
-        private void Button8_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Return, Addr.Text, r1_addr.Text + r1_time.Text);
-            serial.WritePacket(p);
+      
 
-        }
-
-        private void Button10_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Return, Addr.Text, r2_addr.Text + r2_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button11_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Lease, Addr.Text, l1_addr.Text + l1_id.Text + l1_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button12_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Lease, Addr.Text, l2_addr.Text + l2_id.Text + l2_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button13_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Lease, Addr.Text, l3_addr.Text + l3_id.Text + l3_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button14_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Lease, Addr.Text, l4_addr.Text + l4_id.Text + l4_time.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button15_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02" + c1.Text + a1.Text + t1.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button16_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c1.Text + a1.Text + t1.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button18_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02" + c2.Text + a2.Text + t2.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button19_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c2.Text + a2.Text + t2.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button17_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02" + c3.Text + a3.Text + t3.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button20_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c3.Text + a3.Text + t3.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button21_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02" + c4.Text + a4.Text + t4.Text);
-            serial.WritePacket(p);
-        }
-
-        private void Button22_Click(object sender, EventArgs e)
-        {
-            result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c4.Text + a4.Text + t4.Text);
-            serial.WritePacket(p);
-        }
     }
 }
