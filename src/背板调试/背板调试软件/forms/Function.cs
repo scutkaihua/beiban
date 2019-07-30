@@ -195,7 +195,7 @@ namespace LD.forms
         private void Button7_Click(object sender, EventArgs e)
         {
             result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Set_Addr, "FF", tb_set_addr.Text);
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Set_Addr, "FE", tb_set_addr.Text);
             serial.WritePacket(p);
         }
 
