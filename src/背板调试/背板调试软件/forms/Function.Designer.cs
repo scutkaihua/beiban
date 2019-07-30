@@ -68,6 +68,16 @@
             this.r_time = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.c4 = new System.Windows.Forms.TextBox();
+            this.button21 = new System.Windows.Forms.Button();
+            this.a4 = new System.Windows.Forms.TextBox();
+            this.button22 = new System.Windows.Forms.Button();
+            this.t4 = new System.Windows.Forms.TextBox();
+            this.c3 = new System.Windows.Forms.TextBox();
+            this.button17 = new System.Windows.Forms.Button();
+            this.a3 = new System.Windows.Forms.TextBox();
+            this.button20 = new System.Windows.Forms.Button();
+            this.t3 = new System.Windows.Forms.TextBox();
             this.c2 = new System.Windows.Forms.TextBox();
             this.button18 = new System.Windows.Forms.Button();
             this.a2 = new System.Windows.Forms.TextBox();
@@ -96,16 +106,6 @@
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.c3 = new System.Windows.Forms.TextBox();
-            this.button17 = new System.Windows.Forms.Button();
-            this.a3 = new System.Windows.Forms.TextBox();
-            this.button20 = new System.Windows.Forms.Button();
-            this.t3 = new System.Windows.Forms.TextBox();
-            this.c4 = new System.Windows.Forms.TextBox();
-            this.button21 = new System.Windows.Forms.Button();
-            this.a4 = new System.Windows.Forms.TextBox();
-            this.button22 = new System.Windows.Forms.Button();
-            this.t4 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -222,7 +222,7 @@
             this.l4_addr.Name = "l4_addr";
             this.l4_addr.Size = new System.Drawing.Size(24, 21);
             this.l4_addr.TabIndex = 19;
-            this.l4_addr.Text = "03";
+            this.l4_addr.Text = "0A";
             // 
             // l4_id
             // 
@@ -256,7 +256,7 @@
             this.l3_addr.Name = "l3_addr";
             this.l3_addr.Size = new System.Drawing.Size(24, 21);
             this.l3_addr.TabIndex = 15;
-            this.l3_addr.Text = "03";
+            this.l3_addr.Text = "08";
             // 
             // l3_id
             // 
@@ -290,7 +290,7 @@
             this.l2_addr.Name = "l2_addr";
             this.l2_addr.Size = new System.Drawing.Size(24, 21);
             this.l2_addr.TabIndex = 11;
-            this.l2_addr.Text = "03";
+            this.l2_addr.Text = "06";
             // 
             // l2_id
             // 
@@ -324,7 +324,7 @@
             this.l1_addr.Name = "l1_addr";
             this.l1_addr.Size = new System.Drawing.Size(24, 21);
             this.l1_addr.TabIndex = 7;
-            this.l1_addr.Text = "03";
+            this.l1_addr.Text = "04";
             // 
             // l1_id
             // 
@@ -358,7 +358,7 @@
             this.l_addr.Name = "l_addr";
             this.l_addr.Size = new System.Drawing.Size(24, 21);
             this.l_addr.TabIndex = 3;
-            this.l_addr.Text = "03";
+            this.l_addr.Text = "02";
             // 
             // l_id
             // 
@@ -412,7 +412,7 @@
             this.r2_addr.Name = "r2_addr";
             this.r2_addr.Size = new System.Drawing.Size(26, 21);
             this.r2_addr.TabIndex = 8;
-            this.r2_addr.Text = "03";
+            this.r2_addr.Text = "06";
             // 
             // r2_time
             // 
@@ -441,7 +441,7 @@
             this.r1_addr.Name = "r1_addr";
             this.r1_addr.Size = new System.Drawing.Size(22, 21);
             this.r1_addr.TabIndex = 5;
-            this.r1_addr.Text = "03";
+            this.r1_addr.Text = "04";
             // 
             // r1_time
             // 
@@ -470,7 +470,7 @@
             this.r_addr.Name = "r_addr";
             this.r_addr.Size = new System.Drawing.Size(25, 21);
             this.r_addr.TabIndex = 2;
-            this.r_addr.Text = "03";
+            this.r_addr.Text = "02";
             // 
             // r_time
             // 
@@ -526,6 +526,94 @@
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "控制";
+            // 
+            // c4
+            // 
+            this.c4.Location = new System.Drawing.Point(6, 111);
+            this.c4.Name = "c4";
+            this.c4.Size = new System.Drawing.Size(24, 21);
+            this.c4.TabIndex = 27;
+            this.c4.Text = "0A";
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(175, 111);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(52, 23);
+            this.button21.TabIndex = 28;
+            this.button21.Text = "开仓";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.Button21_Click);
+            // 
+            // a4
+            // 
+            this.a4.Location = new System.Drawing.Point(36, 111);
+            this.a4.Name = "a4";
+            this.a4.Size = new System.Drawing.Size(101, 21);
+            this.a4.TabIndex = 26;
+            this.a4.Text = "00 00 00 00 00 00 00 00 00 00";
+            // 
+            // button22
+            // 
+            this.button22.Location = new System.Drawing.Point(233, 111);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(55, 23);
+            this.button22.TabIndex = 25;
+            this.button22.Text = "运维";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.Button22_Click);
+            // 
+            // t4
+            // 
+            this.t4.Location = new System.Drawing.Point(144, 111);
+            this.t4.Name = "t4";
+            this.t4.Size = new System.Drawing.Size(25, 21);
+            this.t4.TabIndex = 24;
+            this.t4.Text = "0A";
+            // 
+            // c3
+            // 
+            this.c3.Location = new System.Drawing.Point(6, 86);
+            this.c3.Name = "c3";
+            this.c3.Size = new System.Drawing.Size(24, 21);
+            this.c3.TabIndex = 22;
+            this.c3.Text = "08";
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(175, 86);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(52, 23);
+            this.button17.TabIndex = 23;
+            this.button17.Text = "开仓";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.Button17_Click);
+            // 
+            // a3
+            // 
+            this.a3.Location = new System.Drawing.Point(36, 86);
+            this.a3.Name = "a3";
+            this.a3.Size = new System.Drawing.Size(101, 21);
+            this.a3.TabIndex = 21;
+            this.a3.Text = "00 00 00 00 00 00 00 00 00 00";
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(233, 86);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(55, 23);
+            this.button20.TabIndex = 20;
+            this.button20.Text = "运维";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.Button20_Click);
+            // 
+            // t3
+            // 
+            this.t3.Location = new System.Drawing.Point(144, 86);
+            this.t3.Name = "t3";
+            this.t3.Size = new System.Drawing.Size(25, 21);
+            this.t3.TabIndex = 19;
+            this.t3.Text = "0A";
             // 
             // c2
             // 
@@ -790,94 +878,6 @@
             this.channel1.Size = new System.Drawing.Size(642, 100);
             this.channel1.TabIndex = 11;
             this.channel1.Values = "label1";
-            // 
-            // c3
-            // 
-            this.c3.Location = new System.Drawing.Point(6, 86);
-            this.c3.Name = "c3";
-            this.c3.Size = new System.Drawing.Size(24, 21);
-            this.c3.TabIndex = 22;
-            this.c3.Text = "06";
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(175, 86);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(52, 23);
-            this.button17.TabIndex = 23;
-            this.button17.Text = "开仓";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.Button17_Click);
-            // 
-            // a3
-            // 
-            this.a3.Location = new System.Drawing.Point(36, 86);
-            this.a3.Name = "a3";
-            this.a3.Size = new System.Drawing.Size(101, 21);
-            this.a3.TabIndex = 21;
-            this.a3.Text = "00 00 00 00 00 00 00 00 00 00";
-            // 
-            // button20
-            // 
-            this.button20.Location = new System.Drawing.Point(233, 86);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(55, 23);
-            this.button20.TabIndex = 20;
-            this.button20.Text = "运维";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.Button20_Click);
-            // 
-            // t3
-            // 
-            this.t3.Location = new System.Drawing.Point(144, 86);
-            this.t3.Name = "t3";
-            this.t3.Size = new System.Drawing.Size(25, 21);
-            this.t3.TabIndex = 19;
-            this.t3.Text = "0A";
-            // 
-            // c4
-            // 
-            this.c4.Location = new System.Drawing.Point(6, 111);
-            this.c4.Name = "c4";
-            this.c4.Size = new System.Drawing.Size(24, 21);
-            this.c4.TabIndex = 27;
-            this.c4.Text = "06";
-            // 
-            // button21
-            // 
-            this.button21.Location = new System.Drawing.Point(175, 111);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(52, 23);
-            this.button21.TabIndex = 28;
-            this.button21.Text = "开仓";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.Button21_Click);
-            // 
-            // a4
-            // 
-            this.a4.Location = new System.Drawing.Point(36, 111);
-            this.a4.Name = "a4";
-            this.a4.Size = new System.Drawing.Size(101, 21);
-            this.a4.TabIndex = 26;
-            this.a4.Text = "00 00 00 00 00 00 00 00 00 00";
-            // 
-            // button22
-            // 
-            this.button22.Location = new System.Drawing.Point(233, 111);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(55, 23);
-            this.button22.TabIndex = 25;
-            this.button22.Text = "运维";
-            this.button22.UseVisualStyleBackColor = true;
-            this.button22.Click += new System.EventHandler(this.Button22_Click);
-            // 
-            // t4
-            // 
-            this.t4.Location = new System.Drawing.Point(144, 111);
-            this.t4.Name = "t4";
-            this.t4.Size = new System.Drawing.Size(25, 21);
-            this.t4.TabIndex = 24;
-            this.t4.Text = "0A";
             // 
             // Function
             // 
