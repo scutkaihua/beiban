@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.timer = new System.Windows.Forms.CheckBox();
+            this.Inter = new System.Windows.Forms.TextBox();
             this.xintiao = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -66,6 +68,16 @@
             this.r_time = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.c2 = new System.Windows.Forms.TextBox();
+            this.button18 = new System.Windows.Forms.Button();
+            this.a2 = new System.Windows.Forms.TextBox();
+            this.button19 = new System.Windows.Forms.Button();
+            this.t2 = new System.Windows.Forms.TextBox();
+            this.c1 = new System.Windows.Forms.TextBox();
+            this.button15 = new System.Windows.Forms.Button();
+            this.a1 = new System.Windows.Forms.TextBox();
+            this.button16 = new System.Windows.Forms.Button();
+            this.t1 = new System.Windows.Forms.TextBox();
             this.ctrl_addr = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             this.ctrl_id = new System.Windows.Forms.TextBox();
@@ -78,14 +90,12 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tb_set_addr = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.channel1 = new LD.forms.channel();
-            this.channel2 = new LD.forms.channel();
-            this.channel3 = new LD.forms.channel();
-            this.channel4 = new LD.forms.channel();
-            this.channel5 = new LD.forms.channel();
             this.result = new System.Windows.Forms.TextBox();
-            this.Inter = new System.Windows.Forms.TextBox();
-            this.timer = new System.Windows.Forms.CheckBox();
+            this.channel5 = new LD.forms.channel();
+            this.channel4 = new LD.forms.channel();
+            this.channel3 = new LD.forms.channel();
+            this.channel2 = new LD.forms.channel();
+            this.channel1 = new LD.forms.channel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -107,6 +117,24 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "心跳";
+            // 
+            // timer
+            // 
+            this.timer.AutoSize = true;
+            this.timer.Location = new System.Drawing.Point(225, 18);
+            this.timer.Name = "timer";
+            this.timer.Size = new System.Drawing.Size(72, 16);
+            this.timer.TabIndex = 3;
+            this.timer.Text = "定时刷新";
+            this.timer.UseVisualStyleBackColor = true;
+            // 
+            // Inter
+            // 
+            this.Inter.Location = new System.Drawing.Point(189, 16);
+            this.Inter.Name = "Inter";
+            this.Inter.Size = new System.Drawing.Size(33, 21);
+            this.Inter.TabIndex = 2;
+            this.Inter.Text = "500";
             // 
             // xintiao
             // 
@@ -171,7 +199,7 @@
             this.groupBox3.Controls.Add(this.l_id);
             this.groupBox3.Controls.Add(this.l_time);
             this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Location = new System.Drawing.Point(651, 57);
+            this.groupBox3.Location = new System.Drawing.Point(651, 46);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(353, 151);
             this.groupBox3.TabIndex = 2;
@@ -360,7 +388,7 @@
             this.groupBox4.Controls.Add(this.r_time);
             this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.groupBox4.Location = new System.Drawing.Point(650, 227);
+            this.groupBox4.Location = new System.Drawing.Point(650, 199);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(353, 45);
             this.groupBox4.TabIndex = 3;
@@ -456,18 +484,116 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.c2);
+            this.groupBox5.Controls.Add(this.button18);
+            this.groupBox5.Controls.Add(this.a2);
+            this.groupBox5.Controls.Add(this.button19);
+            this.groupBox5.Controls.Add(this.t2);
+            this.groupBox5.Controls.Add(this.c1);
+            this.groupBox5.Controls.Add(this.button15);
+            this.groupBox5.Controls.Add(this.a1);
+            this.groupBox5.Controls.Add(this.button16);
+            this.groupBox5.Controls.Add(this.t1);
             this.groupBox5.Controls.Add(this.ctrl_addr);
             this.groupBox5.Controls.Add(this.button6);
             this.groupBox5.Controls.Add(this.ctrl_id);
             this.groupBox5.Controls.Add(this.button5);
             this.groupBox5.Controls.Add(this.ctrl_time);
             this.groupBox5.Controls.Add(this.button4);
-            this.groupBox5.Location = new System.Drawing.Point(651, 278);
+            this.groupBox5.Location = new System.Drawing.Point(651, 242);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(353, 45);
+            this.groupBox5.Size = new System.Drawing.Size(353, 104);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "控制";
+            // 
+            // c2
+            // 
+            this.c2.Location = new System.Drawing.Point(6, 68);
+            this.c2.Name = "c2";
+            this.c2.Size = new System.Drawing.Size(24, 21);
+            this.c2.TabIndex = 17;
+            this.c2.Text = "06";
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(175, 68);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(52, 23);
+            this.button18.TabIndex = 18;
+            this.button18.Text = "开仓";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.Button18_Click);
+            // 
+            // a2
+            // 
+            this.a2.Location = new System.Drawing.Point(36, 68);
+            this.a2.Name = "a2";
+            this.a2.Size = new System.Drawing.Size(101, 21);
+            this.a2.TabIndex = 16;
+            this.a2.Text = "00 00 00 00 00 00 00 00 00 00";
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(233, 68);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(55, 23);
+            this.button19.TabIndex = 15;
+            this.button19.Text = "运维";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.Button19_Click);
+            // 
+            // t2
+            // 
+            this.t2.Location = new System.Drawing.Point(144, 68);
+            this.t2.Name = "t2";
+            this.t2.Size = new System.Drawing.Size(25, 21);
+            this.t2.TabIndex = 14;
+            this.t2.Text = "0A";
+            // 
+            // c1
+            // 
+            this.c1.Location = new System.Drawing.Point(6, 41);
+            this.c1.Name = "c1";
+            this.c1.Size = new System.Drawing.Size(24, 21);
+            this.c1.TabIndex = 11;
+            this.c1.Text = "04";
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(175, 41);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(52, 23);
+            this.button15.TabIndex = 12;
+            this.button15.Text = "开仓";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.Button15_Click);
+            // 
+            // a1
+            // 
+            this.a1.Location = new System.Drawing.Point(36, 41);
+            this.a1.Name = "a1";
+            this.a1.Size = new System.Drawing.Size(101, 21);
+            this.a1.TabIndex = 10;
+            this.a1.Text = "00 00 00 00 00 00 00 00 00 00";
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(233, 41);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(55, 23);
+            this.button16.TabIndex = 9;
+            this.button16.Text = "运维";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.Button16_Click);
+            // 
+            // t1
+            // 
+            this.t1.Location = new System.Drawing.Point(144, 41);
+            this.t1.Name = "t1";
+            this.t1.Size = new System.Drawing.Size(25, 21);
+            this.t1.TabIndex = 8;
+            this.t1.Text = "0A";
             // 
             // ctrl_addr
             // 
@@ -475,7 +601,7 @@
             this.ctrl_addr.Name = "ctrl_addr";
             this.ctrl_addr.Size = new System.Drawing.Size(24, 21);
             this.ctrl_addr.TabIndex = 5;
-            this.ctrl_addr.Text = "03";
+            this.ctrl_addr.Text = "02";
             // 
             // button6
             // 
@@ -527,7 +653,7 @@
             // 
             this.groupBox6.Controls.Add(this.update);
             this.groupBox6.Controls.Add(this.button9);
-            this.groupBox6.Location = new System.Drawing.Point(651, 329);
+            this.groupBox6.Location = new System.Drawing.Point(651, 351);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(353, 64);
             this.groupBox6.TabIndex = 9;
@@ -557,7 +683,7 @@
             // 
             this.groupBox7.Controls.Add(this.tb_set_addr);
             this.groupBox7.Controls.Add(this.button7);
-            this.groupBox7.Location = new System.Drawing.Point(650, 399);
+            this.groupBox7.Location = new System.Drawing.Point(650, 419);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(353, 48);
             this.groupBox7.TabIndex = 10;
@@ -582,49 +708,13 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
-            // channel1
+            // result
             // 
-            this.channel1.Addr = "label1";
-            this.channel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.channel1.Id = "";
-            this.channel1.Location = new System.Drawing.Point(2, 2);
-            this.channel1.Name = "channel1";
-            this.channel1.Size = new System.Drawing.Size(642, 100);
-            this.channel1.TabIndex = 11;
-            this.channel1.Values = "label1";
-            // 
-            // channel2
-            // 
-            this.channel2.Addr = "label1";
-            this.channel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.channel2.Id = "";
-            this.channel2.Location = new System.Drawing.Point(2, 108);
-            this.channel2.Name = "channel2";
-            this.channel2.Size = new System.Drawing.Size(642, 100);
-            this.channel2.TabIndex = 12;
-            this.channel2.Values = "label1";
-            // 
-            // channel3
-            // 
-            this.channel3.Addr = "label1";
-            this.channel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.channel3.Id = "";
-            this.channel3.Location = new System.Drawing.Point(2, 210);
-            this.channel3.Name = "channel3";
-            this.channel3.Size = new System.Drawing.Size(642, 100);
-            this.channel3.TabIndex = 13;
-            this.channel3.Values = "label1";
-            // 
-            // channel4
-            // 
-            this.channel4.Addr = "label1";
-            this.channel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.channel4.Id = "";
-            this.channel4.Location = new System.Drawing.Point(2, 316);
-            this.channel4.Name = "channel4";
-            this.channel4.Size = new System.Drawing.Size(642, 100);
-            this.channel4.TabIndex = 14;
-            this.channel4.Values = "label1";
+            this.result.Location = new System.Drawing.Point(651, 467);
+            this.result.Multiline = true;
+            this.result.Name = "result";
+            this.result.Size = new System.Drawing.Size(352, 55);
+            this.result.TabIndex = 16;
             // 
             // channel5
             // 
@@ -637,39 +727,55 @@
             this.channel5.TabIndex = 15;
             this.channel5.Values = "label1";
             // 
-            // result
+            // channel4
             // 
-            this.result.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.result.Location = new System.Drawing.Point(651, 454);
-            this.result.Multiline = true;
-            this.result.Name = "result";
-            this.result.Size = new System.Drawing.Size(352, 68);
-            this.result.TabIndex = 16;
+            this.channel4.Addr = "label1";
+            this.channel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.channel4.Id = "";
+            this.channel4.Location = new System.Drawing.Point(2, 316);
+            this.channel4.Name = "channel4";
+            this.channel4.Size = new System.Drawing.Size(642, 100);
+            this.channel4.TabIndex = 14;
+            this.channel4.Values = "label1";
             // 
-            // Inter
+            // channel3
             // 
-            this.Inter.Location = new System.Drawing.Point(189, 16);
-            this.Inter.Name = "Inter";
-            this.Inter.Size = new System.Drawing.Size(33, 21);
-            this.Inter.TabIndex = 2;
-            this.Inter.Text = "500";
+            this.channel3.Addr = "label1";
+            this.channel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.channel3.Id = "";
+            this.channel3.Location = new System.Drawing.Point(2, 210);
+            this.channel3.Name = "channel3";
+            this.channel3.Size = new System.Drawing.Size(642, 100);
+            this.channel3.TabIndex = 13;
+            this.channel3.Values = "label1";
             // 
-            // timer
+            // channel2
             // 
-            this.timer.AutoSize = true;
-            this.timer.Location = new System.Drawing.Point(225, 18);
-            this.timer.Name = "timer";
-            this.timer.Size = new System.Drawing.Size(72, 16);
-            this.timer.TabIndex = 3;
-            this.timer.Text = "定时刷新";
-            this.timer.UseVisualStyleBackColor = true;
+            this.channel2.Addr = "label1";
+            this.channel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.channel2.Id = "";
+            this.channel2.Location = new System.Drawing.Point(2, 108);
+            this.channel2.Name = "channel2";
+            this.channel2.Size = new System.Drawing.Size(642, 100);
+            this.channel2.TabIndex = 12;
+            this.channel2.Values = "label1";
+            // 
+            // channel1
+            // 
+            this.channel1.Addr = "label1";
+            this.channel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.channel1.Id = "";
+            this.channel1.Location = new System.Drawing.Point(2, 2);
+            this.channel1.Name = "channel1";
+            this.channel1.Size = new System.Drawing.Size(642, 100);
+            this.channel1.TabIndex = 11;
+            this.channel1.Values = "label1";
             // 
             // Function
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 531);
+            this.ClientSize = new System.Drawing.Size(1010, 529);
             this.Controls.Add(this.result);
             this.Controls.Add(this.channel5);
             this.Controls.Add(this.channel4);
@@ -766,5 +872,15 @@
         private System.Windows.Forms.TextBox result;
         private System.Windows.Forms.CheckBox timer;
         private System.Windows.Forms.TextBox Inter;
+        private System.Windows.Forms.TextBox c2;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.TextBox a2;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.TextBox t2;
+        private System.Windows.Forms.TextBox c1;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox a1;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.TextBox t1;
     }
 }
