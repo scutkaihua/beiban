@@ -207,7 +207,7 @@
             // channel1
             // 
             this.channel1.Addr = "";
-            this.channel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.channel1.BackColor = System.Drawing.SystemColors.Control;
             this.channel1.Id = "";
             this.channel1.Location = new System.Drawing.Point(1, 2);
             this.channel1.Name = "channel1";
@@ -218,7 +218,7 @@
             // channel2
             // 
             this.channel2.Addr = "";
-            this.channel2.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.channel2.BackColor = System.Drawing.SystemColors.Control;
             this.channel2.Id = "";
             this.channel2.Location = new System.Drawing.Point(1, 106);
             this.channel2.Name = "channel2";
@@ -229,7 +229,7 @@
             // channel3
             // 
             this.channel3.Addr = "";
-            this.channel3.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.channel3.BackColor = System.Drawing.SystemColors.Control;
             this.channel3.Id = "";
             this.channel3.Location = new System.Drawing.Point(1, 210);
             this.channel3.Name = "channel3";
@@ -240,7 +240,7 @@
             // channel4
             // 
             this.channel4.Addr = "";
-            this.channel4.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.channel4.BackColor = System.Drawing.SystemColors.Control;
             this.channel4.Id = "";
             this.channel4.Location = new System.Drawing.Point(1, 316);
             this.channel4.Name = "channel4";
@@ -251,7 +251,7 @@
             // channel5
             // 
             this.channel5.Addr = "";
-            this.channel5.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.channel5.BackColor = System.Drawing.SystemColors.Control;
             this.channel5.Id = "";
             this.channel5.Location = new System.Drawing.Point(1, 422);
             this.channel5.Name = "channel5";

@@ -62,7 +62,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(597, 5);
+            this.button1.Location = new System.Drawing.Point(589, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(35, 92);
             this.button1.TabIndex = 9;
@@ -73,7 +73,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(705, 5);
+            this.button2.Location = new System.Drawing.Point(700, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(46, 63);
             this.button2.TabIndex = 10;
@@ -84,7 +84,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(638, 5);
+            this.button3.Location = new System.Drawing.Point(632, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(28, 92);
             this.button3.TabIndex = 11;
@@ -95,7 +95,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Location = new System.Drawing.Point(672, 5);
+            this.button4.Location = new System.Drawing.Point(666, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(31, 92);
             this.button4.TabIndex = 12;
@@ -112,7 +112,7 @@
             // 
             // time
             // 
-            this.time.Location = new System.Drawing.Point(705, 76);
+            this.time.Location = new System.Drawing.Point(700, 76);
             this.time.Name = "time";
             this.time.Size = new System.Drawing.Size(46, 21);
             this.time.TabIndex = 14;
@@ -120,29 +120,33 @@
             // 
             // state
             // 
+            this.state.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state.Location = new System.Drawing.Point(182, 0);
             this.state.Name = "state";
-            this.state.Size = new System.Drawing.Size(408, 34);
+            this.state.Size = new System.Drawing.Size(401, 34);
             this.state.TabIndex = 15;
             // 
             // warn
             // 
+            this.warn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.warn.Location = new System.Drawing.Point(183, 34);
             this.warn.Name = "warn";
-            this.warn.Size = new System.Drawing.Size(408, 34);
+            this.warn.Size = new System.Drawing.Size(400, 34);
             this.warn.TabIndex = 16;
             // 
             // error
             // 
+            this.error.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.error.Location = new System.Drawing.Point(183, 66);
             this.error.Name = "error";
-            this.error.Size = new System.Drawing.Size(408, 34);
+            this.error.Size = new System.Drawing.Size(400, 34);
             this.error.TabIndex = 17;
             // 
             // channel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.error);
             this.Controls.Add(this.warn);
             this.Controls.Add(this.state);
@@ -155,7 +159,7 @@
             this.Controls.Add(this.addr);
             this.Controls.Add(this.time);
             this.Name = "channel";
-            this.Size = new System.Drawing.Size(751, 100);
+            this.Size = new System.Drawing.Size(752, 98);
             this.ResumeLayout(false);
             this.PerformLayout();
 
