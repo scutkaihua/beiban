@@ -74,9 +74,11 @@ F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.cspro
 F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csproj.CoreCompileInputs.cache
 F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.exe
 F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.pdb
+H:\来电科技\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.exe.config
+H:\来电科技\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.exe
+H:\来电科技\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.pdb
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.Form1.resources
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.About.resources
-H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.channel.resources
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.FormItem.resources
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.Function.resources
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.PacketView.resources
@@ -89,7 +91,4 @@ H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\背板调�
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csproj.CoreCompileInputs.cache
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.exe
 H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.pdb
-H:\来电科技\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.exe.config
-H:\来电科技\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.exe
-H:\来电科技\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.pdb
-H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
+H:\来电科技\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.channel.resources

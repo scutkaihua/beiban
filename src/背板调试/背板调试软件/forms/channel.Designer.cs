@@ -36,9 +36,9 @@
             this.button4 = new System.Windows.Forms.Button();
             this.addr = new System.Windows.Forms.TextBox();
             this.time = new System.Windows.Forms.TextBox();
-            this.error = new LD.forms.State();
-            this.warn = new LD.forms.State();
             this.state = new LD.forms.State();
+            this.warn = new LD.forms.State();
+            this.error = new LD.forms.State();
             this.SuspendLayout();
             // 
             // id
@@ -62,9 +62,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(647, 5);
+            this.button1.Location = new System.Drawing.Point(597, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(49, 23);
+            this.button1.Size = new System.Drawing.Size(35, 92);
             this.button1.TabIndex = 9;
             this.button1.Text = "租";
             this.button1.UseVisualStyleBackColor = true;
@@ -73,9 +73,9 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button2.Location = new System.Drawing.Point(702, 5);
+            this.button2.Location = new System.Drawing.Point(705, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(46, 23);
+            this.button2.Size = new System.Drawing.Size(46, 63);
             this.button2.TabIndex = 10;
             this.button2.Text = "还";
             this.button2.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button3.Location = new System.Drawing.Point(647, 34);
+            this.button3.Location = new System.Drawing.Point(638, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(49, 23);
+            this.button3.Size = new System.Drawing.Size(28, 92);
             this.button3.TabIndex = 11;
             this.button3.Text = "开仓";
             this.button3.UseVisualStyleBackColor = true;
@@ -95,9 +95,9 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button4.Location = new System.Drawing.Point(702, 34);
+            this.button4.Location = new System.Drawing.Point(672, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(46, 23);
+            this.button4.Size = new System.Drawing.Size(31, 92);
             this.button4.TabIndex = 12;
             this.button4.Text = "运维";
             this.button4.UseVisualStyleBackColor = true;
@@ -112,54 +112,48 @@
             // 
             // time
             // 
-            this.time.Location = new System.Drawing.Point(647, 67);
+            this.time.Location = new System.Drawing.Point(705, 76);
             this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(101, 21);
+            this.time.Size = new System.Drawing.Size(46, 21);
             this.time.TabIndex = 14;
             this.time.Text = "0A";
             // 
-            // error
+            // state
             // 
-            this.error.Font = new System.Drawing.Font("宋体", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.error.Location = new System.Drawing.Point(180, 67);
-            this.error.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.error.Name = "error";
-            this.error.Size = new System.Drawing.Size(462, 34);
-            this.error.TabIndex = 8;
+            this.state.Location = new System.Drawing.Point(182, 0);
+            this.state.Name = "state";
+            this.state.Size = new System.Drawing.Size(408, 34);
+            this.state.TabIndex = 15;
             // 
             // warn
             // 
-            this.warn.Font = new System.Drawing.Font("宋体", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.warn.Location = new System.Drawing.Point(180, 34);
-            this.warn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.warn.Location = new System.Drawing.Point(183, 34);
             this.warn.Name = "warn";
-            this.warn.Size = new System.Drawing.Size(462, 34);
-            this.warn.TabIndex = 7;
+            this.warn.Size = new System.Drawing.Size(408, 34);
+            this.warn.TabIndex = 16;
             // 
-            // state
+            // error
             // 
-            this.state.Font = new System.Drawing.Font("宋体", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.state.Location = new System.Drawing.Point(180, 3);
-            this.state.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.state.Name = "state";
-            this.state.Size = new System.Drawing.Size(462, 34);
-            this.state.TabIndex = 6;
+            this.error.Location = new System.Drawing.Point(183, 66);
+            this.error.Name = "error";
+            this.error.Size = new System.Drawing.Size(408, 34);
+            this.error.TabIndex = 17;
             // 
             // channel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.time);
-            this.Controls.Add(this.addr);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.error);
             this.Controls.Add(this.warn);
             this.Controls.Add(this.state);
-            this.Controls.Add(this.values);
             this.Controls.Add(this.id);
+            this.Controls.Add(this.values);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.addr);
+            this.Controls.Add(this.time);
             this.Name = "channel";
             this.Size = new System.Drawing.Size(751, 100);
             this.ResumeLayout(false);
@@ -170,14 +164,15 @@
         #endregion
         private System.Windows.Forms.TextBox id;
         private System.Windows.Forms.Label values;
-        private State state;
-        private State warn;
-        private State error;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox addr;
         private System.Windows.Forms.TextBox time;
+
+        private State state;
+        private State warn;
+        private State error;
     }
 }
