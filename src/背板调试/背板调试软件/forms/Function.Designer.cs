@@ -123,7 +123,7 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Location = new System.Drawing.Point(700, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 49);
+            this.groupBox1.Size = new System.Drawing.Size(300, 52);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "心跳";
@@ -131,16 +131,16 @@
             // timer
             // 
             this.timer.AutoSize = true;
-            this.timer.Location = new System.Drawing.Point(225, 18);
+            this.timer.Location = new System.Drawing.Point(250, 33);
             this.timer.Name = "timer";
-            this.timer.Size = new System.Drawing.Size(72, 16);
+            this.timer.Size = new System.Drawing.Size(48, 16);
             this.timer.TabIndex = 3;
-            this.timer.Text = "定时刷新";
+            this.timer.Text = "定时";
             this.timer.UseVisualStyleBackColor = true;
             // 
             // Inter
             // 
-            this.Inter.Location = new System.Drawing.Point(189, 16);
+            this.Inter.Location = new System.Drawing.Point(250, 10);
             this.Inter.Name = "Inter";
             this.Inter.Size = new System.Drawing.Size(33, 21);
             this.Inter.TabIndex = 2;
@@ -150,13 +150,13 @@
             // 
             this.xintiao.Location = new System.Drawing.Point(6, 18);
             this.xintiao.Name = "xintiao";
-            this.xintiao.Size = new System.Drawing.Size(129, 21);
+            this.xintiao.Size = new System.Drawing.Size(176, 21);
             this.xintiao.TabIndex = 1;
-            this.xintiao.Text = "01 00 00 00 00 00 00";
+            this.xintiao.Text = "01 00 00 00 00 00 00 03";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(141, 16);
+            this.button1.Location = new System.Drawing.Point(188, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(47, 23);
             this.button1.TabIndex = 0;
@@ -209,7 +209,7 @@
             this.groupBox3.Controls.Add(this.l_id);
             this.groupBox3.Controls.Add(this.l_time);
             this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Location = new System.Drawing.Point(651, 46);
+            this.groupBox3.Location = new System.Drawing.Point(651, 52);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(353, 151);
             this.groupBox3.TabIndex = 2;
