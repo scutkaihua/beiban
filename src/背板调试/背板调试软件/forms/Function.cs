@@ -312,5 +312,33 @@ namespace LD.forms
             Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c2.Text + a2.Text + t2.Text);
             serial.WritePacket(p);
         }
+
+        private void Button17_Click(object sender, EventArgs e)
+        {
+            result.Clear();
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02" + c3.Text + a3.Text + t3.Text);
+            serial.WritePacket(p);
+        }
+
+        private void Button20_Click(object sender, EventArgs e)
+        {
+            result.Clear();
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c3.Text + a3.Text + t3.Text);
+            serial.WritePacket(p);
+        }
+
+        private void Button21_Click(object sender, EventArgs e)
+        {
+            result.Clear();
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "02" + c4.Text + a4.Text + t4.Text);
+            serial.WritePacket(p);
+        }
+
+        private void Button22_Click(object sender, EventArgs e)
+        {
+            result.Clear();
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl, Addr.Text, "01" + c4.Text + a4.Text + t4.Text);
+            serial.WritePacket(p);
+        }
     }
 }
