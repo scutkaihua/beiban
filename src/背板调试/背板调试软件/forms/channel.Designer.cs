@@ -59,7 +59,7 @@
             this.values.AutoSize = true;
             this.values.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.values.ForeColor = System.Drawing.Color.Coral;
-            this.values.Location = new System.Drawing.Point(3, 30);
+            this.values.Location = new System.Drawing.Point(3, 27);
             this.values.Name = "values";
             this.values.Size = new System.Drawing.Size(45, 17);
             this.values.TabIndex = 5;

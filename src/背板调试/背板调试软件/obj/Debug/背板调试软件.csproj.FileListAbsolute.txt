@@ -93,3 +93,4 @@ F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.cspro
 F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csproj.CoreCompileInputs.cache
 F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.exe
 F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.pdb
+F:\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
