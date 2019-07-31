@@ -56,7 +56,7 @@
             this.bit6.AutoSize = true;
             this.bit6.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit6.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit6.Location = new System.Drawing.Point(47, 0);
+            this.bit6.Location = new System.Drawing.Point(34, 0);
             this.bit6.Margin = new System.Windows.Forms.Padding(0);
             this.bit6.Name = "bit6";
             this.bit6.Size = new System.Drawing.Size(35, 32);
@@ -69,7 +69,7 @@
             this.bit4.AutoSize = true;
             this.bit4.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit4.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit4.Location = new System.Drawing.Point(152, 0);
+            this.bit4.Location = new System.Drawing.Point(101, 0);
             this.bit4.Margin = new System.Windows.Forms.Padding(0);
             this.bit4.Name = "bit4";
             this.bit4.Size = new System.Drawing.Size(35, 32);
@@ -82,7 +82,7 @@
             this.bit5.AutoSize = true;
             this.bit5.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit5.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit5.Location = new System.Drawing.Point(99, 0);
+            this.bit5.Location = new System.Drawing.Point(70, 0);
             this.bit5.Margin = new System.Windows.Forms.Padding(0);
             this.bit5.Name = "bit5";
             this.bit5.Size = new System.Drawing.Size(35, 32);
@@ -95,7 +95,7 @@
             this.bit0.AutoSize = true;
             this.bit0.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit0.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit0.Location = new System.Drawing.Point(372, 0);
+            this.bit0.Location = new System.Drawing.Point(243, 0);
             this.bit0.Margin = new System.Windows.Forms.Padding(0);
             this.bit0.Name = "bit0";
             this.bit0.Size = new System.Drawing.Size(35, 32);
@@ -108,7 +108,7 @@
             this.bit1.AutoSize = true;
             this.bit1.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit1.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit1.Location = new System.Drawing.Point(314, 0);
+            this.bit1.Location = new System.Drawing.Point(206, 0);
             this.bit1.Margin = new System.Windows.Forms.Padding(0);
             this.bit1.Name = "bit1";
             this.bit1.Size = new System.Drawing.Size(35, 32);
@@ -121,7 +121,7 @@
             this.bit2.AutoSize = true;
             this.bit2.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit2.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit2.Location = new System.Drawing.Point(261, 0);
+            this.bit2.Location = new System.Drawing.Point(171, 0);
             this.bit2.Margin = new System.Windows.Forms.Padding(0);
             this.bit2.Name = "bit2";
             this.bit2.Size = new System.Drawing.Size(35, 32);
@@ -134,7 +134,7 @@
             this.bit3.AutoSize = true;
             this.bit3.CheckAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bit3.Font = new System.Drawing.Font("微软雅黑", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.bit3.Location = new System.Drawing.Point(207, 0);
+            this.bit3.Location = new System.Drawing.Point(136, 0);
             this.bit3.Margin = new System.Windows.Forms.Padding(0);
             this.bit3.Name = "bit3";
             this.bit3.Size = new System.Drawing.Size(35, 32);
@@ -155,7 +155,7 @@
             this.Controls.Add(this.bit6);
             this.Controls.Add(this.bit7);
             this.Name = "State";
-            this.Size = new System.Drawing.Size(412, 34);
+            this.Size = new System.Drawing.Size(280, 34);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -131,5 +131,11 @@ namespace LD.forms
             if (serialPortSetting != null)
                 serialPortSetting.WritePacket(p);
         }
+
+        private void Channel_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
