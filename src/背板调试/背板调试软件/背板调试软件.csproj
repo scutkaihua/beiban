@@ -110,6 +110,12 @@
     <Compile Include="forms\TabControlExt.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="forms\updata.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\updata.Designer.cs">
+      <DependentUpon>updata.cs</DependentUpon>
+    </Compile>
     <Compile Include="lib\Cmd.cs" />
     <Compile Include="lib\CommPort.cs" />
     <Compile Include="lib\Ldpacket.cs" />
@@ -149,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\TabControlExt.resx">
       <DependentUpon>TabControlExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\updata.resx">
+      <DependentUpon>updata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

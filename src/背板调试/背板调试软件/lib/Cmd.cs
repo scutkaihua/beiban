@@ -11,8 +11,12 @@ namespace LD.lib
         Lease = 0x02,
         Return = 0x03,
         Ctrl = 0x04,
-        Updata = 0x05,
         Set_Addr = 0x06,
+
+        UpdateStart = 0x05,
+        UpdateData = 0x06,
+        UpdateEnd = 0x07,
+
         Shake_Hand = 0x16,
     }
 }

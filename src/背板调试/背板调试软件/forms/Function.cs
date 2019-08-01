@@ -207,7 +207,7 @@ namespace LD.forms
             string[] lines = update.Lines;
             string t="";
             foreach (string c in lines) t = t + c;
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Updata, Addr.Text, t);
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateStart, Addr.Text, t);
             serial.WritePacket(p);
         }
 
