@@ -32,6 +32,9 @@
             this.start = new System.Windows.Forms.Button();
             this.pb = new System.Windows.Forms.ProgressBar();
             this.md5 = new System.Windows.Forms.TextBox();
+            this.ver = new System.Windows.Forms.TextBox();
+            this.len = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // file
@@ -40,14 +43,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.file.Location = new System.Drawing.Point(3, 3);
             this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(501, 21);
+            this.file.Size = new System.Drawing.Size(262, 21);
             this.file.TabIndex = 1;
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(378, 88);
+            this.start.Location = new System.Drawing.Point(126, 63);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(126, 23);
+            this.start.Size = new System.Drawing.Size(73, 23);
             this.start.TabIndex = 3;
             this.start.Text = "开始升级";
             this.start.UseVisualStyleBackColor = true;
@@ -59,26 +62,56 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pb.Location = new System.Drawing.Point(3, 28);
             this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(501, 2);
+            this.pb.Size = new System.Drawing.Size(262, 2);
             this.pb.TabIndex = 4;
             // 
             // md5
             // 
-            this.md5.Location = new System.Drawing.Point(3, 36);
+            this.md5.Location = new System.Drawing.Point(45, 36);
             this.md5.Name = "md5";
-            this.md5.Size = new System.Drawing.Size(501, 21);
+            this.md5.Size = new System.Drawing.Size(210, 21);
             this.md5.TabIndex = 5;
+            this.md5.Text = "00000000000000000000000000000000";
+            // 
+            // ver
+            // 
+            this.ver.Location = new System.Drawing.Point(4, 36);
+            this.ver.Name = "ver";
+            this.ver.Size = new System.Drawing.Size(35, 21);
+            this.ver.TabIndex = 6;
+            this.ver.Text = "0001";
+            // 
+            // len
+            // 
+            this.len.Location = new System.Drawing.Point(45, 63);
+            this.len.Name = "len";
+            this.len.Size = new System.Drawing.Size(75, 21);
+            this.len.TabIndex = 7;
+            this.len.Text = "00000000";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(205, 63);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(17, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "V";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // updata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.len);
+            this.Controls.Add(this.ver);
             this.Controls.Add(this.md5);
             this.Controls.Add(this.pb);
             this.Controls.Add(this.start);
             this.Controls.Add(this.file);
             this.Name = "updata";
-            this.Size = new System.Drawing.Size(507, 114);
+            this.Size = new System.Drawing.Size(268, 96);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -90,5 +123,8 @@
         private System.Windows.Forms.Button start;
         private System.Windows.Forms.ProgressBar pb;
         private System.Windows.Forms.TextBox md5;
+        private System.Windows.Forms.TextBox ver;
+        private System.Windows.Forms.TextBox len;
+        private System.Windows.Forms.Button button1;
     }
 }

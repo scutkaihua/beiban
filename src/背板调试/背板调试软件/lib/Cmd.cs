@@ -13,9 +13,9 @@ namespace LD.lib
         Ctrl = 0x04,
         Set_Addr = 0x06,
 
-        UpdateStart = 0x05,
-        UpdateData = 0x06,
-        UpdateEnd = 0x07,
+        UpdateEntry = 0x05,
+        UpdateStart = 0x06,
+        UpdateData = 0x07,
 
         Shake_Hand = 0x16,
     }

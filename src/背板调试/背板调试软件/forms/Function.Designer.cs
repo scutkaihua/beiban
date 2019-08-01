@@ -38,18 +38,17 @@
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.update = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tb_set_addr = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
+            this.updata1 = new LD.forms.updata();
             this.channel5 = new LD.forms.channel();
             this.channel4 = new LD.forms.channel();
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.updata1 = new LD.forms.updata();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -130,7 +129,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(686, 316);
+            this.button4.Location = new System.Drawing.Point(686, 113);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(327, 35);
             this.button4.TabIndex = 0;
@@ -140,47 +139,39 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.update);
+            this.groupBox6.Controls.Add(this.updata1);
             this.groupBox6.Controls.Add(this.button9);
-            this.groupBox6.Location = new System.Drawing.Point(686, 60);
+            this.groupBox6.Location = new System.Drawing.Point(686, 154);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(327, 64);
+            this.groupBox6.Size = new System.Drawing.Size(327, 165);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "升级";
             // 
-            // update
-            // 
-            this.update.Location = new System.Drawing.Point(6, 16);
-            this.update.Multiline = true;
-            this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(240, 42);
-            this.update.TabIndex = 1;
-            this.update.Text = "0001 \r\n00000000000000000000000000000000 \r\n00000000";
-            // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(252, 20);
+            this.button9.Location = new System.Drawing.Point(6, 20);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(65, 23);
+            this.button9.Size = new System.Drawing.Size(315, 23);
             this.button9.TabIndex = 0;
-            this.button9.Text = "开始";
+            this.button9.Text = "进入升级";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.Button9_Click);
             // 
             // result
             // 
-            this.result.Location = new System.Drawing.Point(686, 178);
+            this.result.Location = new System.Drawing.Point(686, 325);
             this.result.Multiline = true;
             this.result.Name = "result";
-            this.result.Size = new System.Drawing.Size(327, 132);
+            this.result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.result.Size = new System.Drawing.Size(327, 197);
             this.result.TabIndex = 16;
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.tb_set_addr);
             this.groupBox7.Controls.Add(this.button7);
-            this.groupBox7.Location = new System.Drawing.Point(686, 127);
+            this.groupBox7.Location = new System.Drawing.Point(686, 60);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(327, 47);
             this.groupBox7.TabIndex = 10;
@@ -204,6 +195,14 @@
             this.button7.Text = "设置";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
+            // 
+            // updata1
+            // 
+            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.updata1.Location = new System.Drawing.Point(6, 45);
+            this.updata1.Name = "updata1";
+            this.updata1.Size = new System.Drawing.Size(314, 93);
+            this.updata1.TabIndex = 22;
             // 
             // channel5
             // 
@@ -265,19 +264,12 @@
             this.channel1.TabIndex = 17;
             this.channel1.Values = "label1";
             // 
-            // updata1
-            // 
-            this.updata1.Location = new System.Drawing.Point(442, 406);
-            this.updata1.Name = "updata1";
-            this.updata1.Size = new System.Drawing.Size(507, 114);
-            this.updata1.TabIndex = 22;
-            // 
             // Function
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1018, 532);
-            this.Controls.Add(this.updata1);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1018, 673);
             this.Controls.Add(this.channel5);
             this.Controls.Add(this.channel4);
             this.Controls.Add(this.channel3);
@@ -299,7 +291,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
@@ -316,7 +307,6 @@
         private System.Windows.Forms.ToolStripMenuItem 清空ToolStripMenuItem;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox update;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox result;
         private System.Windows.Forms.CheckBox timer;
