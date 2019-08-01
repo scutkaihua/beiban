@@ -49,6 +49,7 @@
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
+            this.updata1 = new LD.forms.updata();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -264,11 +265,19 @@
             this.channel1.TabIndex = 17;
             this.channel1.Values = "label1";
             // 
+            // updata1
+            // 
+            this.updata1.Location = new System.Drawing.Point(442, 406);
+            this.updata1.Name = "updata1";
+            this.updata1.Size = new System.Drawing.Size(507, 114);
+            this.updata1.TabIndex = 22;
+            // 
             // Function
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1018, 532);
+            this.Controls.Add(this.updata1);
             this.Controls.Add(this.channel5);
             this.Controls.Add(this.channel4);
             this.Controls.Add(this.channel3);
@@ -320,5 +329,6 @@
         private channel channel3;
         private channel channel4;
         private channel channel5;
+        private updata updata1;
     }
 }

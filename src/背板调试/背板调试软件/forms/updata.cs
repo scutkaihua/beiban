@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using LD.lib;
 
 namespace LD.forms
@@ -18,16 +19,20 @@ namespace LD.forms
         TextBox Addr;
 
         int offset=0;                         //当前发送偏移
-        byte[] filedata = new byte[1024 * 64];//64k数据缓冲
+        StringBuilder sb = new StringBuilder(64 * 1024);//64k数据缓冲
 
-        public updata(SerialPortSetting s)
+        public updata()
         {
             InitializeComponent();
             pb.Value = 0;
             pb.Maximum = 100;
-            file.DoubleClick += File_DoubleClick;
+            file.DoubleClick += File_DoubleClick; 
+            //OpenFileDialog.Filter = "(*.bin)";
             OpenFileDialog.Title = "请选择xxx.bin升级文件";
-            OpenFileDialog.Filter = "*.bin";
+        }
+
+        public updata(SerialPortSetting s):this()
+        {   
             serialPortSetting = s;
             serialPortSetting.onPacketReceive += SerialPortSetting_onPacketReceive;
         }
@@ -39,9 +44,17 @@ namespace LD.forms
                 switch(args.packet.cmd)
                 {
                     case Cmd.UpdateStart://发送第一包 1k
+
                         break;
                 }
             }
+        }
+
+        private bool ReadBinFile()
+        {
+            StreamReader sr = new StreamReader(this.file.Text);
+            string r = sr.ReadToEnd();
+            return false;
         }
 
         private void File_DoubleClick(object sender, EventArgs e)
@@ -49,8 +62,20 @@ namespace LD.forms
             if(DialogResult.OK == OpenFileDialog.ShowDialog())
             {
                 this.file.Text = OpenFileDialog.FileName;
+                sb.Length = 0;
+                FileStream fs = new FileStream(this.file.Text, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                int length = (int)fs.Length;
+                while (length > 0)
+                {
+                    byte tempByte = br.ReadByte();
+                    string tempStr = Convert.ToString(tempByte, 16);
+                    sb.Append(tempStr);
+                    length--;
+                }
+                fs.Close();
+                br.Close();
             }
-
         }
 
         private void Start_Click(object sender, EventArgs e)
