@@ -32,6 +32,8 @@ namespace LD
         //////////////////////////////////////////////////////////////////////////
         //读写
         Function function;
+        Function function1;
+        Function function2;
 
         //发行用户卡
         //UserCardIssuerForm userCardIssuer;
@@ -73,6 +75,14 @@ namespace LD
             function = new Function(serialPortSetting);
             formsArchitecture.AddForm(function, "功能选择", "测试功能", false);
             function.pv = packetView;
+
+            function1 = new Function(serialPortSetting);
+            formsArchitecture.AddForm(function1, "功能选择", "测试功能1", false);
+            function1.pv = packetView;
+
+            function2 = new Function(serialPortSetting);
+            formsArchitecture.AddForm(function2, "功能选择", "测试功能2", false);
+            function2.pv = packetView;
 
             /////////////////////////////////////////////////////////////////////////
             ///显示

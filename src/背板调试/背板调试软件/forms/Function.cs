@@ -129,6 +129,7 @@ namespace LD.forms
             {
                 Ldpacket p = args.packet;
                 pv.PacketGet(sender, args);
+                if (byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber) != p.addr) return;
                 switch(p.cmd)
                 {
                     case Cmd.Heart_Break:
