@@ -36,6 +36,7 @@
             this.len = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.pp = new System.Windows.Forms.Label();
+            this.per = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // file
@@ -44,12 +45,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.file.Location = new System.Drawing.Point(3, 3);
             this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(262, 21);
+            this.file.Size = new System.Drawing.Size(268, 21);
             this.file.TabIndex = 1;
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(159, 61);
+            this.start.Location = new System.Drawing.Point(169, 61);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(73, 23);
             this.start.TabIndex = 3;
@@ -63,12 +64,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pb.Location = new System.Drawing.Point(3, 28);
             this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(262, 2);
+            this.pb.Size = new System.Drawing.Size(268, 2);
             this.pb.TabIndex = 4;
             // 
             // md5
             // 
-            this.md5.Location = new System.Drawing.Point(45, 36);
+            this.md5.Location = new System.Drawing.Point(55, 35);
             this.md5.Name = "md5";
             this.md5.Size = new System.Drawing.Size(210, 21);
             this.md5.TabIndex = 5;
@@ -84,15 +85,15 @@
             // 
             // len
             // 
-            this.len.Location = new System.Drawing.Point(70, 61);
+            this.len.Location = new System.Drawing.Point(55, 63);
             this.len.Name = "len";
-            this.len.Size = new System.Drawing.Size(83, 21);
+            this.len.Size = new System.Drawing.Size(66, 21);
             this.len.TabIndex = 7;
             this.len.Text = "00000000";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(238, 61);
+            this.button1.Location = new System.Drawing.Point(248, 61);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(17, 23);
             this.button1.TabIndex = 8;
@@ -111,10 +112,19 @@
             this.pp.TabIndex = 9;
             this.pp.Text = "0%";
             // 
+            // per
+            // 
+            this.per.Location = new System.Drawing.Point(127, 62);
+            this.per.Name = "per";
+            this.per.Size = new System.Drawing.Size(36, 21);
+            this.per.TabIndex = 10;
+            this.per.Text = "200";
+            // 
             // updata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.per);
             this.Controls.Add(this.pp);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.len);
@@ -124,7 +134,7 @@
             this.Controls.Add(this.start);
             this.Controls.Add(this.file);
             this.Name = "updata";
-            this.Size = new System.Drawing.Size(268, 96);
+            this.Size = new System.Drawing.Size(274, 96);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,5 +150,6 @@
         private System.Windows.Forms.TextBox len;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label pp;
+        private System.Windows.Forms.TextBox per;
     }
 }

@@ -160,6 +160,7 @@ namespace LD.forms
                 offset = 0;
                 Refalsh_View();
                 this.pb.Maximum = 100;
+                this.len_per_packet = int.Parse(this.per.Text);
             }
         }
 

@@ -157,6 +157,16 @@ namespace LD.forms
                                 string biaoji = p.data[offset + 25].ToString("X2");
 
                                 c.Values = "版本:" + ver + "\n电流:" + current + "\n电量:" + dianlian + ",温度:" + wendu + "\n次数:" + cc + ",容量:" + vol + "\n电压:" + v + ",标志:" + biaoji;
+
+                                string aad = "模组地址:" + p.data[0].ToString("X2");
+                                string bbd = "仓道数:" + p.data[1].ToString("X2");
+                                string ccd = "硬件版本:" + Ulitily.ShareClass.hexByteArrayToString(p.data, 2, 2).Replace("-", "");
+                                string ddd = "软件版本:" + Ulitily.ShareClass.hexByteArrayToString(p.data, 4, 2).Replace("-", "");
+                                break_ack.Text = aad + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(aad).Length)
+                                    + bbd + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(bbd).Length) + "\r\n"
+                                    + ccd + new String(' ', 19 - Encoding.GetEncoding("gb2312").GetBytes(ccd).Length)
+                                    + ddd + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(ddd).Length);
+
                             }
                         }break;
                     default:
