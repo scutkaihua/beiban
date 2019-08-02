@@ -15,7 +15,7 @@ namespace LD.forms
     public partial class updata : UserControl
     {
         OpenFileDialog OpenFileDialog = new OpenFileDialog();
-        public SerialPortSetting serialPortSetting;
+        SerialPortSetting serialPortSetting;
         bool StartUpdate = false;
         public TextBox Addr;
 
@@ -26,7 +26,7 @@ namespace LD.forms
 
         int offset=0;                         //当前发送偏移
 
-        int len_per_packet = 200;
+        int len_per_packet = 64*3;
 
         public updata()
         {
@@ -38,7 +38,7 @@ namespace LD.forms
             OpenFileDialog.Title = "请选择xxx.bin升级文件";
         }
 
-        public updata(SerialPortSetting s):this()
+        public void SetSerialPort(SerialPortSetting s)
         {   
             serialPortSetting = s;
             serialPortSetting.onPacketReceive += SerialPortSetting_onPacketReceive;
@@ -51,11 +51,31 @@ namespace LD.forms
             if (datalen > 0)
             {
                 Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateData, Addr.Text,
-                    offset.ToString("x4") + Ulitily.ShareClass.hexByteArrayToString(code, offset,datalen).Replace("-", "")+datalen.ToString("x2"));
+                    offset.ToString("x4")+datalen.ToString("x2") + Ulitily.ShareClass.hexByteArrayToString(code, offset,datalen).Replace("-", ""));
                 offset += datalen;
                 serialPortSetting.WritePacket(p);
             }
         }
+
+
+        delegate void Reflash_View();
+
+        void Refalsh_View()
+        {
+            if(this.InvokeRequired)
+            {
+                Reflash_View r = new Reflash_View(Refalsh_View);
+                this.Invoke(r);
+            }
+            else
+            {
+                this.pb.Value = offset * 100 / codelen;
+                this.pp.Text = this.pb.Value + "%";
+            }
+
+        }
+
+
 
         private void SerialPortSetting_onPacketReceive(object sender, lib.Ulitily.PacketArgs args)
         {
@@ -66,7 +86,7 @@ namespace LD.forms
                     case Cmd.UpdateStart://发送第一包 1k
                         if (args.packet.data[0] == 1)
                         {
-                            this.pb.Value = offset * 100 / codelen;
+                            Refalsh_View();
                             WriteAPacket();
                         }
                         break;
@@ -74,11 +94,13 @@ namespace LD.forms
                     case Cmd.UpdateData://发送数据
                         if (args.packet.data[0] == 0)
                         {
+                            Refalsh_View();
                             WriteAPacket();
                         }
                         else
                         {
-                            this.pb.Value = 100;
+                            offset = codelen;
+                            Refalsh_View();
                             MessageBox.Show("发送完成");
                         }
                         break;
@@ -105,7 +127,7 @@ namespace LD.forms
                 br.Close();
 
                 //长度必须是4的整数倍
-                codelen += 4 - ((codelen % 4) == 0 ? 4 : (codelen % 4));
+               // codelen += 4 - ((codelen % 4) == 0 ? 4 : (codelen % 4));
 
                 // 获得MD5摘要算法的 MessageDigest 对象
                 MD5 mdInst = System.Security.Cryptography.MD5.Create();
@@ -128,11 +150,16 @@ namespace LD.forms
             }
             else
             {
+                if (codelen <= 0) { MessageBox.Show("bin文件为空");return; }
+
                 StartUpdate = true;
                 this.start.Text = "停止升级";
                 //发送开始包
                 Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.UpdateStart, Addr.Text, ver.Text+ md5.Text+this.len.Text);
                 serialPortSetting.WritePacket(packet);
+                offset = 0;
+                Refalsh_View();
+                this.pb.Maximum = 100;
             }
         }
 

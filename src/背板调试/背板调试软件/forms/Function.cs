@@ -62,7 +62,7 @@ namespace LD.forms
             timer.CheckedChanged += Timer_CheckedChanged;
             t.Tick += T_Tick;
             this.updata1.Addr = this.Addr;
-            this.updata1.serialPortSetting = serial;
+            this.updata1.SetSerialPort(serial);
         }
 
         private void Cc_Onlease(Ldpacket packet, object sender)
@@ -206,7 +206,7 @@ namespace LD.forms
         private void Button9_Click(object sender, EventArgs e)
         {
             result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateStart, Addr.Text,"00000000000000000000000000000000000000000000");
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateEntry, Addr.Text,"00000000000000000000000000000000000000000000");
             serial.WritePacket(p);
         }
 

@@ -35,6 +35,7 @@
             this.ver = new System.Windows.Forms.TextBox();
             this.len = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.pp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // file
@@ -48,7 +49,7 @@
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(126, 63);
+            this.start.Location = new System.Drawing.Point(159, 61);
             this.start.Name = "start";
             this.start.Size = new System.Drawing.Size(73, 23);
             this.start.TabIndex = 3;
@@ -83,15 +84,15 @@
             // 
             // len
             // 
-            this.len.Location = new System.Drawing.Point(45, 63);
+            this.len.Location = new System.Drawing.Point(70, 61);
             this.len.Name = "len";
-            this.len.Size = new System.Drawing.Size(75, 21);
+            this.len.Size = new System.Drawing.Size(83, 21);
             this.len.TabIndex = 7;
             this.len.Text = "00000000";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(205, 63);
+            this.button1.Location = new System.Drawing.Point(238, 61);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(17, 23);
             this.button1.TabIndex = 8;
@@ -99,10 +100,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // pp
+            // 
+            this.pp.AutoSize = true;
+            this.pp.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.pp.Location = new System.Drawing.Point(3, 62);
+            this.pp.Name = "pp";
+            this.pp.Size = new System.Drawing.Size(35, 22);
+            this.pp.TabIndex = 9;
+            this.pp.Text = "0%";
+            // 
             // updata
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pp);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.len);
             this.Controls.Add(this.ver);
@@ -126,5 +139,6 @@
         private System.Windows.Forms.TextBox ver;
         private System.Windows.Forms.TextBox len;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label pp;
     }
 }
