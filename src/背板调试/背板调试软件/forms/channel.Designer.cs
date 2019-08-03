@@ -154,8 +154,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.time);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2.Controls.Add(this.button4);
-            this.splitContainer2.Size = new System.Drawing.Size(361, 97);
-            this.splitContainer2.SplitterDistance = 222;
+            this.splitContainer2.Size = new System.Drawing.Size(328, 97);
+            this.splitContainer2.SplitterDistance = 223;
             this.splitContainer2.TabIndex = 20;
             // 
             // error
@@ -166,7 +166,7 @@
             this.error.Location = new System.Drawing.Point(0, 63);
             this.error.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.error.Name = "error";
-            this.error.Size = new System.Drawing.Size(332, 32);
+            this.error.Size = new System.Drawing.Size(333, 32);
             this.error.TabIndex = 17;
             // 
             // warn
@@ -177,7 +177,7 @@
             this.warn.Location = new System.Drawing.Point(0, 30);
             this.warn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.warn.Name = "warn";
-            this.warn.Size = new System.Drawing.Size(332, 32);
+            this.warn.Size = new System.Drawing.Size(333, 32);
             this.warn.TabIndex = 16;
             // 
             // state
@@ -188,7 +188,7 @@
             this.state.Location = new System.Drawing.Point(1, -1);
             this.state.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.state.Name = "state";
-            this.state.Size = new System.Drawing.Size(333, 32);
+            this.state.Size = new System.Drawing.Size(334, 32);
             this.state.TabIndex = 15;
             // 
             // channel
@@ -199,7 +199,7 @@
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.panel1);
             this.Name = "channel";
-            this.Size = new System.Drawing.Size(547, 98);
+            this.Size = new System.Drawing.Size(514, 98);
             this.Load += new System.EventHandler(this.Channel_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -63,7 +63,7 @@
             this.groupBox1.Controls.Add(this.Inter);
             this.groupBox1.Controls.Add(this.xintiao);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(739, 0);
+            this.groupBox1.Location = new System.Drawing.Point(781, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(274, 75);
             this.groupBox1.TabIndex = 1;
@@ -120,7 +120,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Addr);
-            this.groupBox2.Location = new System.Drawing.Point(686, 0);
+            this.groupBox2.Location = new System.Drawing.Point(728, 0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(47, 75);
             this.groupBox2.TabIndex = 2;
@@ -142,7 +142,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(686, 131);
+            this.button4.Location = new System.Drawing.Point(728, 127);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(327, 24);
             this.button4.TabIndex = 0;
@@ -154,7 +154,7 @@
             // 
             this.groupBox6.Controls.Add(this.updata1);
             this.groupBox6.Controls.Add(this.button9);
-            this.groupBox6.Location = new System.Drawing.Point(686, 157);
+            this.groupBox6.Location = new System.Drawing.Point(728, 157);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(327, 144);
             this.groupBox6.TabIndex = 9;
@@ -173,7 +173,7 @@
             // 
             // result
             // 
-            this.result.Location = new System.Drawing.Point(686, 301);
+            this.result.Location = new System.Drawing.Point(728, 301);
             this.result.Multiline = true;
             this.result.Name = "result";
             this.result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -184,7 +184,7 @@
             // 
             this.groupBox7.Controls.Add(this.tb_set_addr);
             this.groupBox7.Controls.Add(this.button7);
-            this.groupBox7.Location = new System.Drawing.Point(686, 81);
+            this.groupBox7.Location = new System.Drawing.Point(728, 81);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(327, 47);
             this.groupBox7.TabIndex = 10;
@@ -217,7 +217,7 @@
             this.channel5.Id = "";
             this.channel5.Location = new System.Drawing.Point(1, 422);
             this.channel5.Name = "channel5";
-            this.channel5.Size = new System.Drawing.Size(676, 100);
+            this.channel5.Size = new System.Drawing.Size(721, 100);
             this.channel5.TabIndex = 21;
             this.channel5.Values = "label1";
             // 
@@ -229,7 +229,7 @@
             this.channel4.Id = "";
             this.channel4.Location = new System.Drawing.Point(1, 316);
             this.channel4.Name = "channel4";
-            this.channel4.Size = new System.Drawing.Size(676, 100);
+            this.channel4.Size = new System.Drawing.Size(721, 100);
             this.channel4.TabIndex = 20;
             this.channel4.Values = "label1";
             // 
@@ -241,7 +241,7 @@
             this.channel3.Id = "";
             this.channel3.Location = new System.Drawing.Point(1, 210);
             this.channel3.Name = "channel3";
-            this.channel3.Size = new System.Drawing.Size(676, 100);
+            this.channel3.Size = new System.Drawing.Size(721, 100);
             this.channel3.TabIndex = 19;
             this.channel3.Values = "label1";
             // 
@@ -253,7 +253,7 @@
             this.channel2.Id = "";
             this.channel2.Location = new System.Drawing.Point(1, 106);
             this.channel2.Name = "channel2";
-            this.channel2.Size = new System.Drawing.Size(676, 100);
+            this.channel2.Size = new System.Drawing.Size(721, 100);
             this.channel2.TabIndex = 18;
             this.channel2.Values = "label1";
             // 
@@ -265,7 +265,7 @@
             this.channel1.Id = "";
             this.channel1.Location = new System.Drawing.Point(1, 2);
             this.channel1.Name = "channel1";
-            this.channel1.Size = new System.Drawing.Size(676, 100);
+            this.channel1.Size = new System.Drawing.Size(721, 100);
             this.channel1.TabIndex = 17;
             this.channel1.Values = "label1";
             // 
@@ -282,7 +282,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1018, 547);
+            this.ClientSize = new System.Drawing.Size(1061, 547);
             this.Controls.Add(this.channel5);
             this.Controls.Add(this.channel4);
             this.Controls.Add(this.channel3);

@@ -83,6 +83,7 @@ namespace LD.forms
                 }
                 else
                 {
+                    if (byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber) != p.addr) return;
                     string result = String.Format("->地址:{0} 命令:{1} 长度:{2} 数据:{3}\n",
                              p.addr, p.cmd, p.len, Ulitily.ShareClass.hexByteArrayToString(p.data, p.len).Replace("-", " "));
                     this.result.AppendText(result);
