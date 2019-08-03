@@ -221,7 +221,13 @@ namespace LD.forms
             serial.WritePacket(p);
         }
 
-      
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = true;
+            this.Hide();
+        }
 
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.break_ack = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.CheckBox();
             this.Inter = new System.Windows.Forms.TextBox();
             this.xintiao = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tb_set_addr = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.break_ack = new System.Windows.Forms.Label();
             this.channel5 = new LD.forms.channel();
             this.channel4 = new LD.forms.channel();
             this.channel3 = new LD.forms.channel();
@@ -69,6 +69,17 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "心跳";
+            // 
+            // break_ack
+            // 
+            this.break_ack.AutoSize = true;
+            this.break_ack.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.break_ack.ForeColor = System.Drawing.Color.Fuchsia;
+            this.break_ack.Location = new System.Drawing.Point(6, 40);
+            this.break_ack.Name = "break_ack";
+            this.break_ack.Size = new System.Drawing.Size(56, 17);
+            this.break_ack.TabIndex = 4;
+            this.break_ack.Text = "心跳应答";
             // 
             // timer
             // 
@@ -198,17 +209,6 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
-            // break_ack
-            // 
-            this.break_ack.AutoSize = true;
-            this.break_ack.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.break_ack.ForeColor = System.Drawing.Color.Fuchsia;
-            this.break_ack.Location = new System.Drawing.Point(6, 40);
-            this.break_ack.Name = "break_ack";
-            this.break_ack.Size = new System.Drawing.Size(56, 17);
-            this.break_ack.TabIndex = 4;
-            this.break_ack.Text = "心跳应答";
-            // 
             // channel5
             // 
             this.channel5.Addr = "";
@@ -295,10 +295,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Function";
-            this.Text = "Function";
+            this.Text = "测试";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

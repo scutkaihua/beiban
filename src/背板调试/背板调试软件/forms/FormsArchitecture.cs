@@ -134,6 +134,9 @@ namespace LD.forms
                 //添加子菜单
                 if(floatOrNot == false)
                     subject.TopLevel = false;
+                //名称
+                subject.Text = stripName;
+
                 item = new FormItem(menuStrip, f,subject,stripName,floatOrNot);
                 f.DropDownItems.Add(item);
 
