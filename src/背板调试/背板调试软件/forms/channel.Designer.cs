@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.id = new System.Windows.Forms.TextBox();
-            this.values = new System.Windows.Forms.Label();
+            this.values1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.error = new LD.forms.State();
             this.warn = new LD.forms.State();
             this.state = new LD.forms.State();
+            this.values2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -49,21 +50,21 @@
             // 
             // id
             // 
-            this.id.Location = new System.Drawing.Point(53, 6);
+            this.id.Location = new System.Drawing.Point(41, 4);
             this.id.Name = "id";
-            this.id.Size = new System.Drawing.Size(121, 21);
+            this.id.Size = new System.Drawing.Size(133, 21);
             this.id.TabIndex = 4;
             // 
-            // values
+            // values1
             // 
-            this.values.AutoSize = true;
-            this.values.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.values.ForeColor = System.Drawing.Color.Coral;
-            this.values.Location = new System.Drawing.Point(3, 27);
-            this.values.Name = "values";
-            this.values.Size = new System.Drawing.Size(45, 17);
-            this.values.TabIndex = 5;
-            this.values.Text = "label1";
+            this.values1.AutoSize = true;
+            this.values1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.values1.ForeColor = System.Drawing.Color.Coral;
+            this.values1.Location = new System.Drawing.Point(38, 26);
+            this.values1.Name = "values1";
+            this.values1.Size = new System.Drawing.Size(45, 17);
+            this.values1.TabIndex = 5;
+            this.values1.Text = "label1";
             // 
             // button1
             // 
@@ -111,9 +112,9 @@
             // 
             // addr
             // 
-            this.addr.Location = new System.Drawing.Point(3, 6);
+            this.addr.Location = new System.Drawing.Point(3, 4);
             this.addr.Name = "addr";
-            this.addr.Size = new System.Drawing.Size(44, 21);
+            this.addr.Size = new System.Drawing.Size(32, 21);
             this.addr.TabIndex = 13;
             // 
             // time
@@ -126,12 +127,13 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.values2);
             this.panel1.Controls.Add(this.addr);
             this.panel1.Controls.Add(this.id);
-            this.panel1.Controls.Add(this.values);
-            this.panel1.Location = new System.Drawing.Point(3, 6);
+            this.panel1.Controls.Add(this.values1);
+            this.panel1.Location = new System.Drawing.Point(3, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(180, 89);
+            this.panel1.Size = new System.Drawing.Size(180, 98);
             this.panel1.TabIndex = 18;
             // 
             // splitContainer2
@@ -191,6 +193,17 @@
             this.state.Size = new System.Drawing.Size(334, 32);
             this.state.TabIndex = 15;
             // 
+            // values2
+            // 
+            this.values2.AutoSize = true;
+            this.values2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.values2.ForeColor = System.Drawing.Color.Coral;
+            this.values2.Location = new System.Drawing.Point(108, 26);
+            this.values2.Name = "values2";
+            this.values2.Size = new System.Drawing.Size(45, 17);
+            this.values2.TabIndex = 14;
+            this.values2.Text = "label1";
+            // 
             // channel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -199,7 +212,7 @@
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.panel1);
             this.Name = "channel";
-            this.Size = new System.Drawing.Size(514, 98);
+            this.Size = new System.Drawing.Size(514, 100);
             this.Load += new System.EventHandler(this.Channel_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -213,7 +226,7 @@
 
         #endregion
         private System.Windows.Forms.TextBox id;
-        private System.Windows.Forms.Label values;
+        private System.Windows.Forms.Label values1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -226,5 +239,6 @@
         private State error;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Label values2;
     }
 }

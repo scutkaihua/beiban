@@ -219,7 +219,6 @@
             this.channel5.Name = "channel5";
             this.channel5.Size = new System.Drawing.Size(721, 100);
             this.channel5.TabIndex = 21;
-            this.channel5.Values = "label1";
             // 
             // channel4
             // 
@@ -231,7 +230,6 @@
             this.channel4.Name = "channel4";
             this.channel4.Size = new System.Drawing.Size(721, 100);
             this.channel4.TabIndex = 20;
-            this.channel4.Values = "label1";
             // 
             // channel3
             // 
@@ -243,7 +241,6 @@
             this.channel3.Name = "channel3";
             this.channel3.Size = new System.Drawing.Size(721, 100);
             this.channel3.TabIndex = 19;
-            this.channel3.Values = "label1";
             // 
             // channel2
             // 
@@ -255,7 +252,6 @@
             this.channel2.Name = "channel2";
             this.channel2.Size = new System.Drawing.Size(721, 100);
             this.channel2.TabIndex = 18;
-            this.channel2.Values = "label1";
             // 
             // channel1
             // 
@@ -267,7 +263,6 @@
             this.channel1.Name = "channel1";
             this.channel1.Size = new System.Drawing.Size(721, 100);
             this.channel1.TabIndex = 17;
-            this.channel1.Values = "label1";
             // 
             // updata1
             // 

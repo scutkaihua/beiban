@@ -90,7 +90,12 @@ namespace LD.forms
             set { id.Text = value; }
         }
 
-        public string Values { get { return values.Text; }set { values.Text = value; } }
+        public string Values1 { get { return values1.Text; }set { values1.Text = value; } }
+        public string Values2
+        {
+            get { return values2.Text; }
+            set { values2.Text = value; }
+        }
 
         private void Button1_Click(object sender, EventArgs e)
         {

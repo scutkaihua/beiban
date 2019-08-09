@@ -158,7 +158,8 @@ namespace LD.forms
                                 string v = ((((int)p.data[offset + 23]) << 8) + ((int)p.data[offset + 24])).ToString("D");
                                 string biaoji = p.data[offset + 25].ToString("X2");
 
-                                c.Values = "版本:" + ver + "\n电流:" + current + "\n电量:" + dianlian + ",温度:" + wendu + "\n次数:" + cc + ",容量:" + vol + "\n电压:" + v + ",标志:" + biaoji;
+                                c.Values1 = "版本:" + ver + "\n次数:" + cc + "\n容量:" + vol   + "\n标志:" + biaoji;
+                                c.Values2 = "电流:" + current + "\n电量:" + dianlian + "\n电压:"+ v + "\n温度:" + wendu;
 
                                 string aad = "模组地址:" + p.data[0].ToString("X2");
                                 string bbd = "仓道数:" + p.data[1].ToString("X2");
