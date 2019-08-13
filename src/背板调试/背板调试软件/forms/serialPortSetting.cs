@@ -26,6 +26,7 @@ namespace LD.forms
         //事件
         public event Ulitily.onPacketTransfer onPacketReceive;
         public event Ulitily.onPacketTransfer onPacketSend;
+        public event Ulitily.onPacketTransfer onErrorByte;
 
         public SerialPortSetting()
         {
@@ -154,8 +155,7 @@ namespace LD.forms
                     if (sb != null && sb.Length>0)
                     {
                         ringbufserial.WriteBuf(sb, sb.Length);
-                        ARESerial.Set();
-                        //Console.WriteLine(BitConverter.ToString(sb));
+                        ARESerial.Set(); 
                     }
 
                 }
@@ -180,15 +180,21 @@ namespace LD.forms
                 {
                     //从串口读数据----------------slip protocol--------------------//
                     _serialPort_DataReceived(null, null);
-                    ARESerial.WaitOne(10, false);
+                    ARESerial.WaitOne(10, true);
                     while (ringbufserial.DataLen > 0)
                     {
+                        bool er = false;
                         byte c = ringbufserial.ReadByte();
-                        System.Console.Write(c.ToString("X2") +" ");
-                        Ldpacket packet = Ldpacket.toPackcet(c);
+                        Ldpacket packet = Ldpacket.toPackcet(c,ref er);
 
-                        //byte[] cc = new byte[] { c };
-                        //Console.Write(BitConverter.ToString(cc));
+                        if(er==true)
+                        {
+                            System.Console.WriteLine(c.ToString("x2") + " ");
+                            if (onErrorByte != null)
+                            {
+                                onErrorByte(this, new Ulitily.PacketArgs { errorbyte = c });
+                            }
+                        }
 
                         if (packet != null)
                         {
@@ -202,12 +208,12 @@ namespace LD.forms
                                 System.Console.WriteLine("call back:onPacketReceive:{0}",onPacketReceive.Method.Name);
 
                             }
-                            if (packet.len > 0)
-                                System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{3} data:{2}",
-                                    packet.addr, packet.cmd, packet.len, Ulitily.ShareClass.hexByteArrayToString(packet.data).Replace("-", ""));
-                            else
-                                System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2}",
-                                     packet.addr, packet.cmd,packet.len);
+                            //if (packet.len > 0)
+                            //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2} data:{3}",
+                            //        packet.addr, packet.cmd, packet.len, Ulitily.ShareClass.hexByteArrayToString(packet.data,packet.len).Replace("-", ""));
+                            //else
+                            //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2}",
+                            //         packet.addr, packet.cmd,packet.len);
                         }
 
                     }
@@ -284,6 +290,7 @@ namespace LD.forms
                 Ulitily.PacketArgs args = new Ulitily.PacketArgs();
                 args.packet = pack;
                 onPacketSend(this, args);
+                Console.WriteLine("\r\n"+"==>"+Ulitily.ShareClass.hexByteArrayToString(pack.toBytes).Replace("-"," ")); ;
             }
 
             return pack;

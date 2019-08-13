@@ -31,6 +31,7 @@ namespace LD.forms
             serial = serialPortSetting;
             serial.onPacketReceive += Serial_onPacketReceive;
             serial.onPacketSend += Serial_onPacketSend;
+            serial.onErrorByte += Serial_onErrorByte;
             chs[0] = channel1;
             chs[1] = channel2;
             chs[2] = channel3;
@@ -63,6 +64,19 @@ namespace LD.forms
             t.Tick += T_Tick;
             this.updata1.Addr = this.Addr;
             this.updata1.SetSerialPort(serial);
+        }
+
+        private void Serial_onErrorByte(object sender, Ulitily.PacketArgs args)
+        {
+            if (this.InvokeRequired)
+            {
+                FlushClient fc = new FlushClient(Serial_onErrorByte);
+                this.Invoke(fc, new object[] { sender, args });
+            }
+            else
+            {
+                this.result.AppendText(args.errorbyte.ToString("x2")+" ");
+            }
         }
 
         private void Cc_Onlease(Ldpacket packet, object sender)
@@ -130,7 +144,10 @@ namespace LD.forms
             {
                 Ldpacket p = args.packet;
                 pv.PacketGet(sender, args);
-                if (byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber) != p.addr) return;
+                if (byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber) != p.addr)
+                {
+                    return;
+                }
                 switch(p.cmd)
                 {
                     case Cmd.Heart_Break:

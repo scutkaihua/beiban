@@ -103,8 +103,9 @@ namespace LD.lib
         static int line = 0;
         static int datalen = 0;
         static byte[] buf = new byte[1024];
-        public static Ldpacket toPackcet(byte c)
+        public static Ldpacket toPackcet(byte c,ref bool er)
         {
+            er = false;
             buf[l] = c;
             l++;
             switch(line)
@@ -145,8 +146,7 @@ namespace LD.lib
 
             return null;
         Error:
-            l = line = 0;return null;
-
+            er = true;l = line = 0;return null;
         }
 
         public byte[] toBytes

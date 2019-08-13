@@ -13,6 +13,7 @@ namespace LD.lib
 
         public class PacketArgs:EventArgs{
             public Ldpacket packet;
+            public byte errorbyte;
         }
        public  delegate void onPacketTransfer(object sender, PacketArgs args);
 
