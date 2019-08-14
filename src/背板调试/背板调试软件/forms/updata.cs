@@ -25,8 +25,12 @@ namespace LD.forms
         int codelen = 0;
 
         int offset=0;                         //当前发送偏移
+        int lastsendlen = 0;                  //上一次发送长度 
 
         int len_per_packet = 64*3;
+
+        Timer timer = new Timer();
+        DateTime dateTime = DateTime.Now;
 
         public updata()
         {
@@ -36,6 +40,21 @@ namespace LD.forms
             file.DoubleClick += File_DoubleClick; 
             //OpenFileDialog.Filter = "(*.bin)";
             OpenFileDialog.Title = "请选择xxx.bin升级文件";
+
+            this.timer.Interval = 500;
+            this.timer.Tick += Timer_Tick;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (StartUpdate == true)
+            {
+                if (dateTime == null) dateTime = DateTime.Now;
+                if ((dateTime.Millisecond + 100) < DateTime.Now.Millisecond)
+                {
+                    ReWriteAPacket();
+                }
+            }
         }
 
         public void SetSerialPort(SerialPortSetting s)
@@ -53,6 +72,20 @@ namespace LD.forms
                 Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateData, Addr.Text,
                     offset.ToString("x4")+datalen.ToString("x2") + Ulitily.ShareClass.hexByteArrayToString(code, offset,datalen).Replace("-", ""));
                 offset += datalen;
+                lastsendlen = datalen;
+                serialPortSetting.WritePacket(p);
+            }
+        }
+
+        private void ReWriteAPacket()
+        {
+            int lastoffet = lastsendlen;
+            int datalen = (codelen - lastoffet) >= len_per_packet ? (len_per_packet) : (codelen - lastoffet);
+            if (datalen > 0)
+            {
+                Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateData, Addr.Text,
+                    offset.ToString("x4") + datalen.ToString("x2") + Ulitily.ShareClass.hexByteArrayToString(code, offset, datalen).Replace("-", ""));
+                //offset += datalen;
                 serialPortSetting.WritePacket(p);
             }
         }
@@ -79,34 +112,48 @@ namespace LD.forms
 
         private void SerialPortSetting_onPacketReceive(object sender, lib.Ulitily.PacketArgs args)
         {
-            if(StartUpdate)
+            try
             {
-                switch(args.packet.cmd)
+                if(StartUpdate)
                 {
-                    case Cmd.UpdateStart://发送第一包 1k
-                        if (args.packet.data[0] == 1)
-                        {
-                            Refalsh_View();
-                            WriteAPacket();
-                        }
-                        break;
+                    switch(args.packet.cmd)
+                    {
+                        case Cmd.UpdateStart://发送第一包 1k
+                            dateTime = DateTime.Now;
+                            if (args.packet.data[0] == 1)
+                            {
+                                Refalsh_View();
+                                WriteAPacket();
+                            }
+                            break;
 
-                    case Cmd.UpdateData://发送数据
-                        if (args.packet.data[0] == 0)
-                        {
-                            Refalsh_View();
-                            WriteAPacket();
-                        }
-                        else
-                        {
-                            offset = codelen;
-                            Refalsh_View();
-                            MessageBox.Show("发送完成");
-                        }
-                        break;
-                    default:break;
+                        case Cmd.UpdateData://发送数据
+                            dateTime = DateTime.Now;
+                            if (args.packet.data[0] == 0)
+                            {
+                                Refalsh_View();
+                                WriteAPacket();
+                            }
+                            else
+                            {
+                                dateTime = DateTime.Now;
+                                StartUpdate = false;
+                                offset = codelen;
+                                Refalsh_View();
+                                this.start.Text = "开始升级";
+                                MessageBox.Show("发送完成");
+                            }
+                            break;
+                        default:break;
+                    }
                 }
             }
+            catch
+            {
+                dateTime = DateTime.Now;
+                ReWriteAPacket();//异常重发
+            }
+
         }
 
         private void File_DoubleClick(object sender, EventArgs e)

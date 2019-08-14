@@ -136,6 +136,7 @@ namespace LD.lib
                         if (cs == c)
                         {
                             Ldpacket p = new Ldpacket(buf, l);
+                            Array.Clear(buf,0,buf.Length);
                             l = line = datalen = 0;
                             return p;
                         }
@@ -146,6 +147,7 @@ namespace LD.lib
 
             return null;
         Error:
+            Array.Clear(buf, 0, buf.Length);
             er = true;l = line = 0;return null;
         }
 
