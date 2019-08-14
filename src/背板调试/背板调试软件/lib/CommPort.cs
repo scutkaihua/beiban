@@ -360,8 +360,8 @@ namespace LD.lib
             GetCommTimeouts(hComm, ref ctoCommPort);
             ctoCommPort.ReadTotalTimeoutConstant = ReadTimeout;
             ctoCommPort.ReadTotalTimeoutMultiplier = 0;
-            ctoCommPort.WriteTotalTimeoutMultiplier = 0;
-            ctoCommPort.WriteTotalTimeoutConstant = 0;
+            ctoCommPort.WriteTotalTimeoutMultiplier = 10;
+            ctoCommPort.WriteTotalTimeoutConstant = 100;
             SetCommTimeouts(hComm, ref ctoCommPort);
 
             //设置串口参数
