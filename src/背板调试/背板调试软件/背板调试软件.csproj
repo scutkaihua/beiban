@@ -125,6 +125,7 @@
     <Compile Include="lib\Cmd.cs" />
     <Compile Include="lib\CommPort.cs" />
     <Compile Include="lib\Ldpacket.cs" />
+    <Compile Include="lib\RingBuffer.cs" />
     <Compile Include="lib\RingSigleBuf.cs" />
     <Compile Include="lib\Ulitily.cs" />
     <Compile Include="Program.cs" />

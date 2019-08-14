@@ -80,6 +80,9 @@ namespace LD.lib
         private const int PURGE_TXABORT = 0x1;
         private const int PURGE_TXCLEAR = 0x4;
 
+
+        private const int FILE_FLAG_OVERLAPPED = 0x40000000;
+
         ///
         ///设备控制块结构体类型
         ///
@@ -294,7 +297,11 @@ namespace LD.lib
                     bool bManualReset,
                     bool bInitialState,
                     string lpName);
+        [DllImport("kernel32")]
+        private static extern bool SetupComm(int hFile, int dwInQueue, int dwOutQueue);
 
+        [DllImport("kernel32")]
+        private static extern int PurgeComm(int hFile, int dwFlags);
         ///
         ///关闭串口
         ///
@@ -344,7 +351,7 @@ namespace LD.lib
             COMMTIMEOUTS ctoCommPort = new COMMTIMEOUTS();
 
             // 打开串口
-            hComm = CreateFile(PortName, GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, 0, 0);
+            hComm = CreateFile(PortName, GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_FLAG_OVERLAPPED, 0);
             if (hComm == INVALID_HANDLE_VALUE)
             {
                 return -1;
@@ -386,6 +393,14 @@ namespace LD.lib
             {
                 return -1;
             }
+
+            if (!SetupComm(hComm, 4096, 1024))
+            {
+                Close();
+                return -1;
+            }
+            Write(new byte[] { 00 }, 1);
+            PurgeComm(hComm, 0x000F);
             IsOpen = true;
             return 0;
         }
@@ -428,6 +443,7 @@ namespace LD.lib
             if (hComm != INVALID_HANDLE_VALUE)
             {
                 OVERLAPPED ovlCommPort = new OVERLAPPED();
+                ovlCommPort.hEvent = CreateEvent(new IntPtr(0), true, false, null);
                 int BytesRead = 0;
                 ReadFile(hComm, bytData, NumBytes, ref BytesRead, ref ovlCommPort);
                 return BytesRead;
@@ -470,7 +486,7 @@ namespace LD.lib
                 int BytesWritten = 0;
                 IntPtr intPtr = new IntPtr();
                 ovlCommPort.hEvent = CreateEvent(intPtr,true,false,null);                /*2019-7-27必须加入这个，不然写不成功*/
-                WriteFile(hComm, WriteBytes, intSize, ref BytesWritten, ref ovlCommPort);
+                bool result = WriteFile(hComm, WriteBytes, intSize, ref BytesWritten, ref ovlCommPort);
                 return BytesWritten;
             }
             else

@@ -16,11 +16,8 @@ namespace LD.forms
 {
     public partial class SerialPortSetting : Form
     {
-        static int RINGBUFFER_SIZE = 1024;
-       // SerialPort serialport = new SerialPort();
         CommPort serialport;
         public System.Threading.Thread serialThread;
-        RingSingleBuf ringbufserial = new RingSingleBuf(RINGBUFFER_SIZE);
         AutoResetEvent ARESerial = new AutoResetEvent(false);
         
         //事件
@@ -140,32 +137,32 @@ namespace LD.forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                ////throw new NotImplementedException();
-                //int btr = serialport.BytesToRead;
-                ////int btr = serialport.ReadBufferSize;
-                //if (btr > 0)
-                {
-                   // byte[] sb = new byte[RINGBUFFER_SIZE];
-                    //int sl = serialport.Read(sb, 0, btr);
-                    byte[] sb = serialport.Read(1);
-                    if (sb != null && sb.Length>0)
-                    {
-                        ringbufserial.WriteBuf(sb, sb.Length);
-                        ARESerial.Set(); 
-                    }
+        //void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        ////throw new NotImplementedException();
+        //        //int btr = serialport.BytesToRead;
+        //        ////int btr = serialport.ReadBufferSize;
+        //        //if (btr > 0)
+        //        {
+        //           // byte[] sb = new byte[RINGBUFFER_SIZE];
+        //            //int sl = serialport.Read(sb, 0, btr);
+        //            byte[] sb = serialport.Read(1);
+        //            if (sb != null && sb.Length>0)
+        //            {
+        //                ringbufserial.WriteBuf(sb, sb.Length);
+        //                ARESerial.Set(); 
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Console.WriteLine(ex.ToString());
-                ARESerial.Set();
-            }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        System.Console.WriteLine(ex.ToString());
+        //        ARESerial.Set();
+        //    }
+        //}
 
 
         /// <summary>
@@ -173,22 +170,25 @@ namespace LD.forms
         /// </summary>
         void SerialThread()
         {
-            byte[] tmp = new byte[RINGBUFFER_SIZE];
+            int total_readbufferlen = 0;
             while (true)
             {
                 try
                 {
                     //从串口读数据----------------slip protocol--------------------//
-                    _serialPort_DataReceived(null, null);
-                    ARESerial.WaitOne(10, true);
-                    while (ringbufserial.DataLen > 0)
+                    //_serialPort_DataReceived(null, null);
+                    //ARESerial.WaitOne(1, true);
+                    byte[] cc = serialport.Read(1);
+                    //while (ringbufserial.DataLen > 0)
+                    if((cc!=null) && (cc.Length>0))
                     {
                         bool er = false;
-                        byte c = ringbufserial.ReadByte();
+                        byte c = cc[0];// ringbufserial.ReadByte();
                         Ldpacket packet = Ldpacket.toPackcet(c,ref er);
-
+                        total_readbufferlen++;
                         if(er==true)
                         {
+                            Console.WriteLine("recevie total len:"+total_readbufferlen.ToString());
                             System.Console.WriteLine(c.ToString("x2") + " ");
                             if (onErrorByte != null)
                             {
@@ -216,6 +216,10 @@ namespace LD.forms
                             //         packet.addr, packet.cmd,packet.len);
                         }
 
+                    }
+                    else
+                    {
+                        System.Threading.Thread.Sleep(10);
                     }
                 }
                 catch (Exception e)
@@ -290,7 +294,13 @@ namespace LD.forms
                 Ulitily.PacketArgs args = new Ulitily.PacketArgs();
                 args.packet = pack;
                 onPacketSend(this, args);
-                Console.WriteLine("\r\n"+"==>"+Ulitily.ShareClass.hexByteArrayToString(pack.toBytes).Replace("-"," ")); ;
+                try { 
+                Console.WriteLine("\r\n"+"==>"+Ulitily.ShareClass.hexByteArrayToString(pack.toBytes).Replace("-"," "));
+                }
+                catch
+                {
+
+                }
             }
 
             return pack;

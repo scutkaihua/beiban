@@ -11,10 +11,10 @@ namespace LD.lib
     class RingSingleBuf
     {
         private byte[] m_ring_buf;
-        private int m_read_index;
-        private int m_write_index;
-        private int m_buf_size;
-        private int m_mask;
+        private long m_read_index;
+        private long m_write_index;
+        private long m_buf_size;
+        private long m_mask;
         System.Object m_lock = new System.Object();
 
 
@@ -22,7 +22,7 @@ namespace LD.lib
         /// 构造
         /// </summary>
         /// <param name="BufSize">ring buffer 缓冲大小</param>
-        public RingSingleBuf(int BufSize)
+        public RingSingleBuf(long BufSize)
         {
             m_ring_buf = new byte[BufSize];
             m_buf_size = BufSize;
@@ -37,7 +37,7 @@ namespace LD.lib
         /// </summary>
         /// <param name="Index"></param>
         /// <returns></returns>
-        private int AddIndex(int Index)
+        private long AddIndex(long Index)
         {
             return ((Index + 1) & m_mask);
         }
@@ -83,7 +83,7 @@ namespace LD.lib
         /// <summary>
         /// 接收数据长度
         /// </summary>
-        public int DataLen
+        public long DataLen
         {
             get
             {
@@ -97,12 +97,12 @@ namespace LD.lib
         /// <param name="pBuf"></param>
         /// <param name="ReadSize"></param>
         /// <returns></returns>
-        public int ReadBuf(byte[] pBuf, int ReadSize)
+        public long ReadBuf(byte[] pBuf, long ReadSize)
         {
             if (this.IsEmpty())
                 return 0;
 
-            int len = DataLen;
+            long len = DataLen;
             if (ReadSize > len)
                 ReadSize = len;
             for (int i = 0; i < ReadSize; i++)
