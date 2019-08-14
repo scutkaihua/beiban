@@ -482,6 +482,7 @@ namespace LD.lib
         {
             if (hComm != INVALID_HANDLE_VALUE)
             {
+                ClearSendBuf();
                 OVERLAPPED ovlCommPort = new OVERLAPPED();
                 int BytesWritten = 0;
                 IntPtr intPtr = new IntPtr();

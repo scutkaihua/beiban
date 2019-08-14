@@ -120,7 +120,6 @@ F:\v5\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.pdb
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.exe.config
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.exe
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\背板调试.pdb
-F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.Form1.resources
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.About.resources
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.channel.resources

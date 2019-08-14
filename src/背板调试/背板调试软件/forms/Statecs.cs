@@ -58,7 +58,7 @@ namespace LD.forms
                 if ((b & (1 << i)) != 0)
                 {
                     cbs[i].Checked = true;
-                    cbs[i].BackColor = Color.Red;
+                    cbs[i].BackColor = Color.Coral;
                     if ("".Equals(cbs[i].Text.Replace(" ", "")))
                     {
                         cbs[i].Visible = true;
