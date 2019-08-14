@@ -482,11 +482,11 @@ namespace LD.lib
         {
             if (hComm != INVALID_HANDLE_VALUE)
             {
-                ClearSendBuf();
+                ClearSendBuf();ClearReceiveBuf();
                 OVERLAPPED ovlCommPort = new OVERLAPPED();
                 int BytesWritten = 0;
-                IntPtr intPtr = new IntPtr();
-                ovlCommPort.hEvent = CreateEvent(intPtr,true,false,null);                /*2019-7-27必须加入这个，不然写不成功*/
+                IntPtr intPtr = new IntPtr(0);
+                ovlCommPort.hEvent = CreateEvent(intPtr,true,true,null);                /*2019-7-27必须加入这个，不然写不成功*/
                 bool result = WriteFile(hComm, WriteBytes, intSize, ref BytesWritten, ref ovlCommPort);
                 return BytesWritten;
             }

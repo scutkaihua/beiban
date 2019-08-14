@@ -16,7 +16,11 @@ namespace LD.forms
 {
     public partial class SerialPortSetting : Form
     {
-        CommPort serialport;
+
+        SerialPort serialPort = new SerialPort();
+
+
+        //CommPort serialport;
         public System.Threading.Thread serialThread;
         AutoResetEvent ARESerial = new AutoResetEvent(false);
         
@@ -64,21 +68,27 @@ namespace LD.forms
                 {
                     if (b_open.Text == "打开")
                     {
-                        if (serialport == null) serialport = new CommPort();
-                        serialport.PortName = cb_ports.Text;
-                        serialport.DataBits = 8;
-                        serialport.StopBits = 1;
-                        serialport.Parity = 0;
-                        serialport.BaudRate = (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
-                        serialport.ReadTimeout = 100;
+                        //if (serialport == null) serialport = new CommPort();
+                        //serialport.PortName = cb_ports.Text;
+                        //serialport.DataBits = 8;
+                        //serialport.StopBits = 1;
+                        //serialport.Parity = 0;
+                        //serialport.BaudRate = (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
+                        //serialport.ReadTimeout = 100;
 
-                        serialport.Open();
-                        if (serialport.IsOpen == false)
-                        {
-                            MessageBox.Show("打开失败");
-                            return;
-                        }
-                        
+                        //serialport.Open();
+                        //if (serialport.IsOpen == false)
+                        //{
+                        //    MessageBox.Show("打开失败");
+                        //    return;
+                        //}
+
+                        serialPort.PortName = cb_ports.Text;
+                        serialPort.BaudRate= (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
+                        serialPort.Parity = Parity.None;
+                        serialPort.DataBits = 8;
+                        serialPort.StopBits = StopBits.One;
+                        serialPort.Open();
 
                         //接收线程
                        // serialport.DataReceived += _serialPort_DataReceived;
@@ -92,8 +102,10 @@ namespace LD.forms
                     }
                     else
                     {
-                        serialport.Close();
-                        if (serialport.IsOpen)
+                        //serialport.Close();
+                        //if (serialport.IsOpen)
+                        serialPort.Close();
+                        if(serialPort.IsOpen)
                         {
                             MessageBox.Show("关闭失败");
                             return;
@@ -120,7 +132,8 @@ namespace LD.forms
                 }
             }            
             
-            if (serialport.IsOpen)
+            //if (serialport.IsOpen)
+            if(serialPort.IsOpen)
             {
                 this.b_open.Text = "关闭";
                 return;
@@ -168,6 +181,7 @@ namespace LD.forms
         /// <summary>
         /// 口线程处理
         /// </summary>
+        byte[] cc = new byte[1];
         void SerialThread()
         {
             int total_readbufferlen = 0;
@@ -178,12 +192,13 @@ namespace LD.forms
                     //从串口读数据----------------slip protocol--------------------//
                     //_serialPort_DataReceived(null, null);
                     //ARESerial.WaitOne(1, true);
-                    byte[] cc = serialport.Read(1);
+                    //cc = serialport.Read(1);
+                    byte ccc = (byte)serialPort.ReadByte();
                     //while (ringbufserial.DataLen > 0)
-                    if((cc!=null) && (cc.Length>0))
-                    {
+                   // if((cc!=null) && (cc.Length>0))
+                    if(true){
                         bool er = false;
-                        byte c = cc[0];// ringbufserial.ReadByte();
+                        byte c = ccc;// cc[0];// ringbufserial.ReadByte();
                         Ldpacket packet = Ldpacket.toPackcet(c,ref er);
                         total_readbufferlen++;
                         if(er==true)
@@ -272,11 +287,15 @@ namespace LD.forms
         /// <returns></returns>
         public int write(byte[] indata, int offset,int len, int timeout)
         {
-            if (serialport == null) return 0;
-            if (serialport.IsOpen)
+            //if (serialport == null) return 0;
+            //if (serialport.IsOpen)
+            //{
+            //    this.serialport.Write(indata, offset, len);
+            //    return len;
+            //}
+            if (serialPort.IsOpen)
             {
-                this.serialport.Write(indata, offset, len);
-                return len;
+                serialPort.Write(indata, offset, len);
             }
 
             return len;

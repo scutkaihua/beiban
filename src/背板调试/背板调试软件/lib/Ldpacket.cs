@@ -114,7 +114,9 @@ namespace LD.lib
                         goto Error;
                     line++;
                     break;
-                case 1:if (c != 0xBB)
+                case 1:
+                    if (c == 0xAA) { l = 1;return null; }
+                      if (c != 0xBB)
                         goto Error;
                     line++;
                     break;
