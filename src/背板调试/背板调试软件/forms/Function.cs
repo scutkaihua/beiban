@@ -41,9 +41,9 @@ namespace LD.forms
             foreach (channel cc in chs)
             {
                 cc.set_names(new string[] {
-                                "读错","读对","null","null","null","红外","充满","正充电",
-                                "温度高","弹仓","5V无","null","重启","null","null","null",
-                                "借宝","电机","摆臂","红外","到位","来电宝","顶针","null"
+                                "读错","读对","    ","    ","    ","红外","充满","充电",
+                                "高温","弹仓","无5V","    ","重启","    ","    ","    ",
+                                "借宝","电机","摆臂","红外","到位","宝坏","顶针","    "
 
                             });
                 cc.serialPortSetting = this.serial;

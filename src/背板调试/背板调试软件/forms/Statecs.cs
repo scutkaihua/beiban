@@ -43,6 +43,10 @@ namespace LD.forms
             for(;i<names.Length; i++)
             {
                 cbs[i].Text = names[i];
+                if("".Equals(names[i].Replace(" ","")))
+                {
+                    cbs[i].Visible = false;
+                }
             }
         }
 
@@ -55,11 +59,19 @@ namespace LD.forms
                 {
                     cbs[i].Checked = true;
                     cbs[i].BackColor = Color.Red;
+                    if ("".Equals(cbs[i].Text.Replace(" ", "")))
+                    {
+                        cbs[i].Visible = true;
+                    }
                 }
                 else
                 {
                     cbs[i].Checked = false;
                     cbs[i].BackColor = color;
+                    if ("".Equals(cbs[i].Text.Replace(" ", "")))
+                    {
+                        cbs[i].Visible = false;
+                    }
                 }
             }
         }
