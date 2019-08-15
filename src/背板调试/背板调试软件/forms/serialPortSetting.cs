@@ -23,6 +23,7 @@ namespace LD.forms
         //CommPort serialport;
         public System.Threading.Thread serialThread;
         AutoResetEvent ARESerial = new AutoResetEvent(false);
+        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         
         //事件
         public event Ulitily.onPacketTransfer onPacketReceive;
@@ -32,9 +33,16 @@ namespace LD.forms
         public SerialPortSetting()
         {
             InitializeComponent();
-
+            //timer.Tick += Timer_Tick;
+            //timer.Interval = 100;
+            //timer.Start();
             this.FormBorderStyle = FormBorderStyle.None;
             
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            SerialPort_DataReceived(null,null);
         }
 
         private void serialPortSetting_Load(object sender, EventArgs e)
@@ -115,6 +123,7 @@ namespace LD.forms
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            if (serialPort == null) return;
             while (serialPort.BytesToRead > 0)
             {
                 byte c = (byte)serialPort.ReadByte();

@@ -94,6 +94,7 @@ namespace LD.forms
                         case Cmd.UpdateData://发送数据
                             if (args.packet.data[0] == 0)
                             {
+                                System.Threading.Thread.Sleep(10);
                                 Refalsh_View();
                                 WriteAPacket();
                             }

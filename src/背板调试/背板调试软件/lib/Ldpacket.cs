@@ -110,7 +110,9 @@ namespace LD.lib
             l++;
             switch(line)
             {
-                case 0: if (c != 0xAA)
+                case 0:
+                    if (c == 0xBB) { line = 2;return null; }
+                    if (c != 0xAA)
                         goto Error;
                     line++;
                     break;
