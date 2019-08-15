@@ -17,7 +17,7 @@ namespace LD.forms
     public partial class SerialPortSetting : Form
     {
 
-        SerialPort serialPort = new SerialPort();
+        SerialPort serialPort = null;// new SerialPort();
 
 
         //CommPort serialport;
@@ -34,6 +34,7 @@ namespace LD.forms
             InitializeComponent();
 
             this.FormBorderStyle = FormBorderStyle.None;
+            
         }
 
         private void serialPortSetting_Load(object sender, EventArgs e)
@@ -63,75 +64,43 @@ namespace LD.forms
 
         private void b_open_Click(object sender, EventArgs e)
         {
+            try
             {
-                try
+                if (b_open.Text == "打开")
                 {
-                    if (b_open.Text == "打开")
-                    {
-                        //if (serialport == null) serialport = new CommPort();
-                        //serialport.PortName = cb_ports.Text;
-                        //serialport.DataBits = 8;
-                        //serialport.StopBits = 1;
-                        //serialport.Parity = 0;
-                        //serialport.BaudRate = (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
-                        //serialport.ReadTimeout = 100;
+                    serialPort = new SerialPort();
+                    serialPort.DataReceived += SerialPort_DataReceived;
+                    serialPort.PortName = cb_ports.Text;
+                    serialPort.BaudRate= (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
+                    serialPort.Parity = Parity.None;
+                    serialPort.DataBits = 8;
+                    serialPort.StopBits = StopBits.One;
+                    serialPort.ReceivedBytesThreshold = 1;
+                    serialPort.RtsEnable = true;
+                    serialPort.Open();
 
-                        //serialport.Open();
-                        //if (serialport.IsOpen == false)
-                        //{
-                        //    MessageBox.Show("打开失败");
-                        //    return;
-                        //}
-
-                        serialPort.PortName = cb_ports.Text;
-                        serialPort.BaudRate= (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
-                        serialPort.Parity = Parity.None;
-                        serialPort.DataBits = 8;
-                        serialPort.StopBits = StopBits.One;
-                        serialPort.Open();
-
-                        //接收线程
-                       // serialport.DataReceived += _serialPort_DataReceived;
-                        if (serialThread != null) serialThread.Abort();
-                        serialThread = new Thread(SerialThread);
-                        serialThread.Name = "SerialThread";
-                        serialThread.Start();
-
-                        this.cb_ports.Enabled = false;
+                    this.cb_ports.Enabled = false;
                         
-                    }
-                    else
+                }
+                else
+                {
+                    serialPort.Close();
+                    if(serialPort.IsOpen)
                     {
-                        //serialport.Close();
-                        //if (serialport.IsOpen)
-                        serialPort.Close();
-                        if(serialPort.IsOpen)
-                        {
-                            MessageBox.Show("关闭失败");
-                            return;
-                        }
-                        else
-                        {
-                            if (serialThread != null)
-                            {
-                                serialThread.Abort();
-                                serialThread = null;
-                            }
-                        }
-
-
-                        this.cb_ports.Enabled = true;
-                        
+                        MessageBox.Show("关闭失败");
+                        return;
                     }
+                    this.cb_ports.Enabled = true;
+                        
+                }
    
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show("未知错误 "+ex.ToString());
-                    return;
-                }
-            }            
-            
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("未知错误 "+ex.ToString());
+                return;
+            }
+  
             //if (serialport.IsOpen)
             if(serialPort.IsOpen)
             {
@@ -142,6 +111,15 @@ namespace LD.forms
             {
                 this.b_open.Text = "打开";
             }
+        }
+
+        private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            while (serialPort.BytesToRead > 0)
+            {
+                byte c = (byte)serialPort.ReadByte();
+                SerialProcessByte(c);
+            }  
         }
 
 
@@ -178,59 +156,59 @@ namespace LD.forms
         //}
 
 
+        int total_readbufferlen = 0;
+        void SerialProcessByte(byte c)
+        {
+            System.Console.Write(c.ToString("x2") + " ");
+            bool er = false;
+            Ldpacket packet = Ldpacket.toPackcet(c, ref er);
+            total_readbufferlen++;
+            if (er == true)
+            {          
+                if (onErrorByte != null)
+                {
+                    onErrorByte(this, new Ulitily.PacketArgs { errorbyte = c });
+                }
+            }
+
+            if (packet != null)
+            {
+
+                if (onPacketReceive != null)
+                {
+                    Ulitily.PacketArgs args = new Ulitily.PacketArgs();
+                    args.packet = packet;
+                    onPacketReceive(this, args);
+
+                    System.Console.WriteLine("call back:onPacketReceive:{0}", onPacketReceive.Method.Name);
+
+                }
+                //if (packet.len > 0)
+                //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2} data:{3}",
+                //        packet.addr, packet.cmd, packet.len, Ulitily.ShareClass.hexByteArrayToString(packet.data,packet.len).Replace("-", ""));
+                //else
+                //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2}",
+                //         packet.addr, packet.cmd,packet.len);
+            }
+
+        }
+
         /// <summary>
         /// 口线程处理
         /// </summary>
-        byte[] cc = new byte[1];
         void SerialThread()
         {
-            int total_readbufferlen = 0;
+           
+            byte c = 0;
             while (true)
             {
                 try
                 {
                     //从串口读数据----------------slip protocol--------------------//
-                    //_serialPort_DataReceived(null, null);
-                    //ARESerial.WaitOne(1, true);
-                    //cc = serialport.Read(1);
-                    byte ccc = (byte)serialPort.ReadByte();
-                    //while (ringbufserial.DataLen > 0)
-                   // if((cc!=null) && (cc.Length>0))
-                    if(true){
-                        bool er = false;
-                        byte c = ccc;// cc[0];// ringbufserial.ReadByte();
-                        Ldpacket packet = Ldpacket.toPackcet(c,ref er);
-                        total_readbufferlen++;
-                        if(er==true)
-                        {
-                            Console.WriteLine("recevie total len:"+total_readbufferlen.ToString());
-                            System.Console.WriteLine(c.ToString("x2") + " ");
-                            if (onErrorByte != null)
-                            {
-                                onErrorByte(this, new Ulitily.PacketArgs { errorbyte = c });
-                            }
-                        }
-
-                        if (packet != null)
-                        {
-
-                            if (onPacketReceive != null)
-                            {
-                                Ulitily.PacketArgs args = new Ulitily.PacketArgs();
-                                args.packet = packet;
-                                onPacketReceive(this, args);
-
-                                System.Console.WriteLine("call back:onPacketReceive:{0}",onPacketReceive.Method.Name);
-
-                            }
-                            //if (packet.len > 0)
-                            //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2} data:{3}",
-                            //        packet.addr, packet.cmd, packet.len, Ulitily.ShareClass.hexByteArrayToString(packet.data,packet.len).Replace("-", ""));
-                            //else
-                            //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2}",
-                            //         packet.addr, packet.cmd,packet.len);
-                        }
-
+                    if(serialPort.BytesToRead>0)
+                    {
+                        c = (byte)serialPort.ReadByte();
+                        SerialProcessByte(c);
                     }
                     else
                     {

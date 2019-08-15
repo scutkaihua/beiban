@@ -115,7 +115,6 @@ namespace LD.lib
                     line++;
                     break;
                 case 1:
-                    if (c == 0xAA) { l = 1;return null; }
                       if (c != 0xBB)
                         goto Error;
                     line++;
@@ -132,7 +131,7 @@ namespace LD.lib
                     line++;
                     break;
                 case 6:
-                    if((datalen+7)<=l)
+                    if((datalen+7)==l)
                     {
                         byte cs = Ulitily.ShareClass.CheckSum8(buf, 0, l-1);
                         if (cs == c)
@@ -149,6 +148,7 @@ namespace LD.lib
 
             return null;
         Error:
+            //Console.Write("Line:"+line.ToString());
             Array.Clear(buf, 0, buf.Length);
             er = true;l = line = 0;return null;
         }
