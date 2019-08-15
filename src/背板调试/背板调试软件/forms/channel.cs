@@ -35,6 +35,9 @@ namespace LD.forms
         public channel()
         {
             InitializeComponent();
+            state.CheckColor = Color.Coral;
+            warn.CheckColor = Color.Yellow;
+            error.CheckColor = Color.Red;
             old = this.BackColor;
         }
         public bool is_select() { return select; }

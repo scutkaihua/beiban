@@ -15,6 +15,8 @@ namespace LD.forms
 
         CheckBox[] cbs = new CheckBox[8];
         Color color;
+        Color checkColor;
+        public Color CheckColor{ get { return checkColor; }set { checkColor = value; } }
 
         public State()
         {
@@ -58,7 +60,7 @@ namespace LD.forms
                 if ((b & (1 << i)) != 0)
                 {
                     cbs[i].Checked = true;
-                    cbs[i].BackColor = Color.Coral;
+                    cbs[i].BackColor = checkColor;
                     if ("".Equals(cbs[i].Text.Replace(" ", "")))
                     {
                         cbs[i].Visible = true;
