@@ -39,17 +39,22 @@
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.updata1 = new LD.forms.updata();
             this.button9 = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tb_set_addr = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.debug = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.channel5 = new LD.forms.channel();
             this.channel4 = new LD.forms.channel();
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.updata1 = new LD.forms.updata();
+            this.Start = new System.Windows.Forms.TextBox();
+            this.Counter = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -142,9 +147,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(728, 127);
+            this.button4.Location = new System.Drawing.Point(734, 127);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(327, 24);
+            this.button4.Size = new System.Drawing.Size(115, 24);
             this.button4.TabIndex = 0;
             this.button4.Text = "重启";
             this.button4.UseVisualStyleBackColor = true;
@@ -161,6 +166,14 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "升级";
             // 
+            // updata1
+            // 
+            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.updata1.Location = new System.Drawing.Point(6, 45);
+            this.updata1.Name = "updata1";
+            this.updata1.Size = new System.Drawing.Size(314, 93);
+            this.updata1.TabIndex = 22;
+            // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(6, 20);
@@ -173,11 +186,11 @@
             // 
             // result
             // 
-            this.result.Location = new System.Drawing.Point(728, 301);
+            this.result.Location = new System.Drawing.Point(728, 307);
             this.result.Multiline = true;
             this.result.Name = "result";
             this.result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.result.Size = new System.Drawing.Size(327, 221);
+            this.result.Size = new System.Drawing.Size(327, 215);
             this.result.TabIndex = 16;
             // 
             // groupBox7
@@ -209,6 +222,35 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(992, 526);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(63, 23);
+            this.button5.TabIndex = 22;
+            this.button5.Text = "调试信息";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            // 
+            // debug
+            // 
+            this.debug.Location = new System.Drawing.Point(1, 528);
+            this.debug.Multiline = true;
+            this.debug.Name = "debug";
+            this.debug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.debug.Size = new System.Drawing.Size(721, 215);
+            this.debug.TabIndex = 23;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(992, 577);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(63, 23);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "清调试";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
             // channel5
             // 
             this.channel5.Addr = "";
@@ -219,6 +261,8 @@
             this.channel5.Name = "channel5";
             this.channel5.Size = new System.Drawing.Size(721, 100);
             this.channel5.TabIndex = 21;
+            this.channel5.Values1 = "label1";
+            this.channel5.Values2 = "label1";
             // 
             // channel4
             // 
@@ -230,6 +274,8 @@
             this.channel4.Name = "channel4";
             this.channel4.Size = new System.Drawing.Size(721, 100);
             this.channel4.TabIndex = 20;
+            this.channel4.Values1 = "label1";
+            this.channel4.Values2 = "label1";
             // 
             // channel3
             // 
@@ -241,6 +287,8 @@
             this.channel3.Name = "channel3";
             this.channel3.Size = new System.Drawing.Size(721, 100);
             this.channel3.TabIndex = 19;
+            this.channel3.Values1 = "label1";
+            this.channel3.Values2 = "label1";
             // 
             // channel2
             // 
@@ -252,6 +300,8 @@
             this.channel2.Name = "channel2";
             this.channel2.Size = new System.Drawing.Size(721, 100);
             this.channel2.TabIndex = 18;
+            this.channel2.Values1 = "label1";
+            this.channel2.Values2 = "label1";
             // 
             // channel1
             // 
@@ -263,21 +313,36 @@
             this.channel1.Name = "channel1";
             this.channel1.Size = new System.Drawing.Size(721, 100);
             this.channel1.TabIndex = 17;
+            this.channel1.Values1 = "label1";
+            this.channel1.Values2 = "label1";
             // 
-            // updata1
+            // Start
             // 
-            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.updata1.Location = new System.Drawing.Point(6, 45);
-            this.updata1.Name = "updata1";
-            this.updata1.Size = new System.Drawing.Size(314, 93);
-            this.updata1.TabIndex = 22;
+            this.Start.Location = new System.Drawing.Point(734, 527);
+            this.Start.Name = "Start";
+            this.Start.Size = new System.Drawing.Size(100, 21);
+            this.Start.TabIndex = 25;
+            this.Start.Text = "00";
+            // 
+            // Counter
+            // 
+            this.Counter.Location = new System.Drawing.Point(856, 528);
+            this.Counter.Name = "Counter";
+            this.Counter.Size = new System.Drawing.Size(100, 21);
+            this.Counter.TabIndex = 26;
+            this.Counter.Text = "0A";
             // 
             // Function
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1061, 547);
+            this.ClientSize = new System.Drawing.Size(1061, 750);
+            this.Controls.Add(this.Counter);
+            this.Controls.Add(this.Start);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.debug);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.channel5);
             this.Controls.Add(this.channel4);
             this.Controls.Add(this.channel3);
@@ -329,5 +394,10 @@
         private channel channel5;
         private updata updata1;
         private System.Windows.Forms.Label break_ack;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox debug;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox Start;
+        private System.Windows.Forms.TextBox Counter;
     }
 }

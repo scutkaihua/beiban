@@ -17,6 +17,18 @@ namespace LD.lib
         UpdateStart = 0x06,
         UpdateData = 0x07,
 
+        DebugInfo = 0x55,
+
         Shake_Hand = 0x16,
+    }
+
+
+    public enum IRCMD {
+
+           READ_ID = 10,
+           READ_DATA=20,
+           UNLOCK=30,
+           LOCK=50,
+           UNLOCK_1HOUR=40,
     }
 }

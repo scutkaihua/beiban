@@ -24,6 +24,12 @@ namespace LD.forms
         public Function()
         {
             InitializeComponent();
+            this.debug.DoubleClick += Debug_DoubleClick;
+        }
+
+        private void Debug_DoubleClick(object sender, EventArgs e)
+        {
+            this.debug.Clear();
         }
 
         public Function(SerialPortSetting serialPortSetting):this()
@@ -189,6 +195,15 @@ namespace LD.forms
 
                             }
                         }break;
+
+                    case Cmd.DebugInfo:
+                        {
+                            if (p.data[0] == 0x03) {
+
+                                DebugInfo debugInfo = new DebugInfo(p.data, 1);
+                                this.debug.AppendText(debugInfo.ToString());
+                            }
+                        }break;
                     default:
                         string result = String.Format("<-地址:{0} 命令:{1} 长度:{2} 数据:{3}\n",
                                  p.addr, p.cmd, p.len, Ulitily.ShareClass.hexByteArrayToString(p.data, p.len).Replace("-", " "));
@@ -248,6 +263,17 @@ namespace LD.forms
             this.Hide();
         }
 
-        
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.DebugInfo, Addr.Text, "01"+Start.Text+Counter.Text);
+            serial.WritePacket(p);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.DebugInfo, Addr.Text, "02");
+            serial.WritePacket(p);
+        }
+
     }
 }

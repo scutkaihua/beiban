@@ -183,6 +183,7 @@
     <EmbeddedResource Include="Values.resx">
       <DependentUpon>Values.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="lib\DebugInfo.cs" />
     <None Include="lib\动态库\wdcrwx.lib" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
