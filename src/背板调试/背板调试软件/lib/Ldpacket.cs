@@ -111,7 +111,6 @@ namespace LD.lib
             switch(line)
             {
                 case 0:
-                    if (c == 0xBB) { line = 2;return null; }
                     if (c != 0xAA)
                         goto Error;
                     line++;
@@ -143,9 +142,11 @@ namespace LD.lib
                             l = line = datalen = 0;
                             return p;
                         }
-                        else goto Error;
+                        else
+                            goto Error;
                     }break;
-                default:goto Error;
+                default:
+                    goto Error;
             }
 
             return null;

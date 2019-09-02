@@ -94,7 +94,6 @@ namespace LD.forms
                         case Cmd.UpdateData://发送数据
                             if (args.packet.data[0] == 0)
                             {
-                                System.Threading.Thread.Sleep(10);
                                 Refalsh_View();
                                 WriteAPacket();
                             }
@@ -163,7 +162,7 @@ namespace LD.forms
                 StartUpdate = true;
                 this.start.Text = "停止升级";
                 //发送开始包
-                Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.UpdateStart, Addr.Text, ver.Text+ md5.Text+this.len.Text);
+                Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.UpdateStart, Addr.Text, this.len.Text+ver.Text+ md5.Text);
                 serialPortSetting.WritePacket(packet);
                 offset = 0;
                 Refalsh_View();

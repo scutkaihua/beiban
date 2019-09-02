@@ -19,7 +19,6 @@ namespace LD.forms
 
         SerialPort serialPort = null;// new SerialPort();
 
-
         //CommPort serialport;
         public System.Threading.Thread serialThread;
         AutoResetEvent ARESerial = new AutoResetEvent(false);
@@ -33,16 +32,23 @@ namespace LD.forms
         public SerialPortSetting()
         {
             InitializeComponent();
-            //timer.Tick += Timer_Tick;
-            //timer.Interval = 100;
-            //timer.Start();
+            timer.Tick += Timer_Tick;
+            timer.Interval = 10;
+            timer.Start();
             this.FormBorderStyle = FormBorderStyle.None;
             
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            SerialPort_DataReceived(null,null);
+            SerialPort_DataReceived(null, null);
+
+            //SerialPort_DataReceived(null,null);
+            while (databuffer.Count > 0)
+            {
+                byte c = databuffer.Dequeue();
+                SerialProcessByte(c);
+            }
         }
 
         private void serialPortSetting_Load(object sender, EventArgs e)
@@ -77,18 +83,17 @@ namespace LD.forms
                 if (b_open.Text == "打开")
                 {
                     serialPort = new SerialPort();
-                    serialPort.DataReceived += SerialPort_DataReceived;
+                    //serialPort.DataReceived += SerialPort_DataReceived;
                     serialPort.PortName = cb_ports.Text;
-                    serialPort.BaudRate= (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
+                    serialPort.BaudRate = (int)UInt32.Parse(cb_baudrate.Text, System.Globalization.NumberStyles.Number);
                     serialPort.Parity = Parity.None;
                     serialPort.DataBits = 8;
                     serialPort.StopBits = StopBits.One;
                     serialPort.ReceivedBytesThreshold = 1;
                     serialPort.RtsEnable = true;
+                    serialPort.ReadBufferSize = 2048;
                     serialPort.Open();
-
-                    this.cb_ports.Enabled = false;
-                        
+                    this.cb_ports.Enabled = false;    
                 }
                 else
                 {
@@ -121,14 +126,15 @@ namespace LD.forms
             }
         }
 
+        Queue<byte> databuffer = new Queue<byte>(1024*128);
+        byte[] b = new byte[500];
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (serialPort == null) return;
-            while (serialPort.BytesToRead > 0)
-            {
-                byte c = (byte)serialPort.ReadByte();
-                SerialProcessByte(c);
-            }  
+            if (serialPort.IsOpen == false) return;
+            int l = serialPort.BytesToRead;
+            serialPort.Read(b, 0, l);
+            for (int i = 0; i < l; i++) databuffer.Enqueue(b[i]);
         }
 
 
