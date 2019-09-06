@@ -150,7 +150,8 @@ namespace LD.forms
             {
                 Ldpacket p = args.packet;
                 pv.PacketGet(sender, args);
-                if (byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber) != p.addr)
+                byte addr_rd = byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber);
+                if ( addr_rd!= p.addr  && addr_rd != 0xFE)
                 {
                     return;
                 }

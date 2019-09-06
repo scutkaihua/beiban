@@ -29,6 +29,8 @@ namespace LD.forms
         public event Ulitily.onPacketTransfer onPacketSend;
         public event Ulitily.onPacketTransfer onErrorByte;
 
+        private static readonly Mutex mutex = new Mutex();
+
         public SerialPortSetting()
         {
             InitializeComponent();
@@ -133,7 +135,12 @@ namespace LD.forms
             if (serialPort == null) return;
             if (serialPort.IsOpen == false) return;
             int l = serialPort.BytesToRead;
-            serialPort.Read(b, 0, l);
+            if (l > 0)
+            {
+                mutex.WaitOne();
+                serialPort.Read(b, 0, l);
+                mutex.ReleaseMutex();
+            }      
             for (int i = 0; i < l; i++) databuffer.Enqueue(b[i]);
         }
 
@@ -280,17 +287,12 @@ namespace LD.forms
         /// <returns></returns>
         public int write(byte[] indata, int offset,int len, int timeout)
         {
-            //if (serialport == null) return 0;
-            //if (serialport.IsOpen)
-            //{
-            //    this.serialport.Write(indata, offset, len);
-            //    return len;
-            //}
+            mutex.WaitOne();
             if (serialPort.IsOpen)
             {
                 serialPort.Write(indata, offset, len);
             }
-
+            mutex.ReleaseMutex();
             return len;
         }
 

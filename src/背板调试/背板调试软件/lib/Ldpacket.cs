@@ -108,7 +108,8 @@ namespace LD.lib
             er = false;
             buf[l] = c;
             l++;
-            switch(line)
+            if (l >= 1000) goto Error;
+            switch (line)
             {
                 case 0:
                     if (c != 0xAA)
