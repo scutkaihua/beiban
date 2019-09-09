@@ -102,7 +102,7 @@ namespace LD.forms
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Lease,beibanAddr.Text,Addr + Id + time.Text);
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.租借,beibanAddr.Text,Addr + Id + time.Text);
 
             if (Onlease != null)
                 Onlease(p, this);
@@ -113,7 +113,7 @@ namespace LD.forms
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Return,beibanAddr.Text, Addr + time.Text);
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.归还,beibanAddr.Text, Addr + time.Text);
 
             if (Onreturn != null)
                 Onreturn(p, this);
@@ -123,7 +123,7 @@ namespace LD.forms
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Ctrl,beibanAddr.Text, "02"+Addr + Id + time.Text);
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.控制,beibanAddr.Text, "02"+Addr + Id + time.Text);
 
             if (Onopen != null)
                 Onopen(p, this);
@@ -133,7 +133,7 @@ namespace LD.forms
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.Ctrl,beibanAddr.Text, "01" + Addr + Id + time.Text);
+            Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.控制,beibanAddr.Text, "01" + Addr + Id + time.Text);
             if (Onyunwei != null)
                 Onyunwei(p, this);
             if (serialPortSetting != null)

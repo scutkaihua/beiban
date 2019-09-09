@@ -93,7 +93,7 @@ namespace LD.forms
         private void Serial_onPacketSend1(object sender, Ulitily.PacketArgs args)
         {
             Ldpacket p = args.packet;
-            if(p.cmd != Cmd.Heart_Break)
+            if(p.cmd != Cmd.心跳)
             {
                 if (this.InvokeRequired)
                 {
@@ -157,7 +157,7 @@ namespace LD.forms
                 }
                 switch(p.cmd)
                 {
-                    case Cmd.Heart_Break:
+                    case Cmd.心跳:
                          byte[] ids = new byte[10];
                         {
                        
@@ -197,7 +197,7 @@ namespace LD.forms
                             }
                         }break;
 
-                    case Cmd.DebugInfo:
+                    case Cmd.调试信息:
                         {
                             if (p.data[0] == 0x03) {
 
@@ -218,7 +218,7 @@ namespace LD.forms
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Ldpacket packet =  Ldpacket.Get_Ldpacket(Cmd.Heart_Break,Addr.Text, xintiao.Text);
+            Ldpacket packet =  Ldpacket.Get_Ldpacket(Cmd.心跳,Addr.Text, xintiao.Text);
             byte[] ss = packet.toBytes;
             serial.WritePacket(packet);
         }
@@ -238,21 +238,21 @@ namespace LD.forms
         private void Button7_Click(object sender, EventArgs e)
         {
             result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Set_Addr, "FE", tb_set_addr.Text);
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.设置地址, "FE", tb_set_addr.Text);
             serial.WritePacket(p);
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
             result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.Ctrl,Addr.Text, "00"+"0000000000000000000000"+ "0A");
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.控制,Addr.Text, "00"+"0000000000000000000000"+ "0A");
             serial.WritePacket(p);
         }
 
         private void Button9_Click(object sender, EventArgs e)
         {
             result.Clear();
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateEntry, Addr.Text,"00000000000000000000000000000000000000000000");
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.进入升级, Addr.Text,"00000000000000000000000000000000000000000000");
             serial.WritePacket(p);
         }
 
@@ -266,13 +266,13 @@ namespace LD.forms
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.DebugInfo, Addr.Text, "01"+Start.Text+Counter.Text);
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.调试信息, Addr.Text, "01"+Start.Text+Counter.Text);
             serial.WritePacket(p);
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.DebugInfo, Addr.Text, "02");
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.调试信息, Addr.Text, "02");
             serial.WritePacket(p);
         }
 

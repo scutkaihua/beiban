@@ -174,7 +174,7 @@ namespace LD.lib
             sb.Append("背板地址:" + BitConverter.ToString(new byte[] { addr }) + "  命令码 :" + cmd + "  数据长度:" + len +"  ");
             switch (cmd)
             {
-                case Cmd.Heart_Break:
+                case Cmd.心跳:
                     if (this.len < 10)
                     {
                         //下发
@@ -224,7 +224,7 @@ namespace LD.lib
                     }
                     break;
 
-                case Cmd.Lease:
+                case Cmd.租借:
                     if (this.len == 12) {
                         //下发
                         sb.Append("宝地址:" + this.data[0].ToString("X2") + "   ");
@@ -242,7 +242,7 @@ namespace LD.lib
                         sb.Append("数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 0, this.len).Replace("-", " ") + "   ");
                     break;
 
-                case Cmd.Ctrl:
+                case Cmd.控制:
                     if (this.len == 13)
                     {
                         //下发

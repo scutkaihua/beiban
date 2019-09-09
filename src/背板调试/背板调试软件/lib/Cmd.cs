@@ -7,19 +7,19 @@ namespace LD.lib
 {
     public enum Cmd
     {
-        Heart_Break = 0x01,
-        Lease = 0x02,
-        Return = 0x03,
-        Ctrl = 0x04,
-        Set_Addr = 0x06,
+        心跳 = 0x01,
+        租借 = 0x02,
+        归还 = 0x03,
+        控制 = 0x04,
+        设置地址 = 0x06,
 
-        UpdateEntry = 0x05,
-        UpdateStart = 0x06,
-        UpdateData = 0x07,
+        进入升级 = 0x05,
+        开始升级 = 0x06,
+        升级数据 = 0x07,
 
-        DebugInfo = 0x55,
+        调试信息 = 0x55,
 
-        Shake_Hand = 0x16,
+        握手 = 0x16,
     }
 
 

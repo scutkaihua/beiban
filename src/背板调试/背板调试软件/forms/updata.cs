@@ -49,7 +49,7 @@ namespace LD.forms
             int datalen = (codelen - offset) >= len_per_packet ? (len_per_packet) : (codelen - offset);
             if (datalen > 0)
             {
-                Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.UpdateData, Addr.Text,
+                Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.升级数据, Addr.Text,
                     offset.ToString("x4")+datalen.ToString("x2") + Ulitily.ShareClass.hexByteArrayToString(code, offset,datalen).Replace("-", ""));
                 offset += datalen;
                 serialPortSetting.WritePacket(p);
@@ -83,7 +83,7 @@ namespace LD.forms
                 {
                     switch(args.packet.cmd)
                     {
-                        case Cmd.UpdateStart://发送第一包 1k
+                        case Cmd.开始升级://发送第一包 1k
                             if (args.packet.data[0] == 1)
                             {
                                 Refalsh_View();
@@ -91,7 +91,7 @@ namespace LD.forms
                             }
                             break;
 
-                        case Cmd.UpdateData://发送数据
+                        case Cmd.升级数据://发送数据
                             if (args.packet.data[0] == 0)
                             {
                                 Refalsh_View();
@@ -162,7 +162,7 @@ namespace LD.forms
                 StartUpdate = true;
                 this.start.Text = "停止升级";
                 //发送开始包
-                Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.UpdateStart, Addr.Text, this.len.Text+ver.Text+ md5.Text);
+                Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.开始升级, Addr.Text, this.len.Text+ver.Text+ md5.Text);
                 serialPortSetting.WritePacket(packet);
                 offset = 0;
                 Refalsh_View();
