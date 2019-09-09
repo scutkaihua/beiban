@@ -39,7 +39,6 @@
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.updata1 = new LD.forms.updata();
             this.button9 = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -48,13 +47,14 @@
             this.button5 = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.Start = new System.Windows.Forms.TextBox();
+            this.Counter = new System.Windows.Forms.TextBox();
             this.channel5 = new LD.forms.channel();
             this.channel4 = new LD.forms.channel();
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.Start = new System.Windows.Forms.TextBox();
-            this.Counter = new System.Windows.Forms.TextBox();
+            this.updata1 = new LD.forms.updata();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -147,7 +147,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(734, 127);
+            this.button4.Location = new System.Drawing.Point(823, 134);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(115, 24);
             this.button4.TabIndex = 0;
@@ -165,14 +165,6 @@
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "升级";
-            // 
-            // updata1
-            // 
-            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.updata1.Location = new System.Drawing.Point(6, 45);
-            this.updata1.Name = "updata1";
-            this.updata1.Size = new System.Drawing.Size(314, 93);
-            this.updata1.TabIndex = 22;
             // 
             // button9
             // 
@@ -251,6 +243,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
+            // Start
+            // 
+            this.Start.Location = new System.Drawing.Point(734, 527);
+            this.Start.Name = "Start";
+            this.Start.Size = new System.Drawing.Size(100, 21);
+            this.Start.TabIndex = 25;
+            this.Start.Text = "00";
+            // 
+            // Counter
+            // 
+            this.Counter.Location = new System.Drawing.Point(856, 528);
+            this.Counter.Name = "Counter";
+            this.Counter.Size = new System.Drawing.Size(100, 21);
+            this.Counter.TabIndex = 26;
+            this.Counter.Text = "0A";
+            // 
             // channel5
             // 
             this.channel5.Addr = "";
@@ -316,21 +324,13 @@
             this.channel1.Values1 = "label1";
             this.channel1.Values2 = "label1";
             // 
-            // Start
+            // updata1
             // 
-            this.Start.Location = new System.Drawing.Point(734, 527);
-            this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(100, 21);
-            this.Start.TabIndex = 25;
-            this.Start.Text = "00";
-            // 
-            // Counter
-            // 
-            this.Counter.Location = new System.Drawing.Point(856, 528);
-            this.Counter.Name = "Counter";
-            this.Counter.Size = new System.Drawing.Size(100, 21);
-            this.Counter.TabIndex = 26;
-            this.Counter.Text = "0A";
+            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.updata1.Location = new System.Drawing.Point(6, 45);
+            this.updata1.Name = "updata1";
+            this.updata1.Size = new System.Drawing.Size(314, 93);
+            this.updata1.TabIndex = 22;
             // 
             // Function
             // 

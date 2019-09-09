@@ -25,10 +25,25 @@ namespace LD.lib
 
     public enum IRCMD {
 
-           READ_ID = 10,
-           READ_DATA=20,
-           UNLOCK=30,
-           LOCK=50,
-           UNLOCK_1HOUR=40,
+        READ_ID = 10,
+        READ_DATA = 20,
+        UNLOCK = 30,
+        LOCK = 50,
+        UNLOCK_1HOUR = 40,
     }
+
+    public enum Lease_Error{
+         失败 = 0,
+         成功 = 1,
+         宝与仓道不符 = 2,
+         解使能失败 = 3,
+         电磁阀失败 = 4
+         
+    }
+
+    public enum Ctrl {
+          重启 =0,
+          运维 = 1,
+          强制开仓 = 2,
+    };
 }

@@ -73,6 +73,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\PacketParse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\PacketParse.Designer.cs">
+      <DependentUpon>PacketParse.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\PacketParse.resx">
+      <DependentUpon>PacketParse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\About.resx">
       <DependentUpon>About.cs</DependentUpon>

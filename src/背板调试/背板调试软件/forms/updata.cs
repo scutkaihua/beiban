@@ -173,8 +173,16 @@ namespace LD.forms
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            codeView.View(codelen>0?Ulitily.ShareClass.hexByteArrayToString(code, codelen).Replace("-", " "):"");
-            codeView.Show();
+            if (codeView.Visible)
+            {
+                codeView.Hide();
+            }
+            else
+            {
+                codeView.View(codelen>0?Ulitily.ShareClass.hexByteArrayToString(code, codelen).Replace("-", " "):"");
+                codeView.Show();
+            }
+
         }
     }
 }

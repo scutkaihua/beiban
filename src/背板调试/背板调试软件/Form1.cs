@@ -45,6 +45,8 @@ namespace LD
         //数据据包显示
         PacketView packetView = new PacketView();
 
+        //数据包解析
+        PacketParse packetParse = new PacketParse();
 
         //窗口管理
         FormsArchitecture formsArchitecture;
@@ -77,12 +79,13 @@ namespace LD
             /////////////////////////////////////////////////////////////////////////
             ///显示
             formsArchitecture.AddForm(packetView, "显示", "串口数据",true);
-            
+            formsArchitecture.AddForm(packetParse, "显示", "数据包解析", true);
+
 
             //////////////////////////////////////////////////////////////////////////
             ///卡操作
-           // formsArchitecture.AddForm(cardRecharge,"卡操作","充值",false);
-           // formsArchitecture.AddForm(userCardIssuer,"卡操作","发行用户卡",false);
+            // formsArchitecture.AddForm(cardRecharge,"卡操作","充值",false);
+            // formsArchitecture.AddForm(userCardIssuer,"卡操作","发行用户卡",false);
 
 
             //////////////////////////////////////////////////////////////////////////

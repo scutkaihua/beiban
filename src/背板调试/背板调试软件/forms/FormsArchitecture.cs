@@ -162,7 +162,10 @@ namespace LD.forms
             FormItem item  = (FormItem)sender;
             if (item.floatOrNot == true)
             {
-                item.form.Show();
+                if (item.form.Visible == false)
+                    item.form.Show();
+                else
+                    item.form.Hide();
             }
             else
             {

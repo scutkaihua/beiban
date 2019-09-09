@@ -41,8 +41,9 @@ namespace LD.forms
                 if (this.显示数据帧ToolStripMenuItem.Checked) Date += Ulitily.ShareClass.hexByteArrayToString(args.packet.toBytes).Replace("-", " ");
                 if (this.显示解析ToolStripMenuItem.Checked)
                 {
-                    Date += String.Format("->地址:{0} 命令:{1} 长度:{2} 数据:{3}",
-                                    args.packet.addr, args.packet.cmd, args.packet.len, Ulitily.ShareClass.hexByteArrayToString(args.packet.data,args.packet.len).Replace("-", " "));
+                    //Date += String.Format("->地址:{0} 命令:{1} 长度:{2} 数据:{3}",
+                    //                args.packet.addr, args.packet.cmd, args.packet.len, Ulitily.ShareClass.hexByteArrayToString(args.packet.data,args.packet.len).Replace("-", " "));
+                    Date += args.packet.ToString();
                 }
 
                 this.rtb_view.AppendText(Date + "\r\n");
@@ -68,8 +69,9 @@ namespace LD.forms
                 if (this.显示数据帧ToolStripMenuItem.Checked) Date += Ulitily.ShareClass.hexByteArrayToString(args.packet.toBytes).Replace("-", " ");
                 if (this.显示解析ToolStripMenuItem.Checked)
                 {
-                    Date += String.Format("<-地址:{0} 命令:{1} 长度:{2} 数据:{3}",
-                                    args.packet.addr, args.packet.cmd, args.packet.len, Ulitily.ShareClass.hexByteArrayToString(args.packet.data,args.packet.len).Replace("-", " "));
+                    //Date += String.Format("<-地址:{0} 命令:{1} 长度:{2} 数据:{3}",
+                    //                args.packet.addr, args.packet.cmd, args.packet.len, Ulitily.ShareClass.hexByteArrayToString(args.packet.data,args.packet.len).Replace("-", " "));
+                    Date += args.packet.ToString();
                 }
 
                 this.rtb_view.AppendText(Date+"\r\n");
