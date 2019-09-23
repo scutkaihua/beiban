@@ -52,6 +52,19 @@ namespace LD.forms
             }
         }
 
+        public string CompareState(byte b)
+        {
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            for (; i < 8; i++)
+            {
+                bool c = ((b & (1 << i)) != 0) ? true : false;
+                bool o = cbs[i].Checked;
+                if (c != o)
+                    sb.Append(" "+ cbs[i].Text + ": "+ o +" -> "+c+"\n");
+            }
+            return sb.ToString();
+        }
         public void SetState(byte b)
         {
             int i = 0;

@@ -171,7 +171,13 @@ namespace LD.forms
 
  
                                 c.Addr = (p.data[offset]).ToString("X2");
-                                c.set_states(p.data[offset+1], p.data[offset+2], p.data[offset+3]);
+                                //输出状态比较结果
+                                string rr = c.compare_states(p.data[offset + 1], p.data[offset + 2], p.data[offset + 3]);
+                                if (rr != null && rr.Length > 0)
+                                    this.debug.AppendText(System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss.fff")+" "+c.Addr + " : "+ rr);
+
+                                //
+                                c.set_states(p.data[offset+1], p.data[offset+2], p.data[offset+3]); 
                                 c.Id = Ulitily.ShareClass.hexByteArrayToString(p.data, offset + 4, 10).Replace("-","");
                                 string ver = p.data[offset+14].ToString("X2");
                                 string current = ( (((int)p.data[offset + 15]) << 8) + ((int)p.data[offset + 16])).ToString("D");

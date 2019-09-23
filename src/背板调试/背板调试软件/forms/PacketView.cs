@@ -11,10 +11,11 @@ namespace LD.forms
 {
     public partial class PacketView : Form//UserControl
     {
-        int maxsize = 1000 * 200;
+        int maxsize = 1024 * 2000;
         public PacketView()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
         
         }
 
@@ -32,11 +33,12 @@ namespace LD.forms
             if (rtb_view.InvokeRequired)
             {
                 Ulitily.onPacketTransfer trans = new Ulitily.onPacketTransfer(PacketSend);
-                rtb_view.Invoke(trans, new object[] { sender, args });
+                rtb_view.BeginInvoke(trans, new object[] { sender, args });
             }
             else
             {
                 if (rtb_view.Text.Length > maxsize) { rtb_view.Text = null; }
+                this.rtb_view.AppendText("\n");
                 String Date = System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss.fff") + "-> "; 
                 if (this.显示数据帧ToolStripMenuItem.Checked) Date += Ulitily.ShareClass.hexByteArrayToString(args.packet.toBytes).Replace("-", " ");
                 if (this.显示解析ToolStripMenuItem.Checked)
@@ -46,7 +48,7 @@ namespace LD.forms
                     Date += args.packet.ToString();
                 }
 
-                this.rtb_view.AppendText(Date + "\r\n");
+                this.rtb_view.AppendText(Date);
             }
         }
 
@@ -65,6 +67,7 @@ namespace LD.forms
             }
             else{
                 if (rtb_view.Text.Length > maxsize) { rtb_view.Text = null; }
+                this.rtb_view.AppendText("\n");
                 String Date = System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss.fff") + "<- ";
                 if (this.显示数据帧ToolStripMenuItem.Checked) Date += Ulitily.ShareClass.hexByteArrayToString(args.packet.toBytes).Replace("-", " ");
                 if (this.显示解析ToolStripMenuItem.Checked)
@@ -74,7 +77,7 @@ namespace LD.forms
                     Date += args.packet.ToString();
                 }
 
-                this.rtb_view.AppendText(Date+"\r\n");
+                this.rtb_view.AppendText(Date);
                
             }
         }

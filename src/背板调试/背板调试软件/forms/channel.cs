@@ -69,6 +69,14 @@ namespace LD.forms
             warn.SetState(w);
             error.SetState(e);
         }
+
+        public string compare_states(byte s,byte w,byte e)
+        {
+            string result = state.CompareState(s) + warn.CompareState(w) + error.CompareState(e);
+            if (result.Length == 0) return null;
+            return result;
+        }
+
         public void set_names(string [] n)
         {
             string[] a = new string[8];

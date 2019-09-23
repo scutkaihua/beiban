@@ -39,6 +39,7 @@
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.updata1 = new LD.forms.updata();
             this.button9 = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -54,7 +55,6 @@
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.updata1 = new LD.forms.updata();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -166,6 +166,14 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "升级";
             // 
+            // updata1
+            // 
+            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.updata1.Location = new System.Drawing.Point(6, 45);
+            this.updata1.Name = "updata1";
+            this.updata1.Size = new System.Drawing.Size(314, 93);
+            this.updata1.TabIndex = 22;
+            // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(6, 20);
@@ -227,6 +235,7 @@
             // debug
             // 
             this.debug.Location = new System.Drawing.Point(1, 528);
+            this.debug.MaxLength = 1024000;
             this.debug.Multiline = true;
             this.debug.Name = "debug";
             this.debug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -323,14 +332,6 @@
             this.channel1.TabIndex = 17;
             this.channel1.Values1 = "label1";
             this.channel1.Values2 = "label1";
-            // 
-            // updata1
-            // 
-            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.updata1.Location = new System.Drawing.Point(6, 45);
-            this.updata1.Name = "updata1";
-            this.updata1.Size = new System.Drawing.Size(314, 93);
-            this.updata1.TabIndex = 22;
             // 
             // Function
             // 

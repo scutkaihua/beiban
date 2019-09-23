@@ -167,6 +167,11 @@ namespace LD.lib
             }
         }
 
+        string align(string str,int size)
+        {
+            return str + new String(' ', size - Encoding.GetEncoding("gb2312").GetBytes(str).Length) + " ";
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -191,14 +196,11 @@ namespace LD.lib
                         string bbd = "仓道数:" + this.data[1].ToString("X2");
                         string ccd = "硬件版本:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 2, 2).Replace("-", "");
                         string ddd = "软件版本:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 4, 2).Replace("-", "");
-                        string t = aad + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(aad).Length)
-                            + bbd + new String(' ', 13 - Encoding.GetEncoding("gb2312").GetBytes(bbd).Length) + "   "
-                            + ccd + new String(' ', 13 - Encoding.GetEncoding("gb2312").GetBytes(ccd).Length)
-                            + ddd + new String(' ', 13 - Encoding.GetEncoding("gb2312").GetBytes(ddd).Length);
-                        sb.Append(t + "\n");
+                        sb.Append(aad + "  " + bbd + "  "+ ccd + "  "+ ddd);
                         for (int i = 0; i < counter; i++)
                         {
-                            int offset = i * 26 + 6;
+                            sb.Append("\n");
+                            int offset = i * 26 + 6; 
                             Array.Copy(this.data, i * 26 + 10, ids, 0, 10);
                             string ch_addr = "仓道地址:" + (this.data[offset]).ToString("X2");
                             string ch_state = "  状态:" + (this.data[offset + 1]).ToString("X2")
@@ -208,18 +210,23 @@ namespace LD.lib
 
                             sb.Append(ch_addr + "   " + ch_state + "   " + id + "   ");
 
-                            string ver = this.data[offset + 14].ToString("X2");
-                            string current = ((((int)this.data[offset + 15]) << 8) + ((int)this.data[offset + 16])).ToString("D");
-                            string dianlian = this.data[offset + 17].ToString("D2");
-                            string wendu = this.data[offset + 18].ToString("D2");
-                            string cc = ((((int)this.data[offset + 19]) << 8) + ((int)this.data[offset + 20])).ToString("D");
-                            string vol = ((((int)this.data[offset + 21]) << 8) + ((int)this.data[offset + 22])).ToString("D");
-                            string v = ((((int)this.data[offset + 23]) << 8) + ((int)this.data[offset + 24])).ToString("D");
-                            string biaoji = this.data[offset + 25].ToString("X2");
-
-                            string Values1 = "版本:" + ver + "   次数:" + cc + "   容量:" + vol + "   标志:" + biaoji;
-                            string Values2 = "电流:" + current + "   电量:" + dianlian + "   电压:" + v + "   温度:" + wendu;
-                            sb.Append(Values1 + "   " + Values2 + "\n");
+                            string ver = "版本:" + this.data[offset + 14].ToString("X2");
+                            string current = "电流"+((((int)this.data[offset + 15]) << 8) + ((int)this.data[offset + 16])).ToString("D");
+                            string dianlian = "电量"+this.data[offset + 17].ToString("D2");
+                            string wendu = "温度"+this.data[offset + 18].ToString("D2");
+                            string cc = "次数:"+((((int)this.data[offset + 19]) << 8) + ((int)this.data[offset + 20])).ToString("D");
+                            string vol = "容量:"+((((int)this.data[offset + 21]) << 8) + ((int)this.data[offset + 22])).ToString("D");
+                            string v = "电压"+((((int)this.data[offset + 23]) << 8) + ((int)this.data[offset + 24])).ToString("D");
+                            string biaoji = "标志:" + this.data[offset + 25].ToString("X2");
+                            sb.Append(
+                                align(ver, 9) +
+                                align(cc, 9) +
+                                align(vol, 9) +
+                                align(biaoji, 9) +
+                                align(current, 9) +
+                                align(dianlian, 9) +
+                                align(v, 9) +
+                                align(wendu, 9));
                         }
                     }
                     break;
