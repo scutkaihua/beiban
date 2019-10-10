@@ -183,9 +183,12 @@ namespace LD.lib
                     if (this.len < 10)
                     {
                         //下发
-                        sb.Append("充电使能:" + ((this.data[0] == 1) ? ("使能") : ("禁止")) + "   ");
-                        sb.Append("充电模式:" + ((this.data[1] == 1) ? ("强制") : ("默认")) + "   ");
-                        sb.Append("使能数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 2, this.len-2).Replace("-", " "));
+                        if(this.len>0)
+                            sb.Append("充电使能:" + ((this.data[0] == 1) ? ("使能") : ("禁止")) + "   ");
+                        if(this.len>1)
+                            sb.Append("充电模式:" + ((this.data[1] == 1) ? ("强制") : ("默认")) + "   ");
+                        if(this.len>2)
+                            sb.Append("使能数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 2, this.len-2).Replace("-", " "));
                     }
                     else
                     {
