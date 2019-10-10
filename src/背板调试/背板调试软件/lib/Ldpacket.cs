@@ -267,7 +267,9 @@ namespace LD.lib
                         sb.Append("数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 0, this.len).Replace("-", " ") + "   ");
                     break;
                 default:
-                    sb.Append("数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 0, this.len).Replace("-", " ")+"   ");
+                    if (this.len > 0)
+                        sb.Append("数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 0, this.len).Replace("-", " ") + "   ");
+                    else sb.Append("数据:空   ");
                     break;
             }
             

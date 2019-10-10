@@ -43,11 +43,13 @@ namespace LD.forms
 
         private void 解析_Click(object sender, EventArgs e)
         {
-
+            string[] tt;
             String t = this.textBox1.Text.Replace("0x", "").Replace("0X","");
             if (t.Contains(","))
+                tt = t.Split(',');
+            else tt = t.Split(' ');
             {
-                string[] tt = t.Split(',');
+                
                 StringBuilder sb = new StringBuilder();
                 foreach(string a  in tt)
                 {
