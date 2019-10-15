@@ -31,7 +31,6 @@ namespace LD.forms
             form = self;
             this.Text = stripName;
 
-
             if (_floatOrNot == false)
             {
                 this.tabPage = new TabPage();
@@ -53,6 +52,23 @@ namespace LD.forms
             // 
             this.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
         }
+    }
+
+
+    public class MyToolStripMenuItem : ToolStripMenuItem {
+
+        protected override void OnDropDownShow(EventArgs e)
+        {
+            base.OnDropDownShow(e);
+            ToolStripMenuItem item = this;
+            foreach (FormItem i in item.DropDownItems)
+            {
+                if (i.form.Visible) i.Checked = true;
+                else i.Checked = false;
+            }
+        }
+
+        public MyToolStripMenuItem(string n) :base(n){  }
     }
 
 
@@ -127,7 +143,7 @@ namespace LD.forms
                 ///主菜单不存在
                 ToolStripMenuItem f = ToolStripSearch(menuStrip.Items,fatherStripName);
                 if(f==null){
-                    f = new ToolStripMenuItem(fatherStripName);
+                    f = new MyToolStripMenuItem(fatherStripName);
                     menuStrip.Items.Add(f);
                 }
 
@@ -163,9 +179,13 @@ namespace LD.forms
             if (item.floatOrNot == true)
             {
                 if (item.form.Visible == false)
+                {
                     item.form.Show();
+                }
                 else
+                {
                     item.form.Hide();
+                }
             }
             else
             {
@@ -198,7 +218,8 @@ namespace LD.forms
 
             parent.ResumeLayout();
         }
-#endregion
+
+        #endregion
 
 
     }

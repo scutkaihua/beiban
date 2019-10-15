@@ -48,9 +48,13 @@ namespace LD
         //数据包解析
         PacketParse packetParse = new PacketParse();
 
+        //数据曲线图 
+        ChartView chartView = new ChartView();
+
         //窗口管理
         FormsArchitecture formsArchitecture;
 
+      
 
 
         public Form1()
@@ -80,7 +84,7 @@ namespace LD
             ///显示
             formsArchitecture.AddForm(packetView, "显示", "串口数据",true);
             formsArchitecture.AddForm(packetParse, "显示", "数据包解析", true);
-
+            formsArchitecture.AddForm(chartView, "显示", "曲线记录", true);
 
             //////////////////////////////////////////////////////////////////////////
             ///卡操作
