@@ -39,7 +39,7 @@ namespace LD.forms
             {
                 if (rtb_view.Text.Length > maxsize) { rtb_view.Text = null; }
                 this.rtb_view.AppendText("\n");
-                String Date = System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss.fff") + "-> "; 
+                String Date = System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]") + "-> "; 
                 if (this.显示数据帧ToolStripMenuItem.Checked) Date += Ulitily.ShareClass.hexByteArrayToString(args.packet.toBytes).Replace("-", " ");
                 if (this.显示解析ToolStripMenuItem.Checked)
                 {
@@ -68,7 +68,7 @@ namespace LD.forms
             else{
                 if (rtb_view.Text.Length > maxsize) { rtb_view.Text = null; }
                 this.rtb_view.AppendText("\n");
-                String Date = System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss.fff") + "<- ";
+                String Date = System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]") + "<- ";
                 if (this.显示数据帧ToolStripMenuItem.Checked) Date += Ulitily.ShareClass.hexByteArrayToString(args.packet.toBytes).Replace("-", " ");
                 if (this.显示解析ToolStripMenuItem.Checked)
                 {
@@ -92,7 +92,7 @@ namespace LD.forms
             }
             else
             {
-                String Date = System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss");
+                String Date = System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]");
                 this.rtb_view.AppendText(Date+ header + Ulitily.ShareClass.hexByteArrayToString(buffer,offset,len).Replace("-"," "));
             }
 

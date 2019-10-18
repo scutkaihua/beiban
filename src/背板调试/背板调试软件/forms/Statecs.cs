@@ -51,6 +51,17 @@ namespace LD.forms
                 }
             }
         }
+        public string getname(int offset)
+        {
+            offset %= 8;
+            return cbs[offset].Text;
+        }
+
+        public bool GetState(int offset)
+        {
+            offset %= 8;
+            return cbs[offset].Checked;
+        }
 
         public string CompareState(byte b)
         {

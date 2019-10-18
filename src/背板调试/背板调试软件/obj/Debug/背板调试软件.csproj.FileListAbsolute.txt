@@ -138,7 +138,6 @@ F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.cs
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.exe
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.pdb
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.PacketParse.resources
-F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.ChartView.resources
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.Wpf.dll
@@ -147,3 +146,9 @@ F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.xml
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.Wpf.pdb
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.Wpf.xml
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csproj.CopyComplete
+F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.Geared.dll
+F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.WinForms.dll
+F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.WinForms.pdb
+F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.WinForms.xml
+F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
+F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.ChartDataSelect.resources

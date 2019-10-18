@@ -21,6 +21,10 @@ namespace LD.forms
 
         channel[] chs=new channel[5];
 
+        ChannelValues channelValues = new ChannelValues(5);
+
+        public ChannelValues chartvalues { get { return channelValues; } }
+
         public Function()
         {
             InitializeComponent();
@@ -169,12 +173,12 @@ namespace LD.forms
 
                                 channel c = chs[i];
 
- 
+                                channelValues.ChannelValueAdd(i, p.data, offset);
                                 c.Addr = (p.data[offset]).ToString("X2");
                                 //输出状态比较结果
                                 string rr = c.compare_states(p.data[offset + 1], p.data[offset + 2], p.data[offset + 3]);
                                 if (rr != null && rr.Length > 0)
-                                    this.debug.AppendText(System.DateTime.Now.ToString("yy/MM/dd hh:mm:ss.fff")+" "+c.Addr + " : "+ rr);
+                                    this.debug.AppendText(System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]")+" "+c.Addr + " : "+ rr);
 
                                 //
                                 c.set_states(p.data[offset+1], p.data[offset+2], p.data[offset+3]); 
