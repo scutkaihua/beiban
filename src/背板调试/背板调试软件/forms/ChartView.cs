@@ -81,7 +81,7 @@ namespace LD.forms
         /// <param name="chs"></param>
         void RefreshConfig(List<ChannelValueSelectItems> chs)
         {
-            if (chs == null || chs.Count == 0) return;
+            if (chs == null) return;
             MyChart.Series = new SeriesCollection();
 
             foreach (ChannelValueSelectItems i in chs)
@@ -140,6 +140,15 @@ namespace LD.forms
         private void Button1_Click(object sender, EventArgs e)
         {
             select.Show();
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result =  MessageBox.Show("确定删除历史数据吗??","确定删除?", MessageBoxButtons.YesNo);
+            if(result== DialogResult.Yes)
+            {
+                chartvalues.Clear();
+            } 
         }
     }
 }

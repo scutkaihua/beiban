@@ -140,7 +140,6 @@ namespace LD.forms
             pv.PacketSend(sender, args);
         }
 
-
         private delegate void FlushClient(object sender, Ulitily.PacketArgs args); //代理
         private void Serial_onPacketReceive(object sender, Ulitily.PacketArgs args)
         {

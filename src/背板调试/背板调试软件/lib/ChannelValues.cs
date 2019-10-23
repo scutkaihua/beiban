@@ -41,6 +41,17 @@ namespace LD.lib
             q.Add(v);
         }
 
+        public void Clear()
+        {
+            foreach(Dictionary<string, GearedValues<int>> item in keyValuePairs)
+            {
+                foreach (GearedValues<int> i in item.Values)
+                {
+                    i.Clear();
+                }
+            }
+        }
+
         public ChannelValues(int number)
         {
             keyValuePairs = new List<Dictionary<string, GearedValues<int>>>();

@@ -150,5 +150,4 @@ F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.Geared.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.WinForms.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.WinForms.pdb
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\LiveCharts.WinForms.xml
-F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.ChartDataSelect.resources
