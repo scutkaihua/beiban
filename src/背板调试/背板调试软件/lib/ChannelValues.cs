@@ -1,14 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Media;
 using LiveCharts.Geared;
 
 namespace LD.lib
 {
 
-   
+    public class KeyInfo {
+        public string axie;
+        public int min;
+        public int max;
+        public Brush brush;
+
+        public KeyInfo(string a,int m,int z,Brush b) { axie = a;min = m;max = z; if (b != null) brush = b; }
+    }
+
     public class ChannelValues
     {
         List<Dictionary<string, GearedValues<int>>> keyValuePairs = null;
+        GearedValues<DateTime> X = new GearedValues<DateTime>();
+        List<KeyValue<string, KeyInfo>> keyinfos = new List<KeyValue<string, KeyInfo>>();
 
         public byte addr;  //地址
         public int   ver;  //版本
@@ -27,10 +38,26 @@ namespace LD.lib
 
         public int ValueofByte(byte d,int offset) { return (d >> offset) & 0x01; }
 
-        void AddName(int ch,string key)
+
+        void AddName(int ch, string key, string type, int min, int max)
+        {
+            AddName(ch, key, type, min, max, null);
+        }
+
+        void AddName(int ch,string key,string type,int min ,int max,Brush brush)
         {
             Dictionary<string, GearedValues<int>> keyValues = keyValuePairs[ch];
             if (keyValues.ContainsKey(key) == false) keyValues.Add(key, new GearedValues<int>());
+            keyinfos.Add(new KeyValue<string, KeyInfo>(key, new KeyInfo(type, min, max,brush)));
+        }
+
+        public KeyInfo GetKeyInfo(string name)
+        {
+            foreach(KeyValue<string,KeyInfo> kv in keyinfos)
+            {
+                if (kv.key == name) return kv.val;
+            }
+            return null;
         }
 
         void Add(int ch,string key,int v)
@@ -39,6 +66,7 @@ namespace LD.lib
             GearedValues<int> q = null;
             if(keyValues.TryGetValue(key,out q) == false) { throw new Exception("没有对应的key:"+key); }
             q.Add(v);
+            X.Add(DateTime.Now);
         }
 
         public void Clear()
@@ -58,34 +86,34 @@ namespace LD.lib
             for(int ch = 0; ch < number; ch++)
             {
                 keyValuePairs.Add(new Dictionary<string, GearedValues<int>>());
-                AddName(ch, "地址");
-                AddName(ch, "版本");
-                AddName(ch, "标志");
-                AddName(ch, "循环次数");
-                AddName(ch, "容量");
-                AddName(ch, "电量");
-                AddName(ch, "电流");
-                AddName(ch, "电压");
-                AddName(ch, "温度");
+                AddName(ch, "地址","地址",0,255,Brushes.Black);
+                AddName(ch, "版本","版本",0,50,Brushes.Gray);
+                AddName(ch, "标志","标志",0,10,Brushes.MediumBlue);
+                AddName(ch, "循环次数","次数",0,300,Brushes.Aqua);
+                AddName(ch, "容量","容量",0,6000,Brushes.Aquamarine);
+                AddName(ch, "电量","电量",0,110,Brushes.Red);
+                AddName(ch, "电流","电流",-100,5000,Brushes.Green);
+                AddName(ch, "电压","电压",0,5000,Brushes.Yellow);
+                AddName(ch, "温度","温度",-40,100,Brushes.GreenYellow);
 
-                AddName(ch, "s充电");
-                AddName(ch, "s充满");
-                AddName(ch, "s红外" );
-                AddName(ch, "s读对");
-                AddName(ch, "s读错");
+                AddName(ch, "s充电","布尔",0,2,Brushes.Pink);
+                AddName(ch, "s充满","布尔",0,2);
+                AddName(ch, "s红外" ,"布尔",0,2);
+                AddName(ch, "s读对","布尔",0,2);
+                AddName(ch, "s读错","布尔",0,2);
 
-                AddName(ch, "w重启");
-                AddName(ch, "w无5V");
-                AddName(ch, "w弹仓");
-                AddName(ch, "w高温");
+                AddName(ch, "w重启","布尔",0,2);
+                AddName(ch, "w无5V","布尔",0,2);
+                AddName(ch, "w弹仓","布尔",0,2);
+                AddName(ch, "w高温","布尔",0,2);
 
-                AddName(ch, "e顶针");
-                AddName(ch, "e宝坏");
-                AddName(ch, "e到位");
-                AddName(ch, "e红外");
-                AddName(ch, "e摆臂");
-                AddName(ch, "e电机");
-                AddName(ch, "e借宝");
+                AddName(ch, "e顶针","布尔",0,2);
+                AddName(ch, "e宝坏","布尔",0,2);
+                AddName(ch, "e到位","布尔",0,2);
+                AddName(ch, "e红外","布尔",0,2);
+                AddName(ch, "e摆臂","布尔",0,2);
+                AddName(ch, "e电机","布尔",0,2);
+                AddName(ch, "e借宝","布尔",0,2);
             }
         }
 
@@ -142,6 +170,12 @@ namespace LD.lib
             return r;
         }
 
+        /// <summary>
+        /// Y轴
+        /// </summary>
+        /// <param name="ch"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public GearedValues<int> ChannelValue(int ch,string name)
         {
             if (ch <= 0 || ch > keyValuePairs.Count) return null;
@@ -149,5 +183,10 @@ namespace LD.lib
             return keyValuePairs[ch][name];
         }
 
+
+        public GearedValues<DateTime> ChannelValueTime()
+        {
+            return X;
+        }
     }
 }

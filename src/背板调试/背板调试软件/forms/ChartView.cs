@@ -20,44 +20,21 @@ namespace LD.forms
         List<ChannelValueSelectItems> savechs;
         ChannelValues chartvalues;
         ChartDataSelect select = new ChartDataSelect();
-
         ScrollableViewModel scrollable = new ScrollableViewModel();
 
+        AxesCollection axes = new AxesCollection();
         public ChartView(ChannelValues v)
         {
             InitializeComponent();
             this.DoubleBuffered = true;
             chartvalues = v;
 
-            Timer t = new Timer();
-            t.Interval = 1000;
-            t.Tick += T_Tick;
-            t.Start();
-
-            MyChart.Series = new SeriesCollection
-            {
-
-                new GLineSeries
-                {
-                    Values = null,
-                    Fill = Brushes.Transparent,
-                    StrokeThickness = 2,
-                    PointGeometry = null //use a null geometry when you have many series
-                },
-            };
-
             MyChart.DisableAnimations = true;
             MyChart.DataTooltip = null;
             MyChart.AnimationsSpeed = TimeSpan.FromMilliseconds(150);
             MyChart.Zoom = ZoomingOptions.None;
-
-            MyChart.AxisY.Add(new Axis
-            {
-                Foreground = System.Windows.Media.Brushes.Peru,
-                Title = "Peru Axis",
-                Position = AxisPosition.RightTop,
-            });
-
+            MyChart.AxisY = axes;
+            MyChart.LegendLocation = LegendLocation.Right;
 
             scale_option.SelectedIndex = 0;
             scale_option.SelectedIndexChanged += Scale_option_SelectedIndexChanged;
@@ -67,13 +44,32 @@ namespace LD.forms
             select.LoadItems(chartvalues.ChannelValueNames());
         }
 
-
-
-        
-        private void T_Tick(object sender, EventArgs e)
+        private int GetAxes(string name)
         {
-            //OnConfigChanaged(savechs);
+            KeyInfo ki = chartvalues.GetKeyInfo(name);
+
+            foreach( Axis a in axes)
+            {
+                if(a.Title == ki.axie)
+                {
+                    return axes.IndexOf(a);
+                }
+            }
+             
+            //没有，添加坐标轴
+            Axis ax = new Axis
+            {
+                Foreground = ki.brush,
+                Title = ki.axie,
+                Position = AxisPosition.LeftBottom,
+                MinValue = ki.min,
+                MaxValue = ki.max,
+
+            };
+            axes.Add(ax);
+            return axes.IndexOf(ax);
         }
+        
 
         /// <summary>
         /// 刷新曲线配置
@@ -83,22 +79,26 @@ namespace LD.forms
         {
             if (chs == null) return;
             MyChart.Series = new SeriesCollection();
-
+            axes.Clear();
             foreach (ChannelValueSelectItems i in chs)
             {
                 if (i.names.Count == 0) continue;
                 foreach(ChannelValueSelectItem ii in i.names)
                 {
+                    int a = GetAxes(ii.name);
                     MyChart.Series.Add(new GLineSeries
                     {
-                        Values = chartvalues.ChannelValue(i.channel,ii.name),
+                        Values = chartvalues.ChannelValue(i.channel, ii.name),
                         Fill = Brushes.Transparent,
                         StrokeThickness = 2,
-                        PointGeometry = null //use a null geometry when you have many series
-                    
-                    });
+                        ScalesYAt = a,
+                        Title = string.Format("{0}-{1}",(i.channel),ii.name),
+                    }); ;
+
+                  
                 }
             }
+       
         }
 
         

@@ -51,6 +51,10 @@ namespace LD
         //数据曲线图 
         ChartView chartView = null;
 
+        //老化测试
+        LaoHua laoHua;
+        LaoHuaView task;
+
 
         //窗口管理
         FormsArchitecture formsArchitecture;
@@ -88,6 +92,13 @@ namespace LD
 
             chartView = new ChartView(function.chartvalues);
             formsArchitecture.AddForm(chartView, "显示", "曲线记录", true);
+
+            //////////////////////////////////////////////////////////////////////////
+            ///老化
+            laoHua = new LaoHua(serialPortSetting);
+            formsArchitecture.AddForm(laoHua, "老化", "老化测试", true);
+            task = new LaoHuaView();
+            formsArchitecture.AddForm(task, "老化", "老化任务", true);
 
             //////////////////////////////////////////////////////////////////////////
             ///卡操作
