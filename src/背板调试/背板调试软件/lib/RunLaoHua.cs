@@ -20,6 +20,7 @@ namespace LD.lib
         /*老化线程*/
         Thread thread = null;
         CancellationTokenSource cancel = new CancellationTokenSource();
+        bool pause = false;
 
         /*事件*/
         public ThreadCallback start;
@@ -35,7 +36,7 @@ namespace LD.lib
         int ccounter;
 
         /*老化通道*/
-        List<KeyValues<int,int>> addr = new List<KeyValues<int,int>>();
+        List<KeyValues<int,int>> addrs = new List<KeyValues<int,int>>();
 
 
         public RunLaoHua(SerialPortSetting s)
@@ -45,6 +46,12 @@ namespace LD.lib
             counter = 0;
             ccounter = 0;
             serial = s;
+            serial.onPacketReceive += Serial_onPacketReceive;
+        }
+
+        private void Serial_onPacketReceive(object sender, Ulitily.PacketArgs args)
+        {
+            
         }
 
         /*设置当前老化通道*/
@@ -61,7 +68,7 @@ namespace LD.lib
                     KeyValues<int,int> kv = new KeyValues<int,int>();
                     kv.key = k;
                     foreach (string vv in v) kv.AddValue(int.Parse(vv));
-                    addr.Add(kv);
+                    addrs.Add(kv);
                 }
             }
             catch (Exception e)
@@ -90,9 +97,28 @@ namespace LD.lib
             return true;
         }
 
+        /// <summary>
+        /// 停止
+        /// </summary>
         public void Stop()
         {
             cancel.Cancel();
+        }
+
+        /// <summary>
+        /// 暂停
+        /// </summary>
+        public void Pause()
+        {
+            pause = true;
+        }
+
+        /// <summary>
+        /// 恢复
+        /// </summary>
+        public void Recover()
+        {
+            pause = false;
         }
 
         /// <summary>
@@ -102,27 +128,53 @@ namespace LD.lib
         {
             while (true)
             {
-                /*线程退出*/
-                if (cancel.IsCancellationRequested || LaoHuaFunction() < 0)
+                foreach(KeyValues<int ,int> kvs in addrs)
                 {
-                    if(end != null)
+                    foreach(int number in kvs.values)
                     {
-                        end(this);
+                        LaoHuaFunction(kvs.key, number);
+                        /*线程退出*/
+                        if (cancel.IsCancellationRequested)
+                        {
+                            if(end != null)
+                            {
+                                end(this);
+                            }
+                            break;
+                        }
+
+                        /*线程暂停*/
+                        while (pause)
+                        {
+                            if (cancel.IsCancellationRequested) break;
+                            Thread.Sleep(1000);
+                        }
                     }
-                    break;
                 }
             }
+
+        STOP:
+            return;
         }
 
 
         /// <summary>
         /// 老化程序逻辑
-        /// <return> 错误码</return>
         /// </summary>
-        int LaoHuaFunction()
+        void LaoHuaFunction(int addr,int number)
         {
+            /*读取心跳*/
 
-            return 0;
+            /*下发租借指令*/
+
+            /*应答处理*/
+
+            /*租借响应处理*/
+            
+            /*读取心跳，等待归还*/
+
+            /*超时处理*/
+
         }
 
 
