@@ -38,12 +38,27 @@ namespace LD.forms
 
             scale_option.SelectedIndex = 0;
             scale_option.SelectedIndexChanged += Scale_option_SelectedIndexChanged;
-
             select.onConfigChanaged += new ChartDataSelect.OnConfigChanaged(OnConfigChanaged);
+
+            //鼠标经过显示数值
+            MyChart.DataHover += MyChart_DataHover;
 
             select.LoadItems(chartvalues.ChannelValueNames());
         }
 
+        private void MyChart_DataHover(object sender, ChartPoint chartPoint)
+        {
+            Tips.Text = string.Format("{0} :({1},{2})",
+                chartPoint.SeriesView.Title,
+                chartPoint.Key, chartPoint.SeriesView.ActualValues[chartPoint.Key].ToString());
+        }
+
+
+        /// <summary>
+        /// 坐标轴索引
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private int GetAxes(string name)
         {
             KeyInfo ki = chartvalues.GetKeyInfo(name);
@@ -61,7 +76,7 @@ namespace LD.forms
             {
                 Foreground = ki.brush,
                 Title = ki.axie,
-                Position = AxisPosition.LeftBottom,
+                Position = ki.position,
                 MinValue = ki.min,
                 MaxValue = ki.max,
 
@@ -92,7 +107,7 @@ namespace LD.forms
                         Fill = Brushes.Transparent,
                         StrokeThickness = 2,
                         ScalesYAt = a,
-                        Title = string.Format("{0}-{1}",(i.channel),ii.name),
+                        Title = (axes[a].Title=="布尔")?(string.Format("{0}-{1}-{2}",(i.channel),ii.name,axes[a].Title)):(string.Format("{0}-{1}", (i.channel), ii.name)),
                     }); ;
 
                   
@@ -102,6 +117,10 @@ namespace LD.forms
         }
 
         
+        /// <summary>
+        /// 配置改变时，刷新
+        /// </summary>
+        /// <param name="chs"></param>
         void OnConfigChanaged(List<ChannelValueSelectItems> chs)
         {
             if(savechs != chs)
@@ -118,6 +137,11 @@ namespace LD.forms
             }
         }
 
+        /// <summary>
+        /// 放大缩小
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Scale_option_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (scale_option.SelectedIndex)
@@ -139,9 +163,17 @@ namespace LD.forms
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            select.Show();
+            if (select.Visible)
+                select.Hide();
+            else
+              select.Show();
         }
 
+        /// <summary>
+        /// 删除记录曲线
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button2_Click(object sender, EventArgs e)
         {
             DialogResult result =  MessageBox.Show("确定删除历史数据吗??","确定删除?", MessageBoxButtons.YesNo);

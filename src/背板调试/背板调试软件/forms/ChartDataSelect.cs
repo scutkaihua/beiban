@@ -163,7 +163,7 @@ namespace LD.forms
                     }
                     red %= 255;green %= 255;blue %= 255;
 
-                    c.Style.BackColor = Color.FromArgb((int)red, (int)green, (int)blue);
+                    //c.Style.BackColor = Color.FromArgb((int)red, (int)green, (int)blue);
 
                 }
             }

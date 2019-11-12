@@ -67,7 +67,7 @@ namespace LD.forms
             this.cb_parity.Items.Add(Parity.Even); 
             this.cb_parity.Items.Add(Parity.Odd);
             this.cb_parity.Items.Add(Parity.None);
-            this.cb_parity.Text = Parity.Even.ToString();
+            this.cb_parity.Text = Parity.None.ToString();
 
             this.cb_stopbit.Items.Add(StopBits.One);
             this.cb_stopbit.Items.Add(StopBits.None);

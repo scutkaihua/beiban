@@ -48,7 +48,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(43, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 14);
+            this.label1.Size = new System.Drawing.Size(40, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "串口:";
             // 
@@ -57,7 +57,7 @@
             this.cb_ports.FormattingEnabled = true;
             this.cb_ports.Location = new System.Drawing.Point(103, 24);
             this.cb_ports.Name = "cb_ports";
-            this.cb_ports.Size = new System.Drawing.Size(140, 22);
+            this.cb_ports.Size = new System.Drawing.Size(140, 25);
             this.cb_ports.TabIndex = 1;
             this.cb_ports.Text = "COM5";
             // 
@@ -73,16 +73,16 @@
             "115200"});
             this.cb_baudrate.Location = new System.Drawing.Point(103, 68);
             this.cb_baudrate.Name = "cb_baudrate";
-            this.cb_baudrate.Size = new System.Drawing.Size(140, 22);
+            this.cb_baudrate.Size = new System.Drawing.Size(140, 25);
             this.cb_baudrate.TabIndex = 3;
-            this.cb_baudrate.Text = "9600";
+            this.cb_baudrate.Text = "115200";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(43, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 14);
+            this.label2.Size = new System.Drawing.Size(54, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "波特率:";
             // 
@@ -91,7 +91,7 @@
             this.cb_parity.FormattingEnabled = true;
             this.cb_parity.Location = new System.Drawing.Point(103, 111);
             this.cb_parity.Name = "cb_parity";
-            this.cb_parity.Size = new System.Drawing.Size(140, 22);
+            this.cb_parity.Size = new System.Drawing.Size(140, 25);
             this.cb_parity.TabIndex = 5;
             // 
             // label3
@@ -99,7 +99,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(43, 114);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 14);
+            this.label3.Size = new System.Drawing.Size(54, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "检验位:";
             // 
@@ -108,7 +108,7 @@
             this.cb_stopbit.FormattingEnabled = true;
             this.cb_stopbit.Location = new System.Drawing.Point(103, 154);
             this.cb_stopbit.Name = "cb_stopbit";
-            this.cb_stopbit.Size = new System.Drawing.Size(140, 22);
+            this.cb_stopbit.Size = new System.Drawing.Size(140, 25);
             this.cb_stopbit.TabIndex = 7;
             // 
             // label4
@@ -116,7 +116,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(43, 157);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 14);
+            this.label4.Size = new System.Drawing.Size(54, 17);
             this.label4.TabIndex = 6;
             this.label4.Text = "停止位:";
             // 
@@ -154,7 +154,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(41, 198);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 14);
+            this.label5.Size = new System.Drawing.Size(54, 17);
             this.label5.TabIndex = 10;
             this.label5.Text = "帧等待:";
             // 
@@ -168,11 +168,11 @@
             // 
             // SerialPortSetting
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(290, 325);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("幼圆", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "SerialPortSetting";
             this.Load += new System.EventHandler(this.serialPortSetting_Load);
             this.panel1.ResumeLayout(false);

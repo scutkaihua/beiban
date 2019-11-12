@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
+using LiveCharts;
 using LiveCharts.Geared;
 
 namespace LD.lib
@@ -11,8 +12,10 @@ namespace LD.lib
         public int min;
         public int max;
         public Brush brush;
+        public AxisPosition position;
 
-        public KeyInfo(string a,int m,int z,Brush b) { axie = a;min = m;max = z; if (b != null) brush = b; }
+
+        public KeyInfo(string a,int m,int z,Brush b, AxisPosition p) { axie = a;min = m;max = z; if (b != null) brush = b; position = p; }
     }
 
     public class ChannelValues
@@ -39,16 +42,11 @@ namespace LD.lib
         public int ValueofByte(byte d,int offset) { return (d >> offset) & 0x01; }
 
 
-        void AddName(int ch, string key, string type, int min, int max)
-        {
-            AddName(ch, key, type, min, max, null);
-        }
-
-        void AddName(int ch,string key,string type,int min ,int max,Brush brush)
+        void AddName(int ch,string key,string type,int min ,int max,Brush brush,AxisPosition p)
         {
             Dictionary<string, GearedValues<int>> keyValues = keyValuePairs[ch];
             if (keyValues.ContainsKey(key) == false) keyValues.Add(key, new GearedValues<int>());
-            keyinfos.Add(new KeyValue<string, KeyInfo>(key, new KeyInfo(type, min, max,brush)));
+            keyinfos.Add(new KeyValue<string, KeyInfo>(key, new KeyInfo(type, min, max,brush,p)));
         }
 
         public KeyInfo GetKeyInfo(string name)
@@ -86,34 +84,34 @@ namespace LD.lib
             for(int ch = 0; ch < number; ch++)
             {
                 keyValuePairs.Add(new Dictionary<string, GearedValues<int>>());
-                AddName(ch, "地址","地址",0,255,Brushes.Black);
-                AddName(ch, "版本","版本",0,50,Brushes.Gray);
-                AddName(ch, "标志","标志",0,10,Brushes.MediumBlue);
-                AddName(ch, "循环次数","次数",0,300,Brushes.Aqua);
-                AddName(ch, "容量","容量",0,6000,Brushes.Aquamarine);
-                AddName(ch, "电量","电量",0,110,Brushes.Red);
-                AddName(ch, "电流","电流",-100,5000,Brushes.Green);
-                AddName(ch, "电压","电压",0,5000,Brushes.Yellow);
-                AddName(ch, "温度","温度",-40,100,Brushes.GreenYellow);
+                AddName(ch, "地址","地址",0,100,Brushes.Black,AxisPosition.RightTop);
+                AddName(ch, "版本","版本",0,50,Brushes.Gray, AxisPosition.RightTop);
+                AddName(ch, "标志","标志",0,10,Brushes.MediumBlue, AxisPosition.RightTop);
+                AddName(ch, "循环次数","循环次数",0,300,Brushes.BlueViolet, AxisPosition.RightTop);
+                AddName(ch, "容量","容量",0,6000,Brushes.CadetBlue, AxisPosition.RightTop);
+                AddName(ch, "电量","电量",0,110,Brushes.Red, AxisPosition.LeftBottom);
+                AddName(ch, "电流","电流",-100,5000,Brushes.Green, AxisPosition.LeftBottom);
+                AddName(ch, "电压","电压",-100,5000,Brushes.DarkOrange, AxisPosition.LeftBottom);
+                AddName(ch, "温度","温度",-40,100,Brushes.Fuchsia, AxisPosition.LeftBottom);
 
-                AddName(ch, "s充电","布尔",0,2,Brushes.Pink);
-                AddName(ch, "s充满","布尔",0,2);
-                AddName(ch, "s红外" ,"布尔",0,2);
-                AddName(ch, "s读对","布尔",0,2);
-                AddName(ch, "s读错","布尔",0,2);
+                AddName(ch, "s充电","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "s充满","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "s红外" ,"布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "s读对","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "s读错","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
 
-                AddName(ch, "w重启","布尔",0,2);
-                AddName(ch, "w无5V","布尔",0,2);
-                AddName(ch, "w弹仓","布尔",0,2);
-                AddName(ch, "w高温","布尔",0,2);
+                AddName(ch, "w重启","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "w无5V","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "w弹仓","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "w高温","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
 
-                AddName(ch, "e顶针","布尔",0,2);
-                AddName(ch, "e宝坏","布尔",0,2);
-                AddName(ch, "e到位","布尔",0,2);
-                AddName(ch, "e红外","布尔",0,2);
-                AddName(ch, "e摆臂","布尔",0,2);
-                AddName(ch, "e电机","布尔",0,2);
-                AddName(ch, "e借宝","布尔",0,2);
+                AddName(ch, "e顶针","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e宝坏","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e到位","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e红外","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e摆臂","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e电机","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e借宝","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
             }
         }
 
