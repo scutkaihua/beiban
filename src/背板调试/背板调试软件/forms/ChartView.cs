@@ -21,8 +21,9 @@ namespace LD.forms
         ChannelValues chartvalues;
         ChartDataSelect select = new ChartDataSelect();
         ScrollableViewModel scrollable = new ScrollableViewModel();
-
         AxesCollection axes = new AxesCollection();
+        List<Axis> listAxis = new List<Axis>();
+        Axis currentAxis = null;
         public ChartView(ChannelValues v)
         {
             InitializeComponent();
@@ -35,16 +36,71 @@ namespace LD.forms
             MyChart.Zoom = ZoomingOptions.None;
             MyChart.AxisY = axes;
             MyChart.LegendLocation = LegendLocation.Right;
+            MyChart.DataHover += MyChart_DataHover; //鼠标经过显示数值
 
             scale_option.SelectedIndex = 0;
             scale_option.SelectedIndexChanged += Scale_option_SelectedIndexChanged;
             select.onConfigChanaged += new ChartDataSelect.OnConfigChanaged(OnConfigChanaged);
-
-            //鼠标经过显示数值
-            MyChart.DataHover += MyChart_DataHover;
-
+            select.Text = "监控数据项";
             select.LoadItems(chartvalues.ChannelValueNames());
+
+            MIN.TextChanged += MIN_TextChanged;
+            MAX.TextChanged += MAX_TextChanged;
+            CB.SelectedIndexChanged += CB_SelectedIndexChanged;
         }
+
+
+        #region 修改坐标轴最大最小值
+
+        private void SetMin(float m)
+        {
+            if (currentAxis != null) currentAxis.MinValue = m;
+            foreach(Axis a in listAxis)
+            {
+                if (a.Title == currentAxis.Title) { a.MinValue = m;break; }
+            }
+        }
+
+        private void SetMax(float m)
+        {
+            if (currentAxis != null) currentAxis.MaxValue = m;
+            foreach (Axis a in listAxis)
+            {
+                if (a.Title == currentAxis.Title) { a.MaxValue = m; break; }
+            }
+        }
+
+        /// <summary>
+        /// 选择坐标轴
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (Axis a in axes) 
+            { 
+                if (a.Title == CB.Text) 
+                { 
+                    currentAxis = a;
+                    MIN.Text = a.MinValue.ToString("f2");
+                    MAX.Text = a.MaxValue.ToString("f2");
+                    break; 
+                } 
+            }
+        }
+
+        private void MAX_TextChanged(object sender, EventArgs e)
+        {
+            try { float v = float.Parse(MAX.Text);SetMax(v); }catch(Exception ee) { }
+        }
+
+        private void MIN_TextChanged(object sender, EventArgs e)
+        {
+            try { float v = float.Parse(MIN.Text); SetMin(v); } catch (Exception ee) { }
+        }
+
+        #endregion
+
 
         private void MyChart_DataHover(object sender, ChartPoint chartPoint)
         {
@@ -62,29 +118,24 @@ namespace LD.forms
         private int GetAxes(string name)
         {
             KeyInfo ki = chartvalues.GetKeyInfo(name);
+            Axis r = null;
+            foreach (Axis a in axes) { if (a.Title == ki.axie) { return axes.IndexOf(a); } }
+            foreach ( Axis a in listAxis){if(a.Title == ki.axie){r = a;break;}}
 
-            foreach( Axis a in axes)
-            {
-                if(a.Title == ki.axie)
-                {
-                    return axes.IndexOf(a);
-                }
-            }
-             
             //没有，添加坐标轴
             Axis ax = new Axis
             {
                 Foreground = ki.brush,
                 Title = ki.axie,
                 Position = ki.position,
-                MinValue = ki.min,
-                MaxValue = ki.max,
-
+                MinValue = (r==null)?ki.min:r.MinValue,
+                MaxValue = (r==null)?ki.max:r.MaxValue,
             };
+            if (r == null) listAxis.Add(ax);
+            if (!CB.Items.Contains(ax.Title)) CB.Items.Add(ax.Title);
             axes.Add(ax);
             return axes.IndexOf(ax);
         }
-        
 
         /// <summary>
         /// 刷新曲线配置
@@ -94,7 +145,7 @@ namespace LD.forms
         {
             if (chs == null) return;
             MyChart.Series = new SeriesCollection();
-            axes.Clear();
+            axes.Clear();currentAxis = null;CB.Items.Clear();CB.Text = null;MIN.Text = MAX.Text = null;
             foreach (ChannelValueSelectItems i in chs)
             {
                 if (i.names.Count == 0) continue;
@@ -108,9 +159,7 @@ namespace LD.forms
                         StrokeThickness = 2,
                         ScalesYAt = a,
                         Title = (axes[a].Title=="布尔")?(string.Format("{0}-{1}-{2}",(i.channel),ii.name,axes[a].Title)):(string.Format("{0}-{1}", (i.channel), ii.name)),
-                    }); ;
-
-                  
+                    });
                 }
             }
        
@@ -129,7 +178,7 @@ namespace LD.forms
             if (this.InvokeRequired)
             {
                 ChartDataSelect.OnConfigChanaged handler = new ChartDataSelect.OnConfigChanaged(OnConfigChanaged);
-                this.Invoke(handler,new object[] { chs});
+                this.BeginInvoke(handler,new object[] { chs});
             }
             else
             {
@@ -169,12 +218,7 @@ namespace LD.forms
               select.Show();
         }
 
-        /// <summary>
-        /// 删除记录曲线
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Button2_Click(object sender, EventArgs e)
+        private void 清除历史数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result =  MessageBox.Show("确定删除历史数据吗??","确定删除?", MessageBoxButtons.YesNo);
             if(result== DialogResult.Yes)

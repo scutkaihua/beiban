@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.MyChart = new LiveCharts.WinForms.CartesianChart();
             this.scale_option = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.Tips = new System.Windows.Forms.Label();
+            this.MIN = new System.Windows.Forms.TextBox();
+            this.MAX = new System.Windows.Forms.TextBox();
+            this.CB = new System.Windows.Forms.ComboBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.清除历史数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MyChart
@@ -55,39 +61,65 @@
             "缩放 X",
             "缩放 Y",
             "缩放 XY"});
-            this.scale_option.Location = new System.Drawing.Point(12, 12);
+            this.scale_option.Location = new System.Drawing.Point(209, 9);
             this.scale_option.Name = "scale_option";
-            this.scale_option.Size = new System.Drawing.Size(90, 20);
+            this.scale_option.Size = new System.Drawing.Size(59, 20);
             this.scale_option.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(108, 10);
+            this.button1.Location = new System.Drawing.Point(274, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 23);
+            this.button1.Size = new System.Drawing.Size(67, 23);
             this.button1.TabIndex = 1;
             this.button1.Text = "选择数据";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(691, 9);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "清除历史数据";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
             // Tips
             // 
             this.Tips.AutoSize = true;
-            this.Tips.Location = new System.Drawing.Point(232, 15);
+            this.Tips.Location = new System.Drawing.Point(347, 12);
             this.Tips.Name = "Tips";
             this.Tips.Size = new System.Drawing.Size(29, 12);
             this.Tips.TabIndex = 3;
             this.Tips.Text = "tips";
+            // 
+            // MIN
+            // 
+            this.MIN.Location = new System.Drawing.Point(90, 9);
+            this.MIN.Name = "MIN";
+            this.MIN.Size = new System.Drawing.Size(55, 21);
+            this.MIN.TabIndex = 4;
+            // 
+            // MAX
+            // 
+            this.MAX.Location = new System.Drawing.Point(151, 9);
+            this.MAX.Name = "MAX";
+            this.MAX.Size = new System.Drawing.Size(52, 21);
+            this.MAX.TabIndex = 5;
+            // 
+            // CB
+            // 
+            this.CB.FormattingEnabled = true;
+            this.CB.Location = new System.Drawing.Point(13, 9);
+            this.CB.Name = "CB";
+            this.CB.Size = new System.Drawing.Size(71, 20);
+            this.CB.TabIndex = 6;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.清除历史数据ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 26);
+            // 
+            // 清除历史数据ToolStripMenuItem
+            // 
+            this.清除历史数据ToolStripMenuItem.Name = "清除历史数据ToolStripMenuItem";
+            this.清除历史数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.清除历史数据ToolStripMenuItem.Text = "清除历史数据";
+            this.清除历史数据ToolStripMenuItem.Click += new System.EventHandler(this.清除历史数据ToolStripMenuItem_Click);
             // 
             // ChartView
             // 
@@ -95,13 +127,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(794, 641);
+            this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.CB);
+            this.Controls.Add(this.MAX);
+            this.Controls.Add(this.MIN);
             this.Controls.Add(this.Tips);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.scale_option);
             this.Controls.Add(this.MyChart);
             this.Name = "ChartView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +148,11 @@
         private LiveCharts.WinForms.CartesianChart MyChart;
         private System.Windows.Forms.ComboBox scale_option;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label Tips;
+        private System.Windows.Forms.TextBox MIN;
+        private System.Windows.Forms.TextBox MAX;
+        private System.Windows.Forms.ComboBox CB;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 清除历史数据ToolStripMenuItem;
     }
 }

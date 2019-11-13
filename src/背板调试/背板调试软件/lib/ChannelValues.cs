@@ -9,13 +9,13 @@ namespace LD.lib
 
     public class KeyInfo {
         public string axie;
-        public int min;
-        public int max;
+        public float min;
+        public float max;
         public Brush brush;
         public AxisPosition position;
 
 
-        public KeyInfo(string a,int m,int z,Brush b, AxisPosition p) { axie = a;min = m;max = z; if (b != null) brush = b; position = p; }
+        public KeyInfo(string a,float m,float z,Brush b, AxisPosition p) { axie = a;min = m;max = z; if (b != null) brush = b; position = p; }
     }
 
     public class ChannelValues
