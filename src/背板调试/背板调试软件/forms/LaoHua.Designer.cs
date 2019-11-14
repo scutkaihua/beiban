@@ -139,6 +139,7 @@
             this.pause.TabIndex = 4;
             this.pause.Text = "暂停";
             this.pause.UseVisualStyleBackColor = true;
+            this.pause.Click += new System.EventHandler(this.pause_Click);
             // 
             // details
             // 

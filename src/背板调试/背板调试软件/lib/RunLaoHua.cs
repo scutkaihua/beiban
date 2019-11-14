@@ -20,7 +20,8 @@ namespace LD.lib
         /*老化线程*/
         Thread thread = null;
         CancellationTokenSource cancel = new CancellationTokenSource();
-        bool pause = false;
+        bool pausethread = false;
+        bool startthread = false;
 
         /*事件*/
         public ThreadCallback start;
@@ -41,7 +42,6 @@ namespace LD.lib
 
         public RunLaoHua(SerialPortSetting s)
         {
-            thread = new Thread(new ThreadStart(this.Run));
             delays = 0;
             counter = 0;
             ccounter = 0;
@@ -80,11 +80,12 @@ namespace LD.lib
 
 
         /*开始老化*/
-        public bool Start(int dms,int c)
+        public bool Start(int ds,int c)
         {
-            if(thread.ThreadState != ThreadState.Running)
+            thread = new Thread(new ThreadStart(this.Run));
+            if (thread.ThreadState != ThreadState.Running)
             {
-                delays = dms;
+                delays = ds;
                 counter = c;
                 ccounter = 0;
                 if(start != null)
@@ -93,15 +94,22 @@ namespace LD.lib
                 }
                 thread.Start();
             }
-            if (thread.ThreadState != ThreadState.Running) return false;
+            if (thread.ThreadState != ThreadState.Running)
+            {
+                return false;
+            }
             return true;
         }
+
+        public bool isStart() { return startthread; }
 
         /// <summary>
         /// 停止
         /// </summary>
         public void Stop()
         {
+            startthread = false;
+            thread.Abort();
             cancel.Cancel();
         }
 
@@ -110,15 +118,17 @@ namespace LD.lib
         /// </summary>
         public void Pause()
         {
-            pause = true;
+            pausethread = true;
         }
+
+        public bool isPause() { return pausethread; }
 
         /// <summary>
         /// 恢复
         /// </summary>
         public void Recover()
         {
-            pause = false;
+            pausethread = false;
         }
 
         /// <summary>
@@ -126,8 +136,10 @@ namespace LD.lib
         /// </summary>
         void Run()
         {
+           
             while (true)
-            {
+            { 
+                startthread = true;
                 foreach(KeyValues<int ,int> kvs in addrs)
                 {
                     foreach(int number in kvs.values)
@@ -140,20 +152,32 @@ namespace LD.lib
                             {
                                 end(this);
                             }
-                            break;
+                            goto STOP;
                         }
 
                         /*线程暂停*/
-                        while (pause)
+                        while (pausethread)
                         {
-                            if (cancel.IsCancellationRequested) break;
+                            if (cancel.IsCancellationRequested)
+                            {
+                                if (end != null)
+                                {
+                                    end(this);
+                                }
+                                goto STOP;
+                            }
                             Thread.Sleep(1000);
                         }
+                        
                     }
                 }
+                if(addrs.Count==0)
+                    Thread.Sleep(20);
             }
 
         STOP:
+            pausethread = false;
+            startthread = false;
             return;
         }
 
@@ -163,6 +187,7 @@ namespace LD.lib
         /// </summary>
         void LaoHuaFunction(int addr,int number)
         {
+            Thread.Sleep(100);
             /*读取心跳*/
 
             /*下发租借指令*/
