@@ -24,7 +24,38 @@ namespace LD.forms
         public LaoHua(SerialPortSetting serial) :this(){
             this.portSetting = serial; 
             laoHua = new RunLaoHua(portSetting);
+            laoHua.start += LaoHua_start;
+            laoHua.end += LaoHua_end;
             pause.Enabled = false;
+        }
+
+        private void LaoHua_end(object sender, EventArgs args)
+        {
+            if (this.InvokeRequired)
+            {
+                ThreadCallback callback = new ThreadCallback(LaoHua_end);
+                this.Invoke(callback, new object[] { sender, args });
+            }
+            else
+            {
+                start.Text = "开始";
+                pause.Enabled = false;
+            }
+
+        }
+
+        private void LaoHua_start(object sender, EventArgs args)
+        {
+            if (this.InvokeRequired)
+            {
+                ThreadCallback callback = new ThreadCallback(LaoHua_start);
+                this.Invoke(callback,new object[] { sender,args});
+            }
+            else
+            {
+                pause.Enabled = true;
+                start.Text = "停止";
+            }
         }
 
         private void Start_Click(object sender, EventArgs e)
@@ -33,16 +64,13 @@ namespace LD.forms
             {
                 if (laoHua.isStart()==true)
                 {
+                    laoHua.Recover();
                     laoHua.Stop();
-                    start.Text = "开始";
-                    pause.Enabled = false;
                 }
                 else
                 {
                     laoHua.SetAddr(addrs.Text.Replace("\n","").Split('\r'));
                     laoHua.Start(int.Parse(time.Text),int.Parse(counter.Text));
-                    pause.Enabled = true;
-                    start.Text = "停止";
                 }
 
             }

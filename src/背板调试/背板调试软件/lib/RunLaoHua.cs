@@ -10,7 +10,7 @@ using MySql.Data;
 namespace LD.lib
 {
 
-    public delegate void ThreadCallback(RunLaoHua laohua);
+    public delegate  void ThreadCallback(object sender, EventArgs args);
 
     public class RunLaoHua {
 
@@ -19,13 +19,16 @@ namespace LD.lib
 
         /*老化线程*/
         Thread thread = null;
-        CancellationTokenSource cancel = new CancellationTokenSource();
+        CancellationTokenSource cancel = null;
         bool pausethread = false;
         bool startthread = false;
+        ManualResetEvent resetEvent=new ManualResetEvent(false);
 
         /*事件*/
-        public ThreadCallback start;
-        public ThreadCallback end;
+        public event ThreadCallback start;
+        public event ThreadCallback end;
+        public event ThreadCallback pause;
+        public event ThreadCallback haohua;
 
         /*老化延时:s*/
         int delays;
@@ -54,7 +57,12 @@ namespace LD.lib
             
         }
 
-        /*设置当前老化通道*/
+        
+        /// <summary>
+        /// 设置当前老化通道
+        /// </summary>
+        /// <param name="sets"></param>
+        /// <returns></returns>
         public bool SetAddr(string[] sets)
         {
             try
@@ -79,23 +87,19 @@ namespace LD.lib
         }
 
 
+        #region 线程控制
         /*开始老化*/
         public bool Start(int ds,int c)
         {
             thread = new Thread(new ThreadStart(this.Run));
-            if (thread.ThreadState != ThreadState.Running)
+            thread.Start();
+            cancel = new CancellationTokenSource();
+            int dc = 100;
+            while( (startthread != true) && (dc-->0) )
+                Thread.Sleep(100);
+            if (startthread != true)
             {
-                delays = ds;
-                counter = c;
-                ccounter = 0;
-                if(start != null)
-                {
-                    start(this);
-                }
-                thread.Start();
-            }
-            if (thread.ThreadState != ThreadState.Running)
-            {
+                Stop();
                 return false;
             }
             return true;
@@ -109,8 +113,7 @@ namespace LD.lib
         public void Stop()
         {
             startthread = false;
-            thread.Abort();
-            cancel.Cancel();
+            cancel?.Cancel();
         }
 
         /// <summary>
@@ -129,44 +132,38 @@ namespace LD.lib
         public void Recover()
         {
             pausethread = false;
+            resetEvent.Set();
         }
 
         /// <summary>
         /// 
         /// </summary>
         void Run()
-        {
-           
+        { 
             while (true)
             { 
                 startthread = true;
-                foreach(KeyValues<int ,int> kvs in addrs)
+                start?.Invoke(this, null);
+                foreach (KeyValues<int ,int> kvs in addrs)
                 {
                     foreach(int number in kvs.values)
                     {
                         LaoHuaFunction(kvs.key, number);
+
                         /*线程退出*/
                         if (cancel.IsCancellationRequested)
                         {
-                            if(end != null)
-                            {
-                                end(this);
-                            }
-                            goto STOP;
+                            end?.Invoke(this,null);
+                            startthread = false;
+                            return;
                         }
 
                         /*线程暂停*/
                         while (pausethread)
                         {
-                            if (cancel.IsCancellationRequested)
-                            {
-                                if (end != null)
-                                {
-                                    end(this);
-                                }
-                                goto STOP;
-                            }
-                            Thread.Sleep(1000);
+                            pause?.Invoke(this,null);
+                            resetEvent = new ManualResetEvent(false);
+                            resetEvent.WaitOne();
                         }
                         
                     }
@@ -174,13 +171,11 @@ namespace LD.lib
                 if(addrs.Count==0)
                     Thread.Sleep(20);
             }
-
-        STOP:
-            pausethread = false;
-            startthread = false;
-            return;
         }
 
+        #endregion
+
+        #region  老化逻辑
 
         /// <summary>
         /// 老化程序逻辑
@@ -195,13 +190,14 @@ namespace LD.lib
             /*应答处理*/
 
             /*租借响应处理*/
-            
+
             /*读取心跳，等待归还*/
 
             /*超时处理*/
-
+            Console.WriteLine("正在老化:{0}-{1}", addr, number);
         }
 
+        #endregion
 
         #region      记录处理
 
