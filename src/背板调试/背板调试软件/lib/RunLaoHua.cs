@@ -177,12 +177,14 @@ namespace LD.lib
 
         #region  老化逻辑
 
+        Ldpacket
+
         /// <summary>
         /// 老化程序逻辑
         /// </summary>
         void LaoHuaFunction(int addr,int number)
         {
-            Thread.Sleep(100);
+
             /*读取心跳*/
 
             /*下发租借指令*/

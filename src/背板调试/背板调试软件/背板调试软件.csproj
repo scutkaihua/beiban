@@ -181,6 +181,7 @@
     <Compile Include="forms\updata.Designer.cs">
       <DependentUpon>updata.cs</DependentUpon>
     </Compile>
+    <Compile Include="lib\ChannelValue.cs" />
     <Compile Include="lib\ChannelValues.cs" />
     <Compile Include="lib\ChannelValueSelectItem.cs" />
     <Compile Include="lib\MySqlDataTable.cs" />
