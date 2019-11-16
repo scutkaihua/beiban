@@ -186,6 +186,9 @@ namespace LD.lib
         {
 
             /*读取心跳*/
+            Ldpacket p = new Ldpacket(Cmd.心跳, addr.ToString());
+            serial.WritePacket(p);
+
 
             /*下发租借指令*/
 
