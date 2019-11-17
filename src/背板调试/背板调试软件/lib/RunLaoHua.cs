@@ -17,6 +17,12 @@ namespace LD.lib
         /*串口*/
         SerialPortSetting serial;
 
+        /*数据包*/
+        Ldpacket ldpacket = null;
+
+        /*当前仓道状态*/
+        HeartBreak heartBreak = null;
+
         /*老化线程*/
         Thread thread = null;
         CancellationTokenSource cancel = null;
@@ -28,7 +34,7 @@ namespace LD.lib
         public event ThreadCallback start;
         public event ThreadCallback end;
         public event ThreadCallback pause;
-        public event ThreadCallback haohua;
+        public event ThreadCallback laohua;
 
         /*老化延时:s*/
         int delays;
@@ -54,9 +60,15 @@ namespace LD.lib
 
         private void Serial_onPacketReceive(object sender, Ulitily.PacketArgs args)
         {
-            
+            ldpacket = args.packet;
         }
 
+
+        public void SetCounter(int c,int s)
+        {
+            counter = c;
+            delays = s;
+        }
         
         /// <summary>
         /// 设置当前老化通道
@@ -136,40 +148,45 @@ namespace LD.lib
         }
 
         /// <summary>
-        /// 
+        /// 运行线程
         /// </summary>
         void Run()
-        { 
+        {                 
+            startthread = true;
+            start?.Invoke(this, null);
             while (true)
-            { 
-                startthread = true;
-                start?.Invoke(this, null);
-                foreach (KeyValues<int ,int> kvs in addrs)
-                {
-                    foreach(int number in kvs.values)
-                    {
-                        LaoHuaFunction(kvs.key, number);
+            {
 
+                foreach (KeyValues<int, int> kvs in addrs)
+                {
+                    foreach (int number in kvs.values)
+                    {
                         /*线程退出*/
                         if (cancel.IsCancellationRequested)
                         {
-                            end?.Invoke(this,null);
+                            end?.Invoke(this, null);
                             startthread = false;
                             return;
-                        }
-
+                        }                               
+                            
                         /*线程暂停*/
                         while (pausethread)
                         {
-                            pause?.Invoke(this,null);
+                            pause?.Invoke(this, null);
                             resetEvent = new ManualResetEvent(false);
                             resetEvent.WaitOne();
                         }
-                        
+                        LaoHuaFunction(kvs.key, number);
+                        ccounter++;
+                        laohua?.Invoke(this, null);
                     }
                 }
-                if(addrs.Count==0)
+                if (addrs.Count == 0)
                     Thread.Sleep(20);
+
+                //次数够，退出线程
+                if (ccounter >= counter) Stop();
+
             }
         }
 
@@ -177,7 +194,93 @@ namespace LD.lib
 
         #region  老化逻辑
 
-        Ldpacket
+
+
+        #region 检测心跳
+        /// <summary>
+        /// 从心跳包中读取一个仓道的数据
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="h"></param>
+        /// <returns></returns>
+        ChannelValue ChannelValueFromHeartBreak(int number,HeartBreak h)
+        {
+            foreach(ChannelValue cv in h.channelValues)
+            {
+                if (int.Parse(cv.Values["地址"]) == number) return cv;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 检查心跳应答
+        /// </summary>
+        /// <param name="addr"></param>
+        /// <param name="number"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        bool CheckHeartBread(int addr,int number,int timeout)
+        {
+            Console.WriteLine("读心跳:{0}-{1}",addr,number);
+            /*读取心跳*/
+            Ldpacket p = new Ldpacket(Cmd.心跳, addr.ToString());
+            serial.WritePacket(p);ldpacket = null;
+
+            //等待心跳应答
+            while (timeout >0)
+            {
+                if(ldpacket !=null && ldpacket.cmd== Cmd.心跳)
+                {
+                    HeartBreak heart = new HeartBreak(ldpacket);
+           
+                    //记录心跳数据
+
+                    //判断仓道是否读取正常
+                    ChannelValue cv = ChannelValueFromHeartBreak(number, heart);
+                    if (cv.Values["读对"] == "true") return true;
+                }
+                Thread.Sleep(200);
+                timeout -= 200;
+            }
+
+            //没有心跳，故障
+
+            //仓道读不到，记录一下异常
+
+            return false;
+        }
+
+        #endregion
+
+
+        #region 租借
+        /// <summary>
+        /// 租借过程处理
+        /// </summary>
+        /// <param name="addr"></param>
+        /// <param name="number"></param>
+        /// <param name="ms"></param>
+        void RentProcess(int addr,int number,int ms)
+        {
+            ChannelValue cv = ChannelValueFromHeartBreak(number, heartBreak);
+            /*下发租借*/
+            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.租借, addr.ToString(), number.ToString() + cv.Values["编号"] + 10.ToString());
+            /*检查应答*/
+            ldpacket = null;
+            while (ms > 0)
+            {
+                if (ldpacket != null && ldpacket.cmd == Cmd.租借)
+                {
+                    //握手应答
+
+                    //租借应答
+
+                }
+                Thread.Sleep(200);
+                ms -= 200;
+            }
+        }
+        #endregion
 
         /// <summary>
         /// 老化程序逻辑
@@ -185,21 +288,11 @@ namespace LD.lib
         void LaoHuaFunction(int addr,int number)
         {
 
-            /*读取心跳*/
-            Ldpacket p = new Ldpacket(Cmd.心跳, addr.ToString());
-            serial.WritePacket(p);
+            //检查仓道心跳
+            if (CheckHeartBread(addr, number, delays * 1000) == false) return;
 
-
-            /*下发租借指令*/
-
-            /*应答处理*/
-
-            /*租借响应处理*/
-
-            /*读取心跳，等待归还*/
-
-            /*超时处理*/
-            Console.WriteLine("正在老化:{0}-{1}", addr, number);
+            //租借处理
+            RentProcess(addr, number, delays * 1000);
         }
 
         #endregion

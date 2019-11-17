@@ -288,7 +288,7 @@ namespace LD.forms
         public int write(byte[] indata, int offset,int len, int timeout)
         {
             mutex.WaitOne();
-            if (serialPort == null) return 0;
+            if (serialPort == null) { mutex.ReleaseMutex(); return 0; }
             if (serialPort.IsOpen)
             {
                 serialPort.Write(indata, offset, len);

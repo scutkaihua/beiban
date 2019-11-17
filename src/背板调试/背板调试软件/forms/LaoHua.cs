@@ -40,6 +40,7 @@ namespace LD.forms
             {
                 start.Text = "开始";
                 pause.Enabled = false;
+                start.Enabled = true;
             }
 
         }
@@ -53,6 +54,7 @@ namespace LD.forms
             }
             else
             {
+                start.Enabled = true; ;
                 pause.Enabled = true;
                 start.Text = "停止";
             }
@@ -64,11 +66,14 @@ namespace LD.forms
             {
                 if (laoHua.isStart()==true)
                 {
+                    start.Enabled = false;
                     laoHua.Recover();
                     laoHua.Stop();
                 }
                 else
                 {
+                    start.Enabled = false;
+                    laoHua.SetCounter(int.Parse(counter.Text), int.Parse(time.Text));
                     laoHua.SetAddr(addrs.Text.Replace("\n","").Split('\r'));
                     laoHua.Start(int.Parse(time.Text),int.Parse(counter.Text));
                 }

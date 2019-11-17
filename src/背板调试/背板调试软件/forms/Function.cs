@@ -31,12 +31,7 @@ namespace LD.forms
             this.debug.DoubleClick += Debug_DoubleClick;
         }
 
-        private void Debug_DoubleClick(object sender, EventArgs e)
-        {
-            this.debug.Clear();
-        }
-
-        public Function(SerialPortSetting serialPortSetting):this()
+        public void SetSerialPort(SerialPortSetting serialPortSetting)
         {
             serial = serialPortSetting;
             serial.onPacketReceive += Serial_onPacketReceive;
@@ -74,6 +69,15 @@ namespace LD.forms
             t.Tick += T_Tick;
             this.updata1.Addr = this.Addr;
             this.updata1.SetSerialPort(serial);
+        }
+        private void Debug_DoubleClick(object sender, EventArgs e)
+        {
+            this.debug.Clear();
+        }
+
+        public Function(SerialPortSetting serialPortSetting):this()
+        {
+            SetSerialPort(serialPortSetting);
         }
 
         private void Serial_onErrorByte(object sender, Ulitily.PacketArgs args)
