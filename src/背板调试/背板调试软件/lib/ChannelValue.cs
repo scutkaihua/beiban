@@ -14,7 +14,7 @@ namespace LD.lib
         public static string[] keys = {
             "地址","编号",
             "充电","充满","红外","读取","读错",
-            "重启","5V警告","弹仓","高温",
+            "未锁","强弹","强入","重启","5V警告","弹仓","高温",
             "顶针故障","来电宝故障","到位开关故障","红外故障","摆臂开关故障","电磁阀打开失败","借宝故障",
             "标志","版本",
             "循环次数","容量","电量","电流","电压","温度"
@@ -61,6 +61,9 @@ namespace LD.lib
             Values[ "读对"]= ValueofByte(state, 1);
             Values[ "读错"]= ValueofByte(state, 0);
 
+            Values["未锁"] = ValueofByte(state, 7);
+            Values["强弹"] = ValueofByte(state, 6);
+            Values["强入"] = ValueofByte(state, 5);
             Values[ "重启"]= ValueofByte(warn, 4);
             Values["5V警告"] = ValueofByte(warn, 2);
             Values[ "弹仓"]= ValueofByte(warn, 1);

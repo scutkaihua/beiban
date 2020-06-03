@@ -226,5 +226,25 @@ namespace LD.forms
                 chartvalues.Clear();
             } 
         }
+
+        private void 保存数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            chartvalues.SaveFile();
+        }
+
+
+        static string lastname = null;
+        private void 加载数据ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.InitialDirectory = System.IO.Directory.GetCurrentDirectory()+"\\曲线";
+            open.FileName = lastname;
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                lastname  = open.FileName;
+                chartvalues.ReadFile(lastname);   
+            }
+
+        }
     }
 }

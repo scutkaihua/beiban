@@ -38,6 +38,10 @@
             this.CB = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.清除历史数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.保存数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.加载数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,9 +114,13 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.加载数据ToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.保存数据ToolStripMenuItem,
+            this.toolStripSeparator1,
             this.清除历史数据ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 104);
             // 
             // 清除历史数据ToolStripMenuItem
             // 
@@ -120,6 +128,30 @@
             this.清除历史数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.清除历史数据ToolStripMenuItem.Text = "清除历史数据";
             this.清除历史数据ToolStripMenuItem.Click += new System.EventHandler(this.清除历史数据ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 保存数据ToolStripMenuItem
+            // 
+            this.保存数据ToolStripMenuItem.Name = "保存数据ToolStripMenuItem";
+            this.保存数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存数据ToolStripMenuItem.Text = "保存数据";
+            this.保存数据ToolStripMenuItem.Click += new System.EventHandler(this.保存数据ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // 加载数据ToolStripMenuItem
+            // 
+            this.加载数据ToolStripMenuItem.Name = "加载数据ToolStripMenuItem";
+            this.加载数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.加载数据ToolStripMenuItem.Text = "加载数据";
+            this.加载数据ToolStripMenuItem.Click += new System.EventHandler(this.加载数据ToolStripMenuItem_Click);
             // 
             // ChartView
             // 
@@ -154,5 +186,9 @@
         private System.Windows.Forms.ComboBox CB;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 清除历史数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem 保存数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 加载数据ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

@@ -50,6 +50,7 @@ namespace LD
 
         //数据曲线图 
         ChartView chartView = null;
+        ChartView chartView1 = null;
 
         //老化测试
         LaoHua laoHua;
@@ -58,6 +59,9 @@ namespace LD
 
         //窗口管理
         FormsArchitecture formsArchitecture;
+
+        //归还
+        Return rt;
 
       
 
@@ -91,8 +95,10 @@ namespace LD
             formsArchitecture.AddForm(packetParse, "显示", "数据包解析", true);
 
             chartView = new ChartView(function.chartvalues);
-            formsArchitecture.AddForm(chartView, "显示", "曲线记录", true);
+            formsArchitecture.AddForm(chartView, "显示", "实时曲线", true);
 
+            chartView1 = new ChartView(new lib.ChannelValues(5));
+            formsArchitecture.AddForm(chartView1, "显示", "记录曲线", true);
             //////////////////////////////////////////////////////////////////////////
             ///老化
             laoHua = new LaoHua(serialPortSetting);
@@ -100,6 +106,10 @@ namespace LD
             task = new LaoHuaView();
             formsArchitecture.AddForm(task, "老化", "老化任务", true);
 
+            //////////////////////////////////////////////////////////////////////////
+            ///归还
+            rt = new Return(serialPortSetting);
+            formsArchitecture.AddForm(rt, "归还","归还", true);
             //////////////////////////////////////////////////////////////////////////
             ///卡操作
             // formsArchitecture.AddForm(cardRecharge,"卡操作","充值",false);

@@ -4,6 +4,11 @@ using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Geared;
 
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using System.IO;
+
+
 namespace LD.lib
 {
 
@@ -21,7 +26,6 @@ namespace LD.lib
     public class ChannelValues
     {
         List<Dictionary<string, GearedValues<int>>> keyValuePairs = null;
-        GearedValues<DateTime> X = new GearedValues<DateTime>();
         List<KeyValue<string, KeyInfo>> keyinfos = new List<KeyValue<string, KeyInfo>>();
 
         public byte addr;  //地址
@@ -38,6 +42,9 @@ namespace LD.lib
         public byte warn;   //告警
         public byte error;  //错误
 
+        private DateTime starttime;//开始时间
+
+        private int channel_max;  //通道个数
 
         public int ValueofByte(byte d,int offset) { return (d >> offset) & 0x01; }
 
@@ -63,8 +70,8 @@ namespace LD.lib
             Dictionary<string, GearedValues<int>> keyValues = keyValuePairs[ch];
             GearedValues<int> q = null;
             if(keyValues.TryGetValue(key,out q) == false) { throw new Exception("没有对应的key:"+key); }
+            if (q.Count == 0) starttime = DateTime.Now;
             q.Add(v);
-            X.Add(DateTime.Now);
         }
 
         public void Clear()
@@ -81,6 +88,7 @@ namespace LD.lib
         public ChannelValues(int number)
         {
             keyValuePairs = new List<Dictionary<string, GearedValues<int>>>();
+            channel_max = number;
             for(int ch = 0; ch < number; ch++)
             {
                 keyValuePairs.Add(new Dictionary<string, GearedValues<int>>());
@@ -100,6 +108,9 @@ namespace LD.lib
                 AddName(ch, "s读对","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "s读错","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
 
+                AddName(ch, "w未锁", "布尔", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "w强弹", "布尔", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "w强入", "布尔", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "w重启","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "w无5V","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "w弹仓","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
@@ -112,6 +123,8 @@ namespace LD.lib
                 AddName(ch, "e摆臂","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e电机","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e借宝","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+
+                AddName(ch, "时间", "偏移", 0,10000, Brushes.Black, AxisPosition.LeftBottom);
             }
         }
 
@@ -147,6 +160,9 @@ namespace LD.lib
             Add(ch,"s读对", ValueofByte(state, 1));
             Add(ch,"s读错", ValueofByte(state, 0));
 
+            Add(ch, "w未锁", ValueofByte(warn, 7));
+            Add(ch, "w强弹", ValueofByte(warn, 6));
+            Add(ch, "w强入", ValueofByte(warn, 5));
             Add(ch,"w重启",ValueofByte(warn, 4));
             Add(ch,"w无5V", ValueofByte(warn, 2));
             Add(ch,"w弹仓", ValueofByte(warn, 1));
@@ -159,6 +175,8 @@ namespace LD.lib
             Add(ch,"e摆臂", ValueofByte(error, 2));
             Add(ch,"e电机", ValueofByte(error, 1));
             Add(ch,"e借宝", ValueofByte(error, 0));
+
+            Add(ch, "时间", (int)(DateTime.Now.Ticks/10000000 - starttime.Ticks/10000000));//秒计时
         }
 
         public string[] ChannelValueNames()
@@ -182,9 +200,95 @@ namespace LD.lib
         }
 
 
-        public GearedValues<DateTime> ChannelValueTime()
+        /// <summary>
+        /// 数据保存到文件
+        /// </summary>
+        /// <returns></returns>
+        public bool SaveFile()
         {
-            return X;
+            IWorkbook workbook = new HSSFWorkbook();     //1.创建工作簿
+
+            //设置表的行列数据
+            for(int ch = 0;ch<channel_max;ch++)
+            {
+                ISheet sheet = workbook.CreateSheet("通道"+(ch+1)); //2.创建工作表
+                Dictionary<string, GearedValues<int>> keyValues = keyValuePairs[ch];
+                IRow row0 = sheet.CreateRow(0);
+                int col=0;//第一列开始
+                foreach(KeyValuePair<string, GearedValues<int>> kv in keyValues)//遍历每一列数据
+                {
+                    row0.CreateCell(col).SetCellValue(kv.Key);//第一行放Header
+                    GearedValues<int> vs = kv.Value;
+                    int row_number = 1;                       //row 从1 开始放数据
+                    foreach (int vs_item in vs)
+                    {
+                        IRow row;
+                        if (col == 0) row = sheet.CreateRow(row_number);//第一列，创建行
+                        else row = sheet.GetRow(row_number);            //其他列，读取行
+                        row.CreateCell(col).SetCellValue(vs_item);//保存数据
+                        row_number++;                             //行++
+                    }
+                    col++;//列++
+                }
+            }
+
+            //创建流对象并设置存储Excel文件的路径
+            string name = Directory.GetCurrentDirectory() + "\\曲线\\"+ starttime.ToString("yyyy-MM-dd HH-mm-ss")+".xls";
+            using (FileStream url = File.OpenWrite(name))
+            {
+                //导出Excel文件
+                workbook.Write(url);
+            };
+            return true;
+        }
+
+
+        /// <summary>
+        /// 从文件中加入数据
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool ReadFile(string name)
+        {
+            try
+            {
+                using (FileStream filesrc = File.OpenRead(name))
+                {
+                    //工作簿对象获取Excel内容
+                    IWorkbook workbook = new HSSFWorkbook(filesrc);
+                    this.Clear();
+                    for (int i = 0; i < workbook.NumberOfSheets; i++)
+                    {
+                        ////获得工作簿里面的工作表
+                        ISheet sheet = workbook.GetSheetAt(i);
+                        Console.WriteLine(sheet.SheetName);
+
+                        IRow row0 = sheet.GetRow(0);                //表头 
+                        for (int c = 0; c < row0.LastCellNum; c++)  //遍历所有列 
+                        {
+                             for (int r = 1; r <= sheet.LastRowNum; r++)//遍历所有行
+                            {
+                                //获取每张表的信息
+                                IRow row = sheet.GetRow(r);
+                                ICell cell = row.GetCell(c);             //获得每行中每个单元格信息
+                                string key = row0.GetCell(c).ToString(); //key
+                                int val = 0;
+                                int ch = i;
+                                try { val = int.Parse(cell.ToString()); } catch { val = 0; }
+                                
+                                Add(ch, key, val);
+                                
+                            }                           
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;  
+            }
+
+            return true;   
         }
     }
 }
