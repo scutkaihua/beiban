@@ -45,12 +45,7 @@ namespace LD.forms
 
             foreach (channel cc in chs)
             {
-                cc.set_names(new string[] {
-                                "读错"," 读对","    ","    ","    ","红外","充满","充电",
-                                "高温"," 弹仓","  5V","    ","重启","强入","弹仓","未锁",
-                                "借宝","电磁阀","摆臂","红外","到位","宝坏","顶针","    "
 
-                            });
                 cc.serialPortSetting = this.serial;
                 cc.beibanAddr = this.Addr;
                 cc.Addr = "02";
@@ -155,8 +150,9 @@ namespace LD.forms
             }
             else
             {
+                if (cb_all.Checked == false) return;//本窗口不捕捉数据包
                 Ldpacket p = args.packet;
-                pv.PacketGet(sender, args);
+                pv.PacketGet(sender, args);        //数据包显示窗口显示
                 byte addr_rd = byte.Parse(this.Addr.Text, System.Globalization.NumberStyles.HexNumber);
                 if ( addr_rd!= p.addr  && addr_rd != 0xFE)
                 {
@@ -166,37 +162,19 @@ namespace LD.forms
                 {
                     case Cmd.心跳:
                          byte[] ids = new byte[10];
-                        {
-                       
+                        {            
                             int counter = (p.len - 6) / 26;
                             for(int i=0;i<counter;i++)
                             {
                                 int offset = i * 26 + 6;
                                 Array.Copy(p.data, i * 26 + 10, ids, 0, 10);
-
                                 channel c = chs[i];
-
-                                channelValues.ChannelValueAdd(i, p.data, offset);
-                                c.Addr = (p.data[offset]).ToString("X2");
+                                c.update(p.data, offset);
+                                channelValues.ChannelValueAdd(i, p.data, offset,c.Id);
                                 //输出状态比较结果
                                 string rr = c.compare_states(p.data[offset + 1], p.data[offset + 2], p.data[offset + 3]);
                                 if (rr != null && rr.Length > 0)
-                                    this.debug.AppendText(System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]")+" "+c.Addr + " : "+ rr);
-
-                                //
-                                c.set_states(p.data[offset+1], p.data[offset+2], p.data[offset+3]); 
-                                c.Id = Ulitily.ShareClass.hexByteArrayToString(p.data, offset + 4, 10).Replace("-","");
-                                string ver = p.data[offset+14].ToString("X2");
-                                string current = ( (((int)p.data[offset + 15]) << 8) + ((int)p.data[offset + 16])).ToString("D");
-                                string dianlian = p.data[offset + 17].ToString("D2");
-                                string wendu = p.data[offset + 18].ToString("D2");
-                                string cc = ((((int)p.data[offset + 19]) << 8) + ((int)p.data[offset + 20])).ToString("D");
-                                string vol = ((((int)p.data[offset + 21]) << 8) + ((int)p.data[offset + 22])).ToString("D");
-                                string v = ((((int)p.data[offset + 23]) << 8) + ((int)p.data[offset + 24])).ToString("D");
-                                string biaoji = p.data[offset + 25].ToString("X2");
-
-                                c.Values1 = "版本:" + ver + "\n次数:" + cc + "\n容量:" + vol   + "\n标志:" + biaoji;
-                                c.Values2 = "电流:" + current + "\n电量:" + dianlian + "\n电压:"+ v + "\n温度:" + wendu;
+                                    this.debug.AppendText(System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]") + " " + c.Addr + " : " + rr);
 
                                 string aad = "模组地址:" + p.data[0].ToString("X2");
                                 string bbd = "仓道数:" + p.data[1].ToString("X2");
@@ -206,7 +184,6 @@ namespace LD.forms
                                     + bbd + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(bbd).Length) + "\r\n"
                                     + ccd + new String(' ', 19 - Encoding.GetEncoding("gb2312").GetBytes(ccd).Length)
                                     + ddd + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(ddd).Length);
-
                             }
                         }break;
 

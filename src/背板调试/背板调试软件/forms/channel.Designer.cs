@@ -37,12 +37,13 @@
             this.addr = new System.Windows.Forms.TextBox();
             this.time = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.values2 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.error = new LD.forms.State();
             this.warn = new LD.forms.State();
             this.state = new LD.forms.State();
-            this.values2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -127,6 +128,8 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.Controls.Add(this.values2);
             this.panel1.Controls.Add(this.addr);
             this.panel1.Controls.Add(this.id);
@@ -135,6 +138,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 98);
             this.panel1.TabIndex = 18;
+            // 
+            // values2
+            // 
+            this.values2.AutoSize = true;
+            this.values2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.values2.ForeColor = System.Drawing.Color.Coral;
+            this.values2.Location = new System.Drawing.Point(108, 26);
+            this.values2.Name = "values2";
+            this.values2.Size = new System.Drawing.Size(45, 17);
+            this.values2.TabIndex = 14;
+            this.values2.Text = "label1";
             // 
             // splitContainer2
             // 
@@ -164,6 +178,7 @@
             // 
             this.error.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.error.CheckColor = System.Drawing.Color.Empty;
             this.error.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.error.Location = new System.Drawing.Point(0, 63);
             this.error.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -175,6 +190,7 @@
             // 
             this.warn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.warn.CheckColor = System.Drawing.Color.Empty;
             this.warn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.warn.Location = new System.Drawing.Point(0, 30);
             this.warn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -186,23 +202,13 @@
             // 
             this.state.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.state.CheckColor = System.Drawing.Color.Empty;
             this.state.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.state.Location = new System.Drawing.Point(1, -1);
             this.state.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.state.Name = "state";
             this.state.Size = new System.Drawing.Size(334, 32);
             this.state.TabIndex = 15;
-            // 
-            // values2
-            // 
-            this.values2.AutoSize = true;
-            this.values2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.values2.ForeColor = System.Drawing.Color.Coral;
-            this.values2.Location = new System.Drawing.Point(108, 26);
-            this.values2.Name = "values2";
-            this.values2.Size = new System.Drawing.Size(45, 17);
-            this.values2.TabIndex = 14;
-            this.values2.Text = "label1";
             // 
             // channel
             // 
@@ -213,12 +219,12 @@
             this.Controls.Add(this.panel1);
             this.Name = "channel";
             this.Size = new System.Drawing.Size(514, 100);
-            this.Load += new System.EventHandler(this.Channel_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 

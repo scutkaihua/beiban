@@ -33,6 +33,9 @@ namespace LD
         //读写
         Function function;
 
+        //监控
+        channelHeartbreak channelHeartbreak;
+
         //发行用户卡
         //UserCardIssuerForm userCardIssuer;
 
@@ -88,16 +91,22 @@ namespace LD
             function = new Function(serialPortSetting);
             formsArchitecture.AddForm(function, "功能选择", "测试1", true);
             function.pv = packetView;
+            packetView.Show();
+            packetView.Hide();
+
+            //监控
+            channelHeartbreak = new channelHeartbreak(serialPortSetting,packetView);
+            formsArchitecture.AddForm(channelHeartbreak, "功能选择", "监控", true);
 
             /////////////////////////////////////////////////////////////////////////
             ///显示
             formsArchitecture.AddForm(packetView, "显示", "串口数据",true);
             formsArchitecture.AddForm(packetParse, "显示", "数据包解析", true);
 
-            chartView = new ChartView(function.chartvalues);
+            chartView = new ChartView(function.chartvalues,new ChartDataSelect(5));
             formsArchitecture.AddForm(chartView, "显示", "实时曲线", true);
 
-            chartView1 = new ChartView(new lib.ChannelValues(5));
+            chartView1 = new ChartView(new lib.ChannelValues(5),new ChartDataSelect(5));
             formsArchitecture.AddForm(chartView1, "显示", "记录曲线", true);
             //////////////////////////////////////////////////////////////////////////
             ///老化

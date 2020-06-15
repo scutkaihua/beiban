@@ -33,18 +33,26 @@ namespace LD.lib
         public byte biaoji;//标志
         public int cycle;  //循环次数
         public int vol;    //容量
-        public int current;//电流
+        public int current=0;//电流
         public int voltage;//电压
         public int dianliang;//电量
         public int temperature;//温度
-
+        public int ccstart; //开始计算容量
+        public int ccend;   //结束计算容量
         public byte state;  //状态
         public byte warn;   //告警
         public byte error;  //错误
+        public string[] id; //充电宝id
 
         private DateTime starttime;//开始时间
 
-        private int channel_max;  //通道个数
+        private int channel_max=5;  //通道个数
+
+
+        private int[] last_time;    //上一次时间偏移
+        private int[] last_current; //上一次电流值
+
+        private Int64[] capacity ;    //统计容量
 
         public int ValueofByte(byte d,int offset) { return (d >> offset) & 0x01; }
 
@@ -70,7 +78,12 @@ namespace LD.lib
             Dictionary<string, GearedValues<int>> keyValues = keyValuePairs[ch];
             GearedValues<int> q = null;
             if(keyValues.TryGetValue(key,out q) == false) { throw new Exception("没有对应的key:"+key); }
-            if (q.Count == 0) starttime = DateTime.Now;
+            if (q.Count == 0)
+            {
+                starttime = DateTime.Now;
+                last_time = new int[channel_max]; Array.Clear(last_time, 0, last_time.Length);
+                last_current[ch] = 0;
+            }
             q.Add(v);
         }
 
@@ -81,6 +94,9 @@ namespace LD.lib
                 foreach (GearedValues<int> i in item.Values)
                 {
                     i.Clear();
+                    this.current = 0;
+                    this.last_time = new int[channel_max];  Array.Clear(last_time, 0, last_time.Length);
+                    this.capacity = new Int64[channel_max]; Array.Clear(capacity, 0, capacity.Length);
                 }
             }
         }
@@ -98,6 +114,7 @@ namespace LD.lib
                 AddName(ch, "循环次数","循环次数",0,300,Brushes.BlueViolet, AxisPosition.RightTop);
                 AddName(ch, "容量","容量",0,6000,Brushes.CadetBlue, AxisPosition.RightTop);
                 AddName(ch, "电量","电量",0,110,Brushes.Red, AxisPosition.LeftBottom);
+                AddName(ch, "曲线容量", "容量", 0, 6000, Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "电流","电流",-100,5000,Brushes.Green, AxisPosition.LeftBottom);
                 AddName(ch, "电压","电压",-100,5000,Brushes.DarkOrange, AxisPosition.LeftBottom);
                 AddName(ch, "温度","温度",-40,100,Brushes.Fuchsia, AxisPosition.LeftBottom);
@@ -122,14 +139,23 @@ namespace LD.lib
                 AddName(ch, "e红外","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e摆臂","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e电机","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
-                AddName(ch, "e借宝","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "e借宝", "布尔", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
+
+                AddName(ch, "容量开始", "容量开始", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "容量结束", "容量结束", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
 
                 AddName(ch, "时间", "偏移", 0,10000, Brushes.Black, AxisPosition.LeftBottom);
+                
             }
-        }
+
+        this.id = new string[number];
+        last_time = new int[number];    //上一次时间偏移
+        last_current = new int[number]; //上一次电流值
+        capacity = new Int64[number];    //统计容量
+    }
 
 
-        public void ChannelValueAdd(int ch,byte[] cdata,int offset)
+        public void ChannelValueAdd(int ch,byte[] cdata,int offset,string cid)
         {
             addr = cdata[offset];
             state=cdata[offset + 1];
@@ -143,11 +169,16 @@ namespace LD.lib
             vol = ((((int)cdata[offset + 21]) << 8) + ((int)cdata[offset + 22]));
             voltage = ((((int)cdata[offset + 23]) << 8) + ((int)cdata[offset + 24]));
             biaoji = cdata[offset + 25];
+            ccstart = ((vol & 0x8000) == 0) ? 0 : 1;
+            ccend = ((vol & 0x84000) == 0) ? 0 : 1;
+            vol = (vol & 0x3FFF);
 
             Add(ch,"地址", addr);
             Add(ch,"版本", ver);
             Add(ch,"标志", biaoji);
             Add(ch,"循环次数", cycle);
+            Add(ch,"容量开始", ccstart);
+            Add(ch,"容量结束", ccend);
             Add(ch,"容量", vol);
             Add(ch,"电量", dianliang);
             Add(ch,"电流", current);
@@ -176,7 +207,22 @@ namespace LD.lib
             Add(ch,"e电机", ValueofByte(error, 1));
             Add(ch,"e借宝", ValueofByte(error, 0));
 
-            Add(ch, "时间", (int)(DateTime.Now.Ticks/10000000 - starttime.Ticks/10000000));//秒计时
+            int time_now = (int)(DateTime.Now.Ticks / 10000000 - starttime.Ticks / 10000000);
+            Add(ch, "时间", time_now);//秒计时
+
+            /*平滑滤波曲线容量*/
+            {
+                int c = current > 0 ? current : 0;
+                int lc = (last_current[ch] > 0) ? (last_current[ch]) : 0;
+
+                lc  = (c + lc) / 2;
+                lc = lc * (time_now - last_time[ch]);
+                last_time[ch] = time_now;
+                last_current[ch] = current;
+                capacity[ch] += lc;
+                Add(ch, "曲线容量", (int)(this.capacity[ch]/3600));//秒计时
+            }
+            this.id[ch] = cid;
         }
 
         public string[] ChannelValueNames()
@@ -211,7 +257,10 @@ namespace LD.lib
             //设置表的行列数据
             for(int ch = 0;ch<channel_max;ch++)
             {
-                ISheet sheet = workbook.CreateSheet("通道"+(ch+1)); //2.创建工作表
+                string sheetname = null;
+                if (id[ch]==null||id[ch].Equals("00000000000000000000") ) sheetname = "通道" + (ch + 1);
+                else sheetname = id[ch].Substring(9);
+                ISheet sheet = workbook.CreateSheet(sheetname); //2.创建工作表
                 Dictionary<string, GearedValues<int>> keyValues = keyValuePairs[ch];
                 IRow row0 = sheet.CreateRow(0);
                 int col=0;//第一列开始

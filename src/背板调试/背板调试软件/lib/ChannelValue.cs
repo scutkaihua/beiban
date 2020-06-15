@@ -17,7 +17,7 @@ namespace LD.lib
             "未锁","强弹","强入","重启","5V警告","弹仓","高温",
             "顶针故障","来电宝故障","到位开关故障","红外故障","摆臂开关故障","电磁阀打开失败","借宝故障",
             "标志","版本",
-            "循环次数","容量","电量","电流","电压","温度"
+            "循环次数","容量","曲线容量","电量","电流","电压","温度",
         };
         public ChannelValue()
         {
@@ -35,7 +35,7 @@ namespace LD.lib
             byte state = cdata[offset + 1];
             byte warn = (cdata[offset + 2]);
             byte error = (cdata[offset + 3]);
-            string id = Ulitily.ShareClass.hexByteArrayToString(cdata, 4, 10);
+            string id = Ulitily.ShareClass.hexByteArrayToString(cdata, offset + 4, 10);
             byte ver = cdata[offset + 14];
             int current = ((((int)cdata[offset + 15]) << 8) + ((int)cdata[offset + 16]));
             byte dianliang = cdata[offset + 17];

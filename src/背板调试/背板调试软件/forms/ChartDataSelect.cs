@@ -26,9 +26,45 @@ namespace LD.forms
 
             //按列数据添加数据项
             for(int i = 1; i < dgv.Columns.Count; i++) {
-                ChannelValueSelectItems items = new ChannelValueSelectItems();items.channel = i;chs.Add(items);
+                ChannelValueSelectItems items = new ChannelValueSelectItems();
+                items.channel = i;
+                chs.Add(items);
             }
         }
+
+        /// <summary>
+        /// 生成 col 列的选项
+        /// </summary>
+        /// <param name="col"></param>
+        public ChartDataSelect(int col)
+        {
+            InitializeComponent();
+            this.dgv.Columns.Clear();
+            DataGridViewColumn[] cols = new DataGridViewColumn[col+1];
+            cols[0] = this.items;
+            for(int i=0;i<col;i++)
+            {
+                DataGridViewCheckBoxColumn c =  new DataGridViewCheckBoxColumn();
+                c.HeaderText = "通道" + (i + 1);
+                c.Name = c.HeaderText;
+                c.Resizable =System.Windows.Forms.DataGridViewTriState.True;
+                cols[i + 1] = c;
+            }
+            this.dgv.Columns.AddRange(cols);
+
+            this.dgv.ColumnHeaderMouseDoubleClick += Dgv_ColumnHeaderMouseDoubleClick;
+            this.dgv.RowHeaderMouseDoubleClick += Dgv_RowHeaderMouseDoubleClick;
+            this.dgv.CurrentCellDirtyStateChanged += Dgv_CurrentCellDirtyStateChanged;
+            this.dgv.CellDoubleClick += Dgv_CellDoubleClick;
+
+            //按列数据添加数据项
+            for (int i = 1; i < dgv.Columns.Count; i++)
+            {
+                ChannelValueSelectItems items = new ChannelValueSelectItems(); items.channel = i; chs.Add(items);
+            }
+        }
+
+
 
         private void Dgv_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

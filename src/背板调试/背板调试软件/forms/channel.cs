@@ -39,6 +39,11 @@ namespace LD.forms
             warn.CheckColor = Color.Yellow;
             error.CheckColor = Color.Red;
             old = this.BackColor;
+            this.set_names(new string[] {
+                                "读错"," 读对","    ","    ","    ","红外","充满","充电",
+                                "高温"," 弹仓","  5V","    ","重启","强入","弹仓","未锁",
+                                "借宝","电磁阀","摆臂","红外","到位","宝坏","顶针","    "
+                            });
         }
         public bool is_select() { return select; }
 
@@ -110,6 +115,7 @@ namespace LD.forms
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            if (beibanAddr == null) return;
             Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.租借,beibanAddr.Text,Addr + Id + time.Text);
 
             if (Onlease != null)
@@ -121,6 +127,7 @@ namespace LD.forms
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            if (beibanAddr == null) return;
             Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.归还,beibanAddr.Text, Addr + time.Text);
 
             if (Onreturn != null)
@@ -131,6 +138,7 @@ namespace LD.forms
 
         private void Button3_Click(object sender, EventArgs e)
         {
+            if (beibanAddr == null) return;
             Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.控制,beibanAddr.Text, "02"+Addr + Id + time.Text);
 
             if (Onopen != null)
@@ -141,6 +149,7 @@ namespace LD.forms
 
         private void Button4_Click(object sender, EventArgs e)
         {
+            if (beibanAddr == null) return;
             Ldpacket p =  Ldpacket.Get_Ldpacket(Cmd.控制,beibanAddr.Text, "01" + Addr + Id + time.Text);
             if (Onyunwei != null)
                 Onyunwei(p, this);
@@ -148,9 +157,42 @@ namespace LD.forms
                 serialPortSetting.WritePacket(p);
         }
 
-        private void Channel_Load(object sender, EventArgs e)
+        public bool is_address(int addr)
         {
+            try
+            {
+                int a = int.Parse(this.Addr);
+                return a == addr;
+            }
+            catch { return false; }
+        }
 
+        public bool is_id(string i)
+        {
+            try {
+                if (Id.Equals(i)) return true;
+                else return false;
+            } catch { return false; }
+        }
+
+        public void update(byte[] d, int offset)
+        {
+            this.Id = Ulitily.ShareClass.hexByteArrayToString(d, offset + 4, 10).Replace("-", "");
+            this.Addr = (d[offset]).ToString("X2");
+            this.set_states(d[offset + 1], d[offset + 2], d[offset + 3]);
+            string ver = d[offset + 14].ToString("X2");
+            string current = ((((int)d[offset + 15]) << 8) + ((int)d[offset + 16])).ToString("D");
+            string dianlian = d[offset + 17].ToString("D2");
+            string wendu = d[offset + 18].ToString("D2");
+            string cc = ((((int)d[offset + 19]) << 8) + ((int)d[offset + 20])).ToString("D");
+            int vvol = ((((int)d[offset + 21]) << 8) + ((int)d[offset + 22]));
+            int ccstart = ((vvol & 0x8000) == 0) ? 0 : 1;
+            int ccend = ((vvol & 0x4000) == 0) ? 0 : 1;
+            string vol = ((int)(vvol & 0x3FFF)).ToString("D");
+            string v = ((((int)d[offset + 23]) << 8) + ((int)d[offset + 24])).ToString("D");
+            string biaoji = d[offset + 25].ToString("X2");
+            this.Values1 = "版本:" + ver + "\n次数:" + cc + "\n容量:" + vol + "\n标志:" + biaoji + "\n开始:" + ccstart;
+            this.Values2 = "电流:" + current + "\n电量:" + dianlian + "\n电压:" + v + "\n温度:" + wendu + "\n结束" + ccend;
         }
 
     }

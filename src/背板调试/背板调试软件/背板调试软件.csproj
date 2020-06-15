@@ -135,6 +135,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\ChannelHeartbreak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\ChannelHeartbreak.Designer.cs">
+      <DependentUpon>ChannelHeartbreak.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\Return.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ChannelHeartbreak.resx">
+      <DependentUpon>ChannelHeartbreak.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\Return.resx">
       <DependentUpon>Return.cs</DependentUpon>

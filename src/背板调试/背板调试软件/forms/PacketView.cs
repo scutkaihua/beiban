@@ -63,7 +63,7 @@ namespace LD.forms
             if (rtb_view.InvokeRequired)
             {
                 Ulitily.onPacketTransfer trans = new Ulitily.onPacketTransfer(PacketGet);
-                rtb_view.Invoke(trans, new object[] { sender, args });
+                rtb_view.BeginInvoke(trans, new object[] { sender, args });
             }
             else{
                 if (rtb_view.Text.Length > maxsize) { rtb_view.Text = null; }

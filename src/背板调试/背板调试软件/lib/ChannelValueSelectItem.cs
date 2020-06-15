@@ -10,10 +10,10 @@ namespace LD.lib
     public class ChannelValueSelectItem {
 
         public int r;
-        public int c;
+        public int c;         
 
-        public Color color;
-        public string name;
+        public Color color;    //曲线颜色
+        public string name;    //曲线名称
 
         public ChannelValueSelectItem(int _r, int _c, Color _color, string _n) {
             r = _r;

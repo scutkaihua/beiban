@@ -190,14 +190,13 @@ F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.cs
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csproj.CopyComplete
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.exe
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试.pdb
-F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\BouncyCastle.Crypto.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\ICSharpCode.SharpZipLib.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\NPOI.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\NPOI.OOXML.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\NPOI.OpenXml4Net.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\NPOI.OpenXmlFormats.dll
-F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\Ionic.Zip.dll
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\BouncyCastle.Crypto.xml
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\ICSharpCode.SharpZipLib.pdb
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\ICSharpCode.SharpZipLib.xml
+F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.channelHeartbreak.resources

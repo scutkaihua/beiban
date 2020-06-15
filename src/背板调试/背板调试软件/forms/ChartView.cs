@@ -19,14 +19,15 @@ namespace LD.forms
     {
         List<ChannelValueSelectItems> savechs;
         ChannelValues chartvalues;
-        ChartDataSelect select = new ChartDataSelect();
+        ChartDataSelect select;
         ScrollableViewModel scrollable = new ScrollableViewModel();
         AxesCollection axes = new AxesCollection();
         List<Axis> listAxis = new List<Axis>();
         Axis currentAxis = null;
-        public ChartView(ChannelValues v)
+        public ChartView(ChannelValues v, ChartDataSelect s)
         {
             InitializeComponent();
+            select = s;
             this.DoubleBuffered = true;
             chartvalues = v;
 
@@ -152,13 +153,16 @@ namespace LD.forms
                 foreach(ChannelValueSelectItem ii in i.names)
                 {
                     int a = GetAxes(ii.name);
+                    GearedValues<int> addrs = chartvalues.ChannelValue(i.channel, "地址");//地址值作为曲线名
+                    string chartname = "通道"+i.channel;
+                    if (!((addrs == null || addrs.Count == 0))) chartname = addrs[0].ToString("X2");
                     MyChart.Series.Add(new GLineSeries
                     {
-                        Values = chartvalues.ChannelValue(i.channel, ii.name),
+                        Values = chartvalues.ChannelValue(i.channel, ii.name),                   
                         Fill = Brushes.Transparent,
                         StrokeThickness = 2,
                         ScalesYAt = a,
-                        Title = (axes[a].Title=="布尔")?(string.Format("{0}-{1}-{2}",(i.channel),ii.name,axes[a].Title)):(string.Format("{0}-{1}", (i.channel), ii.name)),
+                        Title = (axes[a].Title=="布尔")?(string.Format("{0}-{1}-{2}",chartname/*(i.channel)*/,ii.name,axes[a].Title)):(string.Format("{0}-{1}", chartname/*(i.channel)*/, ii.name)),
                     });
                 }
             }
