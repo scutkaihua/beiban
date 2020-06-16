@@ -37,6 +37,7 @@
             this.addr = new System.Windows.Forms.TextBox();
             this.time = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.beibanAddr = new System.Windows.Forms.TextBox();
             this.values2 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.error = new LD.forms.State();
@@ -51,7 +52,7 @@
             // 
             // id
             // 
-            this.id.Location = new System.Drawing.Point(41, 4);
+            this.id.Location = new System.Drawing.Point(53, 4);
             this.id.Name = "id";
             this.id.Size = new System.Drawing.Size(133, 21);
             this.id.TabIndex = 4;
@@ -61,7 +62,7 @@
             this.values1.AutoSize = true;
             this.values1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.values1.ForeColor = System.Drawing.Color.Coral;
-            this.values1.Location = new System.Drawing.Point(38, 26);
+            this.values1.Location = new System.Drawing.Point(50, 26);
             this.values1.Name = "values1";
             this.values1.Size = new System.Drawing.Size(45, 17);
             this.values1.TabIndex = 5;
@@ -113,9 +114,9 @@
             // 
             // addr
             // 
-            this.addr.Location = new System.Drawing.Point(3, 4);
+            this.addr.Location = new System.Drawing.Point(29, 4);
             this.addr.Name = "addr";
-            this.addr.Size = new System.Drawing.Size(32, 21);
+            this.addr.Size = new System.Drawing.Size(22, 21);
             this.addr.TabIndex = 13;
             // 
             // time
@@ -130,6 +131,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Controls.Add(this.beibanAddr);
             this.panel1.Controls.Add(this.values2);
             this.panel1.Controls.Add(this.addr);
             this.panel1.Controls.Add(this.id);
@@ -139,12 +141,19 @@
             this.panel1.Size = new System.Drawing.Size(180, 98);
             this.panel1.TabIndex = 18;
             // 
+            // beibanAddr
+            // 
+            this.beibanAddr.Location = new System.Drawing.Point(3, 4);
+            this.beibanAddr.Name = "beibanAddr";
+            this.beibanAddr.Size = new System.Drawing.Size(23, 21);
+            this.beibanAddr.TabIndex = 15;
+            // 
             // values2
             // 
             this.values2.AutoSize = true;
             this.values2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.values2.ForeColor = System.Drawing.Color.Coral;
-            this.values2.Location = new System.Drawing.Point(108, 26);
+            this.values2.Location = new System.Drawing.Point(120, 26);
             this.values2.Name = "values2";
             this.values2.Size = new System.Drawing.Size(45, 17);
             this.values2.TabIndex = 14;
@@ -180,7 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.error.CheckColor = System.Drawing.Color.Empty;
             this.error.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.error.Location = new System.Drawing.Point(0, 63);
+            this.error.Location = new System.Drawing.Point(19, 68);
             this.error.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.error.Name = "error";
             this.error.Size = new System.Drawing.Size(333, 32);
@@ -192,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.warn.CheckColor = System.Drawing.Color.Empty;
             this.warn.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.warn.Location = new System.Drawing.Point(0, 30);
+            this.warn.Location = new System.Drawing.Point(19, 35);
             this.warn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.warn.Name = "warn";
             this.warn.Size = new System.Drawing.Size(333, 32);
@@ -204,7 +213,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.state.CheckColor = System.Drawing.Color.Empty;
             this.state.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.state.Location = new System.Drawing.Point(1, -1);
+            this.state.Location = new System.Drawing.Point(20, 4);
             this.state.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.state.Name = "state";
             this.state.Size = new System.Drawing.Size(334, 32);
@@ -246,5 +255,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label values2;
+        public System.Windows.Forms.TextBox beibanAddr;
     }
 }

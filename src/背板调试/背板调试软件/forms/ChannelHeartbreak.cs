@@ -29,7 +29,7 @@ namespace LD.forms
         ChartView chartView = null;
 
         //曲线通道个数
-        int chart_channels_max = 12;
+        int chart_channels_max = 4;
 
         //定时发送
         System.Threading.Timer t = null;
@@ -86,11 +86,11 @@ namespace LD.forms
                     int offset = i * 26 + 6;
                     int cindex = c * channels_per_beiban;
                     chs[i + cindex].update(p.data,offset);
-                    if (chs[i + cindex].beibanAddr == null) {
-                        chs[i + cindex].beibanAddr = new TextBox();
-                        chs[i + cindex].beibanAddr.Text =  p.addr.ToString("X2");
-                    }
-
+                    //if (chs[i + cindex].beibanAddr == null) {
+                    //    //chs[i + cindex].beibanAddr = new TextBox();
+                    //    chs[i + cindex].beibanAddr.Text =  p.addr.ToString("X2");
+                    //}
+                    chs[i + cindex].beibanAddr.Text = p.addr.ToString("X2");
 
                     //保存曲线数据
                     channelValues.ChannelValueAdd(i+cindex, p.data, offset, chs[i+cindex].Id);
@@ -177,6 +177,16 @@ namespace LD.forms
         /// </summary>
         private void rebuild_channels()
         {
+
+            try {
+                int c  = int.Parse(this.channel_counts.Text.Replace(" ", ""));
+                string[] la = this.addr_list.Text.Replace("  ", "").Split(' ');
+                int l = la.Count();
+                channels_per_beiban = c;
+                this.list_addresses = la;
+                chart_channels_max = c * l;
+            }catch(Exception ee){}
+
             channelValues = new ChannelValues(chart_channels_max);
             dataSelect = new ChartDataSelect(chart_channels_max);
             chartView = new ChartView(channelValues, dataSelect);

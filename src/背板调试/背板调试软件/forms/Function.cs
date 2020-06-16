@@ -47,7 +47,7 @@ namespace LD.forms
             {
 
                 cc.serialPortSetting = this.serial;
-                cc.beibanAddr = this.Addr;
+                cc.beibanAddr.Text = this.Addr.Text;
                 cc.Addr = "02";
                 cc.Id = "00000000000000000000";
                 cc.Onlease += Cc_Onlease;

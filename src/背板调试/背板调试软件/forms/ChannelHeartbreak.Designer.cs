@@ -83,7 +83,7 @@
             this.addr_list.Name = "addr_list";
             this.addr_list.Size = new System.Drawing.Size(129, 21);
             this.addr_list.TabIndex = 3;
-            this.addr_list.Text = "1 2";
+            this.addr_list.Text = "2";
             this.addr_list.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1

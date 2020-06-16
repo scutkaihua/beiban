@@ -30,7 +30,7 @@ namespace LD.forms
 
         public SerialPortSetting serialPortSetting;
 
-        public TextBox beibanAddr;
+        //public TextBox beibanAddr;
  
         public channel()
         {
