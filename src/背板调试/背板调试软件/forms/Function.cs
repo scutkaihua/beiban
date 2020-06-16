@@ -175,7 +175,7 @@ namespace LD.forms
                                 string rr = c.compare_states(p.data[offset + 1], p.data[offset + 2], p.data[offset + 3]);
                                 if (rr != null && rr.Length > 0)
                                     this.debug.AppendText(System.DateTime.Now.ToString("[yy/MM/dd HH:mm:ss.fff]") + " " + c.Addr + " : " + rr);
-
+                                c.beibanAddr.Text = p.data[0].ToString("X2");
                                 string aad = "模组地址:" + p.data[0].ToString("X2");
                                 string bbd = "仓道数:" + p.data[1].ToString("X2");
                                 string ccd = "硬件版本:" + Ulitily.ShareClass.hexByteArrayToString(p.data, 2, 2).Replace("-", "");
