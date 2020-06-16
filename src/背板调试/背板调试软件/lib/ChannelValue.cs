@@ -13,7 +13,7 @@ namespace LD.lib
         public Dictionary<string, string> Values = new Dictionary<string, string>();
         public static string[] keys = {
             "地址","编号",
-            "充电","充满","红外","读取","读错",
+            "充电","充满","红外","流通","读取","读错",
             "未锁","强弹","强入","重启","5V警告","弹仓","高温",
             "顶针故障","来电宝故障","到位开关故障","红外故障","摆臂开关故障","电磁阀打开失败","借宝故障",
             "标志","版本",
@@ -58,6 +58,7 @@ namespace LD.lib
             Values[ "充电"]= ValueofByte(state, 7);
             Values[ "充满"]= ValueofByte(state, 6);
             Values[ "红外"]= ValueofByte(state, 5);
+            Values[ "流通"]= ValueofByte(state, 4); 
             Values[ "读对"]= ValueofByte(state, 1);
             Values[ "读错"]= ValueofByte(state, 0);
 

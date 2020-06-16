@@ -121,7 +121,9 @@ namespace LD.lib
 
                 AddName(ch, "s充电","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "s充满","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
-                AddName(ch, "s红外" ,"布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "s红外", "布尔", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
+                AddName(ch, "s流通", "布尔", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
+
                 AddName(ch, "s读对","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "s读错","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
 
@@ -187,7 +189,8 @@ namespace LD.lib
 
             Add(ch,"s充电",ValueofByte(state,7));
             Add(ch,"s充满", ValueofByte(state, 6));
-            Add(ch,"s红外", ValueofByte(state, 5));
+            Add(ch, "s红外", ValueofByte(state, 5));
+            Add(ch, "s流通", ValueofByte(state, 4));
             Add(ch,"s读对", ValueofByte(state, 1));
             Add(ch,"s读错", ValueofByte(state, 0));
 

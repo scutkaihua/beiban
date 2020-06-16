@@ -93,7 +93,7 @@ namespace LD.forms
 
 
                     //保存曲线数据
-                    channelValues.ChannelValueAdd(i+cindex, p.data, offset, chs[1+cindex].Id);
+                    channelValues.ChannelValueAdd(i+cindex, p.data, offset, chs[i+cindex].Id);
                 }
             }
         }

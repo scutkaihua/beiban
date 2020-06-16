@@ -218,18 +218,18 @@ namespace LD.lib
                             string dianlian = "电量"+this.data[offset + 17].ToString("D2");
                             string wendu = "温度"+this.data[offset + 18].ToString("D2");
                             string cc = "次数:"+((((int)this.data[offset + 19]) << 8) + ((int)this.data[offset + 20])).ToString("D");
-                            string vol = "容量:"+((((int)this.data[offset + 21]) << 8) + ((int)this.data[offset + 22])).ToString("D");
+                            string vol = "容量:"+((int)(((((int)this.data[offset + 21]) << 8) + ((int)this.data[offset + 22]))&0x3F)).ToString("D");
                             string v = "电压"+((((int)this.data[offset + 23]) << 8) + ((int)this.data[offset + 24])).ToString("D");
                             string biaoji = "标志:" + this.data[offset + 25].ToString("X2");
                             sb.Append(
-                                align(ver, 9) +
-                                align(cc, 9) +
-                                align(vol, 9) +
-                                align(biaoji, 9) +
-                                align(current, 9) +
-                                align(dianlian, 9) +
-                                align(v, 9) +
-                                align(wendu, 9));
+                                align(ver, 12) +
+                                align(cc, 12) +
+                                align(vol, 12) +
+                                align(biaoji, 12) +
+                                align(current, 12) +
+                                align(dianlian, 12) +
+                                align(v, 12) +
+                                align(wendu, 12));
                         }
                     }
                     break;

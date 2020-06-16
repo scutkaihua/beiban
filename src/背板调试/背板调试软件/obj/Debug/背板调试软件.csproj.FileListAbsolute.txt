@@ -200,3 +200,4 @@ F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\BouncyCastle.Crypto.x
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\ICSharpCode.SharpZipLib.pdb
 F:\v6\beiban\src\背板调试\背板调试软件\bin\Debug\ICSharpCode.SharpZipLib.xml
 F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\LD.forms.channelHeartbreak.resources
+F:\v6\beiban\src\背板调试\背板调试软件\obj\Debug\背板调试软件.csprojAssemblyReference.cache
