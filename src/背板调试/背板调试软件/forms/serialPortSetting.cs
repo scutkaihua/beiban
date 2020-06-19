@@ -129,7 +129,7 @@ namespace LD.forms
         }
 
         Queue<byte> databuffer = new Queue<byte>(1024*128);
-        byte[] b = new byte[500];
+        byte[] b = new byte[50000];
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             if (serialPort == null) return;

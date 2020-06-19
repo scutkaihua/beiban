@@ -135,6 +135,7 @@ namespace LD.lib
                 AddName(ch, "w弹仓","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "w高温","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
 
+                AddName(ch, "e仓道","布尔",0, 2, Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e顶针","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e宝坏","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
                 AddName(ch, "e到位","布尔",0,2,Brushes.Black, AxisPosition.LeftBottom);
@@ -202,6 +203,7 @@ namespace LD.lib
             Add(ch,"w弹仓", ValueofByte(warn, 1));
             Add(ch,"w高温", ValueofByte(warn, 0));
 
+            Add(ch, "e仓道", ValueofByte(error, 7));
             Add(ch,"e顶针", ValueofByte(error, 6));
             Add(ch,"e宝坏", ValueofByte(error, 5));
             Add(ch,"e到位", ValueofByte(error, 4));

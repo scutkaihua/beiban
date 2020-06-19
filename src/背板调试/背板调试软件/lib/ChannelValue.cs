@@ -15,7 +15,7 @@ namespace LD.lib
             "地址","编号",
             "充电","充满","红外","流通","读取","读错",
             "未锁","强弹","强入","重启","5V警告","弹仓","高温",
-            "顶针故障","来电宝故障","到位开关故障","红外故障","摆臂开关故障","电磁阀打开失败","借宝故障",
+            "仓道故障","顶针故障","来电宝故障","到位开关故障","红外故障","摆臂开关故障","电磁阀打开失败","借宝故障",
             "标志","版本",
             "循环次数","容量","曲线容量","电量","电流","电压","温度",
         };
@@ -70,6 +70,7 @@ namespace LD.lib
             Values[ "弹仓"]= ValueofByte(warn, 1);
             Values[ "高温"]= ValueofByte(warn, 0);
 
+            Values["仓道故障"] = ValueofByte(error, 7);
             Values["顶针故障"] = ValueofByte(error, 6);
             Values["来电宝故障"] = ValueofByte(error, 5);
             Values["到位开关故障"] = ValueofByte(error, 4);
