@@ -75,6 +75,10 @@ namespace LD.forms
             error.SetState(e);
         }
 
+        public void set_index_name(string n)
+        {
+            this.LIndex.Text = n;
+        }
         public string compare_states(byte s,byte w,byte e)
         {
             string result = state.CompareState(s) + warn.CompareState(w) + error.CompareState(e);

@@ -24,6 +24,7 @@ namespace LD.forms
         AxesCollection axes = new AxesCollection();
         List<Axis> listAxis = new List<Axis>();
         Axis currentAxis = null;
+
         public ChartView(ChannelValues v, ChartDataSelect s)
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace LD.forms
             MyChart.AxisY = axes;
             MyChart.LegendLocation = LegendLocation.Right;
             MyChart.DataHover += MyChart_DataHover; //鼠标经过显示数值
+            
 
             scale_option.SelectedIndex = 0;
             scale_option.SelectedIndexChanged += Scale_option_SelectedIndexChanged;
@@ -105,9 +107,12 @@ namespace LD.forms
 
         private void MyChart_DataHover(object sender, ChartPoint chartPoint)
         {
-            Tips.Text = string.Format("{0} :({1},{2})",
+           // System.Drawing.Point ms = Control.MousePosition;
+            string v= string.Format("{0} [ X: {1}   Y轴: {2} ]",
                 chartPoint.SeriesView.Title,
                 chartPoint.Key, chartPoint.SeriesView.ActualValues[chartPoint.Key].ToString());
+            this.Tips.Text = v;
+           // this.Tips.Location = ms;
         }
 
 
@@ -155,7 +160,7 @@ namespace LD.forms
                     int a = GetAxes(ii.name);
                     GearedValues<int> addrs = chartvalues.ChannelValue(i.channel, "地址");//地址值作为曲线名
                     string chartname = "通道"+i.channel;
-                    if (!((addrs == null || addrs.Count == 0))) chartname = addrs[0].ToString("X2");
+                    if (!((addrs == null || addrs.Count == 0))) chartname = chartname+"-"+addrs[0].ToString("X2");
                     MyChart.Series.Add(new GLineSeries
                     {
                         Values = chartvalues.ChannelValue(i.channel, ii.name),                   

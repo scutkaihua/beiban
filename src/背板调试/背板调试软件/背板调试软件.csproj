@@ -225,6 +225,12 @@
     <Compile Include="forms\ChartDataSelect.Designer.cs">
       <DependentUpon>ChartDataSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\TTIP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\TTIP.Designer.cs">
+      <DependentUpon>TTIP.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\updata.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\TabControlExt.resx">
       <DependentUpon>TabControlExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\TTIP.resx">
+      <DependentUpon>TTIP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\updata.resx">
       <DependentUpon>updata.cs</DependentUpon>

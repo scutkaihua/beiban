@@ -37,11 +37,11 @@
             this.MAX = new System.Windows.Forms.TextBox();
             this.CB = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.清除历史数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.保存数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.加载数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.保存数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.清除历史数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,9 +83,11 @@
             // Tips
             // 
             this.Tips.AutoSize = true;
-            this.Tips.Location = new System.Drawing.Point(347, 12);
+            this.Tips.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Tips.ForeColor = System.Drawing.Color.Fuchsia;
+            this.Tips.Location = new System.Drawing.Point(374, 8);
             this.Tips.Name = "Tips";
-            this.Tips.Size = new System.Drawing.Size(29, 12);
+            this.Tips.Size = new System.Drawing.Size(37, 30);
             this.Tips.TabIndex = 3;
             this.Tips.Text = "tips";
             // 
@@ -120,7 +122,31 @@
             this.toolStripSeparator1,
             this.清除历史数据ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 104);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 82);
+            // 
+            // 加载数据ToolStripMenuItem
+            // 
+            this.加载数据ToolStripMenuItem.Name = "加载数据ToolStripMenuItem";
+            this.加载数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.加载数据ToolStripMenuItem.Text = "加载数据";
+            this.加载数据ToolStripMenuItem.Click += new System.EventHandler(this.加载数据ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(145, 6);
+            // 
+            // 保存数据ToolStripMenuItem
+            // 
+            this.保存数据ToolStripMenuItem.Name = "保存数据ToolStripMenuItem";
+            this.保存数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.保存数据ToolStripMenuItem.Text = "保存数据";
+            this.保存数据ToolStripMenuItem.Click += new System.EventHandler(this.保存数据ToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
             // 
             // 清除历史数据ToolStripMenuItem
             // 
@@ -128,30 +154,6 @@
             this.清除历史数据ToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.清除历史数据ToolStripMenuItem.Text = "清除历史数据";
             this.清除历史数据ToolStripMenuItem.Click += new System.EventHandler(this.清除历史数据ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 保存数据ToolStripMenuItem
-            // 
-            this.保存数据ToolStripMenuItem.Name = "保存数据ToolStripMenuItem";
-            this.保存数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.保存数据ToolStripMenuItem.Text = "保存数据";
-            this.保存数据ToolStripMenuItem.Click += new System.EventHandler(this.保存数据ToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
-            // 
-            // 加载数据ToolStripMenuItem
-            // 
-            this.加载数据ToolStripMenuItem.Name = "加载数据ToolStripMenuItem";
-            this.加载数据ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.加载数据ToolStripMenuItem.Text = "加载数据";
-            this.加载数据ToolStripMenuItem.Click += new System.EventHandler(this.加载数据ToolStripMenuItem_Click);
             // 
             // ChartView
             // 

@@ -170,6 +170,7 @@ namespace LD.forms
                                 Array.Copy(p.data, i * 26 + 10, ids, 0, 10);
                                 channel c = chs[i];
                                 c.update(p.data, offset);
+                                c.set_index_name("通道"+(i+1));
                                 channelValues.ChannelValueAdd(i, p.data, offset,c.Id);
                                 //输出状态比较结果
                                 string rr = c.compare_states(p.data[offset + 1], p.data[offset + 2], p.data[offset + 3]);

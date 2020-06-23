@@ -86,6 +86,7 @@ namespace LD.forms
                     int offset = i * 26 + 6;
                     int cindex = c * channels_per_beiban;
                     chs[i + cindex].update(p.data,offset);
+                    chs[i + cindex].set_index_name("通道"+(i+cindex+1));
                     //if (chs[i + cindex].beibanAddr == null) {
                     //    //chs[i + cindex].beibanAddr = new TextBox();
                     //    chs[i + cindex].beibanAddr.Text =  p.addr.ToString("X2");

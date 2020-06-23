@@ -43,6 +43,7 @@
             this.error = new LD.forms.State();
             this.warn = new LD.forms.State();
             this.state = new LD.forms.State();
+            this.LIndex = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -131,6 +132,7 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.Controls.Add(this.LIndex);
             this.panel1.Controls.Add(this.beibanAddr);
             this.panel1.Controls.Add(this.values2);
             this.panel1.Controls.Add(this.addr);
@@ -219,6 +221,17 @@
             this.state.Size = new System.Drawing.Size(334, 32);
             this.state.TabIndex = 15;
             // 
+            // LIndex
+            // 
+            this.LIndex.AutoSize = true;
+            this.LIndex.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LIndex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.LIndex.Location = new System.Drawing.Point(1, 73);
+            this.LIndex.Name = "LIndex";
+            this.LIndex.Size = new System.Drawing.Size(38, 17);
+            this.LIndex.TabIndex = 16;
+            this.LIndex.Text = "通道?";
+            // 
             // channel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -256,5 +269,6 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label values2;
         public System.Windows.Forms.TextBox beibanAddr;
+        private System.Windows.Forms.Label LIndex;
     }
 }
