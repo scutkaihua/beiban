@@ -245,6 +245,7 @@ namespace LD.lib
             /// <returns></returns>
             public static byte[] strToHexByteArray(string hexString)
             {
+                hexString = hexString.Replace("0x", "").Replace("0X","");
                 hexString = hexString.Replace(" ", "");
                 hexString = hexString.Replace("\r", "");
                 hexString = hexString.Replace("\n", "");

@@ -39,27 +39,29 @@
             this.清空ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.updata1 = new LD.forms.updata();
             this.button9 = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.tb_set_addr = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.Start = new System.Windows.Forms.TextBox();
-            this.Counter = new System.Windows.Forms.TextBox();
             this.cb_all = new System.Windows.Forms.CheckBox();
             this.channel5 = new LD.forms.channel();
             this.channel4 = new LD.forms.channel();
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.updata1 = new LD.forms.updata();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tb_cf = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -160,12 +162,20 @@
             // 
             this.groupBox6.Controls.Add(this.updata1);
             this.groupBox6.Controls.Add(this.button9);
-            this.groupBox6.Location = new System.Drawing.Point(728, 157);
+            this.groupBox6.Location = new System.Drawing.Point(728, 243);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(327, 144);
             this.groupBox6.TabIndex = 9;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "升级";
+            // 
+            // updata1
+            // 
+            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.updata1.Location = new System.Drawing.Point(6, 45);
+            this.updata1.Name = "updata1";
+            this.updata1.Size = new System.Drawing.Size(314, 93);
+            this.updata1.TabIndex = 22;
             // 
             // button9
             // 
@@ -179,7 +189,7 @@
             // 
             // result
             // 
-            this.result.Location = new System.Drawing.Point(728, 307);
+            this.result.Location = new System.Drawing.Point(728, 393);
             this.result.Multiline = true;
             this.result.Name = "result";
             this.result.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -215,16 +225,6 @@
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.Button7_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(992, 526);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(63, 23);
-            this.button5.TabIndex = 22;
-            this.button5.Text = "调试信息";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
-            // 
             // debug
             // 
             this.debug.Location = new System.Drawing.Point(1, 614);
@@ -234,32 +234,6 @@
             this.debug.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.debug.Size = new System.Drawing.Size(1054, 173);
             this.debug.TabIndex = 23;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(992, 577);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "清调试";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // Start
-            // 
-            this.Start.Location = new System.Drawing.Point(734, 527);
-            this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(100, 21);
-            this.Start.TabIndex = 25;
-            this.Start.Text = "00";
-            // 
-            // Counter
-            // 
-            this.Counter.Location = new System.Drawing.Point(856, 528);
-            this.Counter.Name = "Counter";
-            this.Counter.Size = new System.Drawing.Size(100, 21);
-            this.Counter.TabIndex = 26;
-            this.Counter.Text = "0A";
             // 
             // cb_all
             // 
@@ -336,13 +310,55 @@
             this.channel1.Values1 = "label1";
             this.channel1.Values2 = "label1";
             // 
-            // updata1
+            // groupBox3
             // 
-            this.updata1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.updata1.Location = new System.Drawing.Point(6, 45);
-            this.updata1.Name = "updata1";
-            this.updata1.Size = new System.Drawing.Size(314, 93);
-            this.updata1.TabIndex = 22;
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.tb_cf);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Location = new System.Drawing.Point(734, 175);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(327, 47);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "循环充放电";
+            // 
+            // tb_cf
+            // 
+            this.tb_cf.Location = new System.Drawing.Point(81, 18);
+            this.tb_cf.Name = "tb_cf";
+            this.tb_cf.Size = new System.Drawing.Size(45, 21);
+            this.tb_cf.TabIndex = 1;
+            this.tb_cf.Text = "02";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(139, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(65, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "充电";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(229, 16);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(65, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "放电";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "仓道地址:";
             // 
             // Function
             // 
@@ -350,12 +366,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1061, 799);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.cb_all);
-            this.Controls.Add(this.Counter);
-            this.Controls.Add(this.Start);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.debug);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.channel5);
             this.Controls.Add(this.channel4);
             this.Controls.Add(this.channel3);
@@ -379,6 +392,8 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -407,11 +422,12 @@
         private channel channel5;
         private updata updata1;
         private System.Windows.Forms.Label break_ack;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox debug;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox Start;
-        private System.Windows.Forms.TextBox Counter;
         private System.Windows.Forms.CheckBox cb_all;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox tb_cf;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
     }
 }

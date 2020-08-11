@@ -255,11 +255,6 @@ namespace LD.forms
             this.Hide();
         }
 
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.调试信息, Addr.Text, "01"+Start.Text+Counter.Text);
-            serial.WritePacket(p);
-        }
 
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -267,5 +262,33 @@ namespace LD.forms
             serial.WritePacket(p);
         }
 
+        private void Button2_Click_1(object sender, EventArgs e)
+        {
+            channel cc = null;
+            foreach(channel c in chs)
+            {
+                if (c.Addr.Equals(tb_cf.Text)) { cc = c;break; }
+            }
+            if (cc != null)
+            {
+                Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.控制,Addr.Text, "f0"+ tb_cf.Text+cc.Id+"0A");
+                serial.WritePacket(p);
+            }
+            
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            channel cc = null;
+            foreach (channel c in chs)
+            {
+                if (tb_cf.Text == c.Addr) { cc = c; break; }
+            }
+            if (cc != null)
+            {
+                Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.控制, Addr.Text, "f1" + tb_cf.Text + cc.Id + "0A");
+                serial.WritePacket(p);
+            }
+        }
     }
 }
