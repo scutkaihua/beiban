@@ -56,7 +56,7 @@ namespace LD.forms
                 cc.Onyunwei += Cc_Onlease;
             }
 
-            serial.onPacketSend += Serial_onPacketSend1;
+            //serial.onPacketSend += Serial_onPacketSend1;
 
             result.DoubleClick += Result_DoubleClick;
 
@@ -288,6 +288,18 @@ namespace LD.forms
             {
                 Ldpacket p = Ldpacket.Get_Ldpacket(Cmd.控制, Addr.Text, "f1" + tb_cf.Text + cc.Id + "0A");
                 serial.WritePacket(p);
+            }
+        }
+
+        private void Cb_all_CheckedChanged(object sender, EventArgs e)
+        {
+            if(cb_all.Checked)
+            {
+                serial.onPacketSend += Serial_onPacketSend1;
+            }
+            else
+            {
+                serial.onPacketSend -= Serial_onPacketSend1;
             }
         }
     }

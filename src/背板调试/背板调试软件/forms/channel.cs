@@ -129,6 +129,14 @@ namespace LD.forms
 
         }
 
+        public void rent()
+        {
+            Button1_Click(this, null);
+        }
+
+
+
+
         private void Button2_Click(object sender, EventArgs e)
         {
             if (beibanAddr == null) return;

@@ -34,14 +34,16 @@
             this.addr_list = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CB_LISTEN = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.xintiao = new System.Windows.Forms.TextBox();
             this.textbox_timer = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
+            this.CB_LANT = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -97,16 +99,31 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.CB_LANT);
+            this.groupBox2.Controls.Add(this.CB_LISTEN);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.xintiao);
             this.groupBox2.Controls.Add(this.textbox_timer);
             this.groupBox2.Location = new System.Drawing.Point(218, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(259, 75);
+            this.groupBox2.Size = new System.Drawing.Size(330, 75);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "定时读";
+            // 
+            // CB_LISTEN
+            // 
+            this.CB_LISTEN.AutoSize = true;
+            this.CB_LISTEN.Checked = true;
+            this.CB_LISTEN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CB_LISTEN.Location = new System.Drawing.Point(217, 50);
+            this.CB_LISTEN.Name = "CB_LISTEN";
+            this.CB_LISTEN.Size = new System.Drawing.Size(72, 16);
+            this.CB_LISTEN.TabIndex = 10;
+            this.CB_LISTEN.Text = "使能监听";
+            this.CB_LISTEN.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -126,11 +143,22 @@
             this.label4.TabIndex = 2;
             this.label4.Text = "定时 ms";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(155, 20);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(84, 16);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "使能定时读";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            // 
             // xintiao
             // 
             this.xintiao.Location = new System.Drawing.Point(65, 48);
             this.xintiao.Name = "xintiao";
-            this.xintiao.Size = new System.Drawing.Size(177, 21);
+            this.xintiao.Size = new System.Drawing.Size(146, 21);
             this.xintiao.TabIndex = 8;
             this.xintiao.Text = "01 00 00 00 00 00 00 03";
             // 
@@ -143,21 +171,10 @@
             this.textbox_timer.Text = "2000";
             this.textbox_timer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(382, 23);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(84, 16);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "使能定时读";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(483, 12);
+            this.button1.Location = new System.Drawing.Point(554, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 66);
             this.button1.TabIndex = 7;
@@ -178,13 +195,24 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(690, 55);
+            this.button2.Location = new System.Drawing.Point(671, 55);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 10;
             this.button2.Text = "重新加载";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // CB_LANT
+            // 
+            this.CB_LANT.AutoSize = true;
+            this.CB_LANT.Location = new System.Drawing.Point(245, 20);
+            this.CB_LANT.Name = "CB_LANT";
+            this.CB_LANT.Size = new System.Drawing.Size(72, 16);
+            this.CB_LANT.TabIndex = 11;
+            this.CB_LANT.Text = "循环租借";
+            this.CB_LANT.UseVisualStyleBackColor = true;
+            this.CB_LANT.CheckedChanged += new System.EventHandler(this.CB_LANT_CheckedChanged);
             // 
             // channelHeartbreak
             // 
@@ -194,7 +222,6 @@
             this.ClientSize = new System.Drawing.Size(779, 578);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -206,7 +233,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -226,5 +252,7 @@
         private System.Windows.Forms.TextBox xintiao;
         private System.Windows.Forms.FlowLayoutPanel panel;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox CB_LISTEN;
+        private System.Windows.Forms.CheckBox CB_LANT;
     }
 }

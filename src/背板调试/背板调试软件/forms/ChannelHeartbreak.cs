@@ -35,6 +35,10 @@ namespace LD.forms
         System.Threading.Timer t = null;
         int timer_interval = 0;
 
+        //定时租借
+        System.Threading.Timer lt = null;
+        int current_offset = 0;
+
         //排队读心跳
         string[] list_addresses = null;//地址列表
         int channels_per_beiban;       //一个背板通道数
@@ -115,7 +119,7 @@ namespace LD.forms
             }
             else
             {
-                if (checkBox1.Checked == false) return;
+                if (checkBox1.Checked == false && CB_LISTEN.Checked==false) return;
                 Ldpacket p = args.packet;
                 pv.PacketGet(sender,args);
                 switch (p.cmd)
@@ -123,7 +127,7 @@ namespace LD.forms
                     case Cmd.心跳:
                                     ListView_Add(p);
                                     panel.Refresh();
-                                    mre.Set();
+                                    if(null!=mre)mre.Set();
                                     break;
                     default:
                         break;
@@ -145,8 +149,9 @@ namespace LD.forms
                 byte[] ss = packet.toBytes;
                 serialPort.WritePacket(packet);
                 //等待心跳应答 
-                mre.WaitOne(timer_interval/2,true);
+                int div = list_addresses.Count();
                 mre.Reset();
+                mre.WaitOne(timer_interval/(div>0?div:1),true);
             }
         }
 
@@ -253,6 +258,34 @@ namespace LD.forms
                 channelValues.Clear();
                 rebuild_channels();
             }
+
+        }
+
+        private void CB_LANT_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CB_LANT.Checked)
+            {
+                current_offset = 0;
+                timer_interval = Int32.Parse(textbox_timer.Text);
+                lt = new System.Threading.Timer(new TimerCallback(LT_Tick), null, 0, timer_interval);
+            }
+            else
+            {
+                if (lt != null) lt.Dispose();
+            }
+        }
+
+        private void LT_Tick(object state)
+        {
+            current_offset %= chs.Length;
+            channel cc = chs[current_offset];
+            while (cc.Id.Equals("00000000000000000000") && current_offset<(chs.Length))
+            {
+                cc = chs[current_offset];
+                current_offset++;
+            }
+            if (cc.Id.Equals("00000000000000000000")) return;
+            else { cc.rent(); current_offset++; }
 
         }
     }

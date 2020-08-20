@@ -47,16 +47,16 @@
             this.button7 = new System.Windows.Forms.Button();
             this.debug = new System.Windows.Forms.TextBox();
             this.cb_all = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tb_cf = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.channel5 = new LD.forms.channel();
             this.channel4 = new LD.forms.channel();
             this.channel3 = new LD.forms.channel();
             this.channel2 = new LD.forms.channel();
             this.channel1 = new LD.forms.channel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tb_cf = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -244,6 +244,57 @@
             this.cb_all.TabIndex = 27;
             this.cb_all.Text = "监听所有数据包";
             this.cb_all.UseVisualStyleBackColor = true;
+            this.cb_all.CheckedChanged += new System.EventHandler(this.Cb_all_CheckedChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.tb_cf);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Location = new System.Drawing.Point(734, 175);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(327, 47);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "循环充放电";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "仓道地址:";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(229, 16);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(65, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "放电";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // tb_cf
+            // 
+            this.tb_cf.Location = new System.Drawing.Point(81, 18);
+            this.tb_cf.Name = "tb_cf";
+            this.tb_cf.Size = new System.Drawing.Size(45, 21);
+            this.tb_cf.TabIndex = 1;
+            this.tb_cf.Text = "02";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(139, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(65, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "充电";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
             // 
             // channel5
             // 
@@ -309,56 +360,6 @@
             this.channel1.TabIndex = 17;
             this.channel1.Values1 = "label1";
             this.channel1.Values2 = "label1";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.tb_cf);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Location = new System.Drawing.Point(734, 175);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(327, 47);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "循环充放电";
-            // 
-            // tb_cf
-            // 
-            this.tb_cf.Location = new System.Drawing.Point(81, 18);
-            this.tb_cf.Name = "tb_cf";
-            this.tb_cf.Size = new System.Drawing.Size(45, 21);
-            this.tb_cf.TabIndex = 1;
-            this.tb_cf.Text = "02";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(139, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(65, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "充电";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(229, 16);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(65, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "放电";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "仓道地址:";
             // 
             // Function
             // 
