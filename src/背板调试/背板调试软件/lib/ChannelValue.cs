@@ -12,7 +12,7 @@ namespace LD.lib
     {
         public Dictionary<string, string> Values = new Dictionary<string, string>();
         public static string[] keys = {
-            "地址","编号",
+            "地址",//"编号",
             "充电","充满","红外","流通","读取","读错",
             "未锁","强弹","强入","重启","5V警告","弹仓","高温",
             "仓道故障","顶针故障","来电宝故障","到位开关故障","红外故障","摆臂开关故障","电磁阀打开失败","借宝故障",
@@ -44,7 +44,7 @@ namespace LD.lib
             int vol = ((((int)cdata[offset + 21]) << 8) + ((int)cdata[offset + 22]));
             int voltage = ((((int)cdata[offset + 23]) << 8) + ((int)cdata[offset + 24]));
             byte biaoji = cdata[offset + 25];
-            Values["编号"] = id;
+            //Values["编号"] = id;
             Values["地址"] = addr.ToString();
             Values[ "版本"]= ver.ToString();
             Values[ "标志"]= biaoji.ToString();

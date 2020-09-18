@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.channel_counts = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.addr_list = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.CB_LANT = new System.Windows.Forms.CheckBox();
             this.CB_LISTEN = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,10 +44,13 @@
             this.textbox_timer = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.FlowLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.CB_LANT = new System.Windows.Forms.CheckBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.重新加载ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ltx = new System.Windows.Forms.Label();
+            this.lrx = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // channel_counts
@@ -99,6 +104,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lrx);
+            this.groupBox2.Controls.Add(this.ltx);
             this.groupBox2.Controls.Add(this.CB_LANT);
             this.groupBox2.Controls.Add(this.CB_LISTEN);
             this.groupBox2.Controls.Add(this.label3);
@@ -108,10 +115,21 @@
             this.groupBox2.Controls.Add(this.textbox_timer);
             this.groupBox2.Location = new System.Drawing.Point(218, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(330, 75);
+            this.groupBox2.Size = new System.Drawing.Size(430, 75);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "定时读";
+            // 
+            // CB_LANT
+            // 
+            this.CB_LANT.AutoSize = true;
+            this.CB_LANT.Location = new System.Drawing.Point(245, 20);
+            this.CB_LANT.Name = "CB_LANT";
+            this.CB_LANT.Size = new System.Drawing.Size(72, 16);
+            this.CB_LANT.TabIndex = 11;
+            this.CB_LANT.Text = "循环租借";
+            this.CB_LANT.UseVisualStyleBackColor = true;
+            this.CB_LANT.CheckedChanged += new System.EventHandler(this.CB_LANT_CheckedChanged);
             // 
             // CB_LISTEN
             // 
@@ -174,7 +192,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.button1.Location = new System.Drawing.Point(554, 12);
+            this.button1.Location = new System.Drawing.Point(654, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 66);
             this.button1.TabIndex = 7;
@@ -188,31 +206,47 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.AutoScroll = true;
+            this.panel.ContextMenuStrip = this.contextMenuStrip1;
             this.panel.Location = new System.Drawing.Point(12, 84);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(753, 482);
             this.panel.TabIndex = 9;
             // 
-            // button2
+            // contextMenuStrip1
             // 
-            this.button2.Location = new System.Drawing.Point(671, 55);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "重新加载";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.重新加载ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
             // 
-            // CB_LANT
+            // 重新加载ToolStripMenuItem
             // 
-            this.CB_LANT.AutoSize = true;
-            this.CB_LANT.Location = new System.Drawing.Point(245, 20);
-            this.CB_LANT.Name = "CB_LANT";
-            this.CB_LANT.Size = new System.Drawing.Size(72, 16);
-            this.CB_LANT.TabIndex = 11;
-            this.CB_LANT.Text = "循环租借";
-            this.CB_LANT.UseVisualStyleBackColor = true;
-            this.CB_LANT.CheckedChanged += new System.EventHandler(this.CB_LANT_CheckedChanged);
+            this.重新加载ToolStripMenuItem.Name = "重新加载ToolStripMenuItem";
+            this.重新加载ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.重新加载ToolStripMenuItem.Text = "重新加载";
+            this.重新加载ToolStripMenuItem.Click += new System.EventHandler(this.重新加载ToolStripMenuItem_Click);
+            // 
+            // ltx
+            // 
+            this.ltx.AutoSize = true;
+            this.ltx.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.ltx.ForeColor = System.Drawing.Color.Red;
+            this.ltx.Location = new System.Drawing.Point(323, 17);
+            this.ltx.Name = "ltx";
+            this.ltx.Size = new System.Drawing.Size(29, 21);
+            this.ltx.TabIndex = 12;
+            this.ltx.Text = "TX";
+            // 
+            // lrx
+            // 
+            this.lrx.AutoSize = true;
+            this.lrx.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lrx.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lrx.Location = new System.Drawing.Point(323, 44);
+            this.lrx.Name = "lrx";
+            this.lrx.Size = new System.Drawing.Size(30, 21);
+            this.lrx.TabIndex = 13;
+            this.lrx.Text = "RX";
             // 
             // channelHeartbreak
             // 
@@ -220,7 +254,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(779, 578);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox2);
@@ -232,6 +265,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -251,8 +285,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox xintiao;
         private System.Windows.Forms.FlowLayoutPanel panel;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox CB_LISTEN;
         private System.Windows.Forms.CheckBox CB_LANT;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 重新加载ToolStripMenuItem;
+        private System.Windows.Forms.Label lrx;
+        private System.Windows.Forms.Label ltx;
     }
 }

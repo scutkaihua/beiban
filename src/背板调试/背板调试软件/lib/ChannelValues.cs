@@ -148,7 +148,7 @@ namespace LD.lib
                 AddName(ch, "容量结束", "容量结束", 0, 2, Brushes.Black, AxisPosition.LeftBottom);
 
                 AddName(ch, "时间", "偏移", 0,10000, Brushes.Black, AxisPosition.LeftBottom);
-                AddName(ch, "编号","编号", 0, int.MaxValue, Brushes.Black, AxisPosition.LeftBottom);
+                //AddName(ch, "编号","编号", 0, int.MaxValue, Brushes.Black, AxisPosition.LeftBottom);
 
             }
 
@@ -177,10 +177,10 @@ namespace LD.lib
             ccend = ((vol & 0x84000) == 0) ? 0 : 1;
             vol = (vol & 0x3FFF);
 
-            try{
-                int iid = int.Parse(cid.Substring(11));
-                Add(ch, "编号", iid);
-            }catch(Exception ee){ }
+            //try{
+            //    int iid = int.Parse(cid.Substring(11));
+            //    Add(ch, "编号", iid);
+            //}catch(Exception ee){ }
 
             Add(ch,"地址", addr);
             Add(ch,"版本", ver);

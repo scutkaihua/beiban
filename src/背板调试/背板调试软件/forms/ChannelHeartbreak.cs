@@ -50,6 +50,10 @@ namespace LD.forms
         //显示
         PacketView pv;
 
+        //接收心跳包个数
+        double rx_counter=0;
+        double tx_counter=0;
+
         public channelHeartbreak(SerialPortSetting s,PacketView p)
         {     
             InitializeComponent();
@@ -59,6 +63,39 @@ namespace LD.forms
             //默认 12 个仓道 3 个背板
             rebuild_channels();
             pv = p;
+
+            ltx.DoubleClick += Ltx_DoubleClick;
+            lrx.DoubleClick += Ltx_DoubleClick;
+        }
+
+        delegate void r();
+        private void LRXTX_Refresh()
+        {
+            if (ltx.InvokeRequired)
+            {
+                r rr = new r(LRXTX_Refresh);
+                ltx.BeginInvoke(rr,null);
+            }
+            else
+            {
+                ltx.Text = "TX:"+tx_counter;
+            }
+
+            if (lrx.InvokeRequired)
+            {
+                r rr = new r(LRXTX_Refresh);
+                lrx.BeginInvoke(rr, null);
+            }
+            else
+            {
+                lrx.Text = "RX:" + rx_counter;
+            }            
+        }
+
+        private void Ltx_DoubleClick(object sender, EventArgs e)
+        {
+            tx_counter = rx_counter = 0;
+            LRXTX_Refresh();
         }
 
         private int List_index(byte beiban)
@@ -125,6 +162,8 @@ namespace LD.forms
                 switch (p.cmd)
                 {
                     case Cmd.心跳:
+                                    rx_counter++;
+                                    LRXTX_Refresh();
                                     ListView_Add(p);
                                     panel.Refresh();
                                     if(null!=mre)mre.Set();
@@ -148,6 +187,8 @@ namespace LD.forms
                 Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.心跳, beiban, xintiao.Text);
                 byte[] ss = packet.toBytes;
                 serialPort.WritePacket(packet);
+                tx_counter++;
+                LRXTX_Refresh();
                 //等待心跳应答 
                 int div = list_addresses.Count();
                 mre.Reset();
@@ -287,6 +328,17 @@ namespace LD.forms
             if (cc.Id.Equals("00000000000000000000")) return;
             else { cc.rent(); current_offset++; }
 
+        }
+
+        private void 重新加载ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("确定删除历史数据吗??", "确定删除?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.panel.Controls.Clear();
+                channelValues.Clear();
+                rebuild_channels();
+            }
         }
     }
 }

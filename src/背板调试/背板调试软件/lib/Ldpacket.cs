@@ -265,7 +265,7 @@ namespace LD.lib
                     {
                         sb.Append("子命令:" + this.data[0].ToString("X2") + "   ");
                         sb.Append("命令:" + (Ctrl)this.data[1] + "   ");
-                        sb.Append("结果 :" + ((this.data[1]==0)?("失败"):("成功")) + "\n");
+                        sb.Append("结果 :" + ((this.data[2]==0)?("失败"):("成功")) + "\n");
                     }else
                         sb.Append("数据:" + Ulitily.ShareClass.hexByteArrayToString(this.data, 0, this.len).Replace("-", " ") + "   ");
                     break;
