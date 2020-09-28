@@ -18,9 +18,6 @@ namespace LD.forms
     {
 
         SerialPort serialPort = null;// new SerialPort();
-
-        //CommPort serialport;
-        public System.Threading.Thread serialThread;
         AutoResetEvent ARESerial = new AutoResetEvent(false);
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         
@@ -28,7 +25,6 @@ namespace LD.forms
         public event Ulitily.onPacketTransfer onPacketReceive;
         public event Ulitily.onPacketTransfer onPacketSend;
         public event Ulitily.onPacketTransfer onErrorByte;
-
         private static readonly Mutex mutex = new Mutex();
 
         public SerialPortSetting()
@@ -38,14 +34,12 @@ namespace LD.forms
             timer.Interval = 10;
             timer.Start();
             this.FormBorderStyle = FormBorderStyle.None;
-            
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             SerialPort_DataReceived(null, null);
-
-            //SerialPort_DataReceived(null,null);
+            SerialPort_DataReceived(null,null);
             while (databuffer.Count > 0)
             {
                 byte c = databuffer.Dequeue();
@@ -137,45 +131,12 @@ namespace LD.forms
             int l = serialPort.BytesToRead;
             if (l > 0)
             {
-                mutex.WaitOne();
+               mutex.WaitOne();
                 serialPort.Read(b, 0, l);
-                mutex.ReleaseMutex();
+               mutex.ReleaseMutex();
             }      
             for (int i = 0; i < l; i++) databuffer.Enqueue(b[i]);
         }
-
-
-        /// <summary>
-        /// 字节接收
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //void _serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        ////throw new NotImplementedException();
-        //        //int btr = serialport.BytesToRead;
-        //        ////int btr = serialport.ReadBufferSize;
-        //        //if (btr > 0)
-        //        {
-        //           // byte[] sb = new byte[RINGBUFFER_SIZE];
-        //            //int sl = serialport.Read(sb, 0, btr);
-        //            byte[] sb = serialport.Read(1);
-        //            if (sb != null && sb.Length>0)
-        //            {
-        //                ringbufserial.WriteBuf(sb, sb.Length);
-        //                ARESerial.Set(); 
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.Console.WriteLine(ex.ToString());
-        //        ARESerial.Set();
-        //    }
-        //}
 
 
         int total_readbufferlen = 0;
@@ -195,7 +156,6 @@ namespace LD.forms
 
             if (packet != null)
             {
-
                 if (onPacketReceive != null)
                 {
                     Ulitily.PacketArgs args = new Ulitily.PacketArgs();
@@ -205,78 +165,9 @@ namespace LD.forms
                     System.Console.WriteLine("call back:onPacketReceive:{0}", onPacketReceive.Method.Name);
 
                 }
-                //if (packet.len > 0)
-                //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2} data:{3}",
-                //        packet.addr, packet.cmd, packet.len, Ulitily.ShareClass.hexByteArrayToString(packet.data,packet.len).Replace("-", ""));
-                //else
-                //    System.Console.WriteLine("Get a packet :addr:{0} cmd:{1} len:{2}",
-                //         packet.addr, packet.cmd,packet.len);
             }
 
         }
-
-        /// <summary>
-        /// 口线程处理
-        /// </summary>
-        void SerialThread()
-        {
-           
-            byte c = 0;
-            while (true)
-            {
-                try
-                {
-                    //从串口读数据----------------slip protocol--------------------//
-                    if(serialPort.BytesToRead>0)
-                    {
-                        c = (byte)serialPort.ReadByte();
-                        SerialProcessByte(c);
-                    }
-                    else
-                    {
-                        System.Threading.Thread.Sleep(10);
-                    }
-                }
-                catch (Exception e)
-                {
-                    System.Console.WriteLine("SerialThread :" + e.ToString());
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// 读数据
-        /// </summary>
-        /// <param name="outdata"></param>
-        /// <param name="saveoffset">outdata[saveoffset]开始保存数据</param>
-        /// <param name="len"></param>
-        /// <param name="timeout">超时  ms</param>
-        /// <returns></returns>
-        //public int Read(byte[] outdata, int saveoffset,int len, int timeout)
-        //{
-        //    if (outdata == null) return 0;
-        //    if (saveoffset > outdata.Length) return 0;
-        //    int wantlen = (outdata.Length > len+saveoffset) ? len : outdata.Length-saveoffset;
-        //    len = 0;
-        //    if (serialport.IsOpen)
-        //    {
-        //        int index = saveoffset;
-        //        serialport.ReadTimeout = timeout;
-
-        //        while (wantlen > 0 && serialport.ReadBufferSize > 0)
-        //        {
-        //            outdata[saveoffset] = (byte)serialport.ReadByte();
-        //            wantlen--;
-        //            index++;
-        //        }
-
-        //        return index;
-        //    }
-
-        //    return len ;
-        //}
-
 
         /// <summary>
         /// 写数据
@@ -302,7 +193,7 @@ namespace LD.forms
         {
             byte[] bp = pack.toBytes;
             if (bp == null) return null;
-            write(bp, 0, bp.Length,100);
+            if (write(bp, 0, bp.Length, 100) == 0) return null;
 
             if (onPacketSend != null)
             {
@@ -321,18 +212,5 @@ namespace LD.forms
             return pack;
         }
 
-
-        /// <summary>
-        /// 帧等待时间长度
-        /// </summary>
-        /// <returns></returns>
-        public int PacketWaitTime()
-        {
-            try {
-                int i = int.Parse(tb_FrameWait.Text, System.Globalization.NumberStyles.Number);
-                return i;
-            }
-            catch { return 1000; }
-        }
     }
 }

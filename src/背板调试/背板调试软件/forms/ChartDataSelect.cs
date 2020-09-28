@@ -106,12 +106,14 @@ namespace LD.forms
             if ((bool)(c.Value) == true)
             {
                 chs[ch - 1].Add(r,ch,n.Value.ToString(),c.Style.BackColor);
-                onConfigChanaged?.Invoke(chs);
+                onConfigChanaged?.BeginInvoke(chs, null, this);
+                //onConfigChanaged?.Invoke(chs);
             }
             else
             {
                 chs[ch - 1].Remove(n.Value.ToString());
-                onConfigChanaged?.Invoke(chs);
+                onConfigChanaged?.BeginInvoke(chs, null, this);
+                //onConfigChanaged?.Invoke(chs);
             }
                 
         }

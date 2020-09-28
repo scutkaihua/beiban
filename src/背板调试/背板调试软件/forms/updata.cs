@@ -63,7 +63,7 @@ namespace LD.forms
             if(this.InvokeRequired)
             {
                 Reflash_View r = new Reflash_View(Refalsh_View);
-                this.Invoke(r);
+                this.BeginInvoke(r);
             }
             else
             {

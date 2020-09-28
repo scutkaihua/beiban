@@ -68,6 +68,7 @@ namespace LD.forms
             lrx.DoubleClick += Ltx_DoubleClick;
         }
 
+
         delegate void r();
         private void LRXTX_Refresh()
         {
@@ -186,9 +187,8 @@ namespace LD.forms
                 
                 Ldpacket packet = Ldpacket.Get_Ldpacket(Cmd.心跳, beiban, xintiao.Text);
                 byte[] ss = packet.toBytes;
-                serialPort.WritePacket(packet);
-                tx_counter++;
-                LRXTX_Refresh();
+                if(serialPort.WritePacket(packet)!=null)
+                { tx_counter++;  LRXTX_Refresh();}
                 //等待心跳应答 
                 int div = list_addresses.Count();
                 mre.Reset();

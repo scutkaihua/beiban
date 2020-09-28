@@ -64,6 +64,14 @@ namespace LD.lib
             set { buffer[6 + len] = cs; }
         }
 
+        public bool checkcs {
+            get
+            {
+                if (cs != buffer[6 + len]) return false;
+                else return true;
+            }
+        }
+
         public int size { get { return len + 7; } }
 
 

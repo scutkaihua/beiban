@@ -62,6 +62,11 @@ namespace LD.forms
             }
             byte[] d = Ulitily.ShareClass.strToHexByteArray(t.ToString());
             Ldpacket p = new Ldpacket(d, d.Length);
+            if (p.checkcs == false)
+            {
+                MessageBox.Show("检验失败");
+                return;
+            }
             try
             {
                 this.result.Clear();

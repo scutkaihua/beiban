@@ -34,7 +34,6 @@ namespace LD.forms
         public void SetSerialPort(SerialPortSetting serialPortSetting)
         {
             serial = serialPortSetting;
-            serial.onPacketReceive += Serial_onPacketReceive;
             serial.onPacketSend += Serial_onPacketSend;
             serial.onErrorByte += Serial_onErrorByte;
             chs[0] = channel1;
@@ -101,7 +100,7 @@ namespace LD.forms
                 if (this.InvokeRequired)
                 {
                     Ulitily.onPacketTransfer handler = new Ulitily.onPacketTransfer(Serial_onPacketSend1);
-                    this.Invoke(handler, new object[] { sender,args });
+                    this.BeginInvoke(handler, new object[] { sender,args });
 
                 }
                 else
@@ -146,7 +145,7 @@ namespace LD.forms
             if (this.InvokeRequired)
             {
                 FlushClient fc = new FlushClient(Serial_onPacketReceive);
-                this.Invoke(fc,new object[] { sender,args});
+                this.BeginInvoke(fc,new object[] { sender,args});
             }
             else
             {
@@ -296,10 +295,12 @@ namespace LD.forms
             if(cb_all.Checked)
             {
                 serial.onPacketSend += Serial_onPacketSend1;
+                serial.onPacketReceive += Serial_onPacketReceive;
             }
             else
             {
                 serial.onPacketSend -= Serial_onPacketSend1;
+                serial.onPacketReceive -= Serial_onPacketReceive;
             }
         }
     }
