@@ -178,8 +178,22 @@ namespace LD.forms
                                 c.beibanAddr.Text = p.data[0].ToString("X2");
                                 string aad = "模组地址:" + p.data[0].ToString("X2");
                                 string bbd = "仓道数:" + p.data[1].ToString("X2");
+
+                                UInt16 hw = 0;
+                                Ulitily.ShareClass.BytesToUInt16Big(p.data, 2, ref hw, 0);
                                 string ccd = "硬件版本:" + Ulitily.ShareClass.hexByteArrayToString(p.data, 2, 2).Replace("-", "");
-                                string ddd = "软件版本:" + Ulitily.ShareClass.hexByteArrayToString(p.data, 4, 2).Replace("-", "");
+                                string ddd = null;
+                                if (hw >= 0x0201)
+                                {
+                                    UInt16 sw = 0;
+                                    Ulitily.ShareClass.BytesToUInt16Big(p.data, 4, ref sw, 0);
+                                    ddd = "软件版本:" + sw.ToString();
+                                }
+                                else
+                                {
+                                    ddd = "软件版本:" + Ulitily.ShareClass.hexByteArrayToString(p.data, 4, 2).Replace("-", "");
+                                }
+
                                 break_ack.Text = aad + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(aad).Length)
                                     + bbd + new String(' ', 20 - Encoding.GetEncoding("gb2312").GetBytes(bbd).Length) + "\r\n"
                                     + ccd + new String(' ', 19 - Encoding.GetEncoding("gb2312").GetBytes(ccd).Length)

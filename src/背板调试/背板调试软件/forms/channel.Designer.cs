@@ -37,13 +37,13 @@
             this.addr = new System.Windows.Forms.TextBox();
             this.time = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LIndex = new System.Windows.Forms.Label();
             this.beibanAddr = new System.Windows.Forms.TextBox();
             this.values2 = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.error = new LD.forms.State();
             this.warn = new LD.forms.State();
             this.state = new LD.forms.State();
-            this.LIndex = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
@@ -63,7 +63,7 @@
             this.values1.AutoSize = true;
             this.values1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.values1.ForeColor = System.Drawing.Color.Coral;
-            this.values1.Location = new System.Drawing.Point(50, 26);
+            this.values1.Location = new System.Drawing.Point(47, 26);
             this.values1.Name = "values1";
             this.values1.Size = new System.Drawing.Size(45, 17);
             this.values1.TabIndex = 5;
@@ -143,6 +143,17 @@
             this.panel1.Size = new System.Drawing.Size(180, 98);
             this.panel1.TabIndex = 18;
             // 
+            // LIndex
+            // 
+            this.LIndex.AutoSize = true;
+            this.LIndex.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.LIndex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.LIndex.Location = new System.Drawing.Point(1, 73);
+            this.LIndex.Name = "LIndex";
+            this.LIndex.Size = new System.Drawing.Size(38, 17);
+            this.LIndex.TabIndex = 16;
+            this.LIndex.Text = "通道?";
+            // 
             // beibanAddr
             // 
             this.beibanAddr.Location = new System.Drawing.Point(3, 4);
@@ -155,7 +166,7 @@
             this.values2.AutoSize = true;
             this.values2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.values2.ForeColor = System.Drawing.Color.Coral;
-            this.values2.Location = new System.Drawing.Point(120, 26);
+            this.values2.Location = new System.Drawing.Point(117, 26);
             this.values2.Name = "values2";
             this.values2.Size = new System.Drawing.Size(45, 17);
             this.values2.TabIndex = 14;
@@ -220,17 +231,6 @@
             this.state.Name = "state";
             this.state.Size = new System.Drawing.Size(334, 32);
             this.state.TabIndex = 15;
-            // 
-            // LIndex
-            // 
-            this.LIndex.AutoSize = true;
-            this.LIndex.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LIndex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.LIndex.Location = new System.Drawing.Point(1, 73);
-            this.LIndex.Name = "LIndex";
-            this.LIndex.Size = new System.Drawing.Size(38, 17);
-            this.LIndex.TabIndex = 16;
-            this.LIndex.Text = "通道?";
             // 
             // channel
             // 

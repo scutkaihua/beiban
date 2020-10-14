@@ -189,13 +189,16 @@ namespace LD.forms
 
         public void update(byte[] d, int offset)
         {
+            Int16 c = d[offset + 15];c <<= 8;c += d[offset + 16];
+            sbyte wd = (sbyte)d[offset + 18];
+
             this.Id = Ulitily.ShareClass.hexByteArrayToString(d, offset + 4, 10).Replace("-", "");
             this.Addr = (d[offset]).ToString("X2");
             this.set_states(d[offset + 1], d[offset + 2], d[offset + 3]);
             string ver = d[offset + 14].ToString("X2");
-            string current = ((((int)d[offset + 15]) << 8) + ((int)d[offset + 16])).ToString("D");
+            string current = c.ToString("D");
             string dianlian = d[offset + 17].ToString("D2");
-            string wendu = d[offset + 18].ToString("D2");
+            string wendu = wd.ToString("D2");
             string cc = ((((int)d[offset + 19]) << 8) + ((int)d[offset + 20])).ToString("D");
             int vvol = ((((int)d[offset + 21]) << 8) + ((int)d[offset + 22]));
             int ccstart = ((vvol & 0x8000) == 0) ? 0 : 1;
@@ -203,8 +206,8 @@ namespace LD.forms
             string vol = ((int)(vvol & 0x3FFF)).ToString("D");
             string v = ((((int)d[offset + 23]) << 8) + ((int)d[offset + 24])).ToString("D");
             string biaoji = d[offset + 25].ToString("X2");
-            this.Values1 = "版本:" + ver + "\n次数:" + cc + "\n容量:" + vol + "\n标志:" + biaoji + "\n开始:" + ccstart;
-            this.Values2 = "电流:" + current + "\n电量:" + dianlian + "\n电压:" + v + "\n温度:" + wendu + "\n结束" + ccend;
+            this.Values1 = "版本: " + ver + "\n次数: " + cc + "\n容量: " + vol + "\n标志: " + biaoji + "\n开始: " + ccstart;
+            this.Values2 = "电流: " + current + "\n电量: " + dianlian + "\n电压: " + v + "\n温度: " + wendu + "\n结束: " + ccend;
         }
 
     }

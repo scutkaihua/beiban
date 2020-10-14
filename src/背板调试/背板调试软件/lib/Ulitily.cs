@@ -370,6 +370,23 @@ namespace LD.lib
                 return 1;
             }
 
+            /// <summary>
+            /// buffer[offset] copy UInt16 to v
+            /// </summary>
+            /// <param name="v">输出数据</param>
+            /// <param name="buffer"></param>
+            /// <param name="offset"></param>
+            /// <returns>0:error  1:ok</returns>
+            public static int BytesToUInt16Big(byte[] buffer, int offset, ref UInt16 v, byte H33)
+            {
+                if (buffer == null || buffer.Length < offset + 1) return 0;
+
+                v = (UInt16)(buffer[offset + 0] - H33);
+                v <<= 8;
+                v += (UInt16)(buffer[offset +1] - H33);
+                return 1;
+            }
+
 
             /// <summary>
             /// 把 v copy 到buffer[offset]的地方
